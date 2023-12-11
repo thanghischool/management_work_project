@@ -98,7 +98,7 @@ fieldset {
     margin-left: 400px;
     border-radius: 20px;
     border: #f1d16d 1px solid;
-    box-shadow: #f1d16d 0 0 10px;
+    box-shadow: #f1d16d 0 0 2px;
 }
 .connect{
 	margin-top: 800px;
@@ -109,4 +109,7 @@ fieldset {
 }
 .connect i{
 	margin-right: 20px;
+}
+.nhap{
+	border-radius: 5px;
 }

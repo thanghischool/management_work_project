@@ -44,12 +44,9 @@ body {
     font-family:Arial, Helvetica, sans-serif;
     font-size: 40px;
   }
-  .slide1,.slide2{
-    text-align: center;
-  }
+
   .slide1 h1,.slide2 h1{
     color: #011d45;
-    padding-top: 30px;
     padding-bottom: 30px;
   }
   .slide1 .content{
@@ -60,6 +57,9 @@ body {
     width: 300px;
     text-align: center;
     margin-left: 100px;
+    /* border: #ffc400 solid 1px; */
+    border-radius: 20px;
+    background-color: #f6f4f9;
   }
   .avt{
     width: 200px;
@@ -68,3 +68,67 @@ body {
     border-radius: 100px;
     padding: 20px;
   }
+  .slide1 span, .slide2 span{
+    color: rgb(255, 213, 0);
+  }
+  .slide1{
+    text-align: center;
+    padding-top: 200px;
+  }
+  .slide2{
+    margin-left: 50px;
+    width: 600px;
+    padding-top: 200px;
+  }
+  .boxx{
+    display: flex;
+  }
+  .boximg{
+    width: 500px;
+    padding-top: 200px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .fab{
+    color: #6222cc;
+  }
+
+  /*** Button ***/
+.btn {
+  font-weight: 500;
+  transition: .5s;
+  
+}
+
+.btn:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  background-color: #6222cc;
+  color: #f6f4f9;
+}
+
+.btn-square {
+  width: 38px;
+  height: 38px;
+}
+
+.btn-sm-square {
+  width: 32px;
+  height: 32px;
+}
+
+.btn-lg-square {
+  width: 48px;
+  height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  border-radius: 50px;
+}
+
