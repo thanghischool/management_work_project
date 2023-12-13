@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="folders">
         <div class="workspace-title">
@@ -62,7 +64,7 @@
             <div>
                 <div class="workspace-name">
                     Workspace name
-                    <img src="image/pencil.png">
+                    <button class="edit"><img src="image/pencil.png"></button>
                 </div>
                 <div class="ability">
                     <img src="image/Vector.png">
@@ -71,18 +73,43 @@
             </div>
         </div>
         <div class="_container">
-            <div class="project">
+            <div class="title">
                 <img src="image/project-icon.png">
                 Your Projects
             </div>
             <div class="project-list">
                 <div class="item" draggable="true">
-                    <span class="disable-select">Project name</span>
+                    <span class="disable-select">Project name 1</span>
                     <div class="progress-bar"></div>
                     <div class="progress-percent">10%</div>
                 </div>
                 <div class="item" draggable="true">
-                    <span class="disable-select">Project name</span>
+                    <span class="disable-select">Project name 2</span>
+                    <div class="progress-bar"></div>
+                    <div class="progress-percent">10%</div>
+                </div>
+                <div class="item" draggable="true">
+                    <span class="disable-select">Project name 3</span>
+                    <div class="progress-bar"></div>
+                    <div class="progress-percent">10%</div>
+                </div>
+                <div class="item" draggable="true">
+                    <span class="disable-select">Project name 4</span>
+                    <div class="progress-bar"></div>
+                    <div class="progress-percent">10%</div>
+                </div>
+                <div class="item" draggable="true">
+                    <span class="disable-select">Project name 5</span>
+                    <div class="progress-bar"></div>
+                    <div class="progress-percent">10%</div>
+                </div>
+                <div class="item" draggable="true">
+                    <span class="disable-select">Project name 6</span>
+                    <div class="progress-bar"></div>
+                    <div class="progress-percent">10%</div>
+                </div>
+                <div class="item" draggable="true">
+                    <span class="disable-select">Project name 7</span>
                     <div class="progress-bar"></div>
                     <div class="progress-percent">20%</div>
                 </div>
@@ -95,7 +122,9 @@
     <script src="script.js"></script>
     <script src="dragable.js"></script>
     <script>
-        applyDragableIntoList(".project-list",".item:not(.button)");
+    applyDragableIntoList(".project-list", ".item:not(.button)");
     </script>
+    <script src="editable.js"></script>
 </body>
+
 </html>
