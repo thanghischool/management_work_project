@@ -83,6 +83,7 @@
     margin-top: 20px;
     justify-content: space-around;
     width: 100%;
+    height: fit-content;
     border-top: 2px solid black;
     padding-top: 20px;
 }
