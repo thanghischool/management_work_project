@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+.invitation{
+    margin: 19px 0 0 35px;
+    display: block;
+}
+.invitedByLink{
+    font-size: 1.6rem;
+}
+.invitedByLink .invitation-title{
+    font-weight: bold;
+    margin: 0;
+}
+.invitedByLink .invitation-body{
+    display: block;
+    margin-top: 10px;
+    height: 100px;
+}
+.invitedByLink .invitation-body p{
+    margin: 0;
+    width: 60%;
+    font-family: 'Inter', sans-serif;
+    float: left;
+}
+.invitedByLink .invitation-link{
+    font-size: 1.3rem;
+    margin-right: 88px;
+    background-color: #000000;
+    color: white;
+    height: 35px;
+    width: 141px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    gap: 4px;
+    border-radius: 20px;
+    float: right;
+}
+.invitedByLink .invitation-link img{
+    width: 21px;
+    height: fit-content;
+}
+.menbers{
+    width: 90%;
+    height: fit-content;
+    border-top: 1px solid  #00000040;
+}
+.menbers .menber-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-top: 18px;
+}
+.menbers .menber-item .avatar{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
+.menbers .menber-item .right{
+    display: flex;
+    width: 112px;
+    height: 35px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+.menber-item .right img{
+    height: fit-content;
+    width: 21px;
+}
+.menbers .menber-item .left{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+.menbers .menber-item .left div{
+    display: flex;
+    flex-direction: column;
+}
+.menber-item .left div .name{
+    font-weight: bold;
+}
+.menber-item .left div .username{
+    color: #727272;
+}
