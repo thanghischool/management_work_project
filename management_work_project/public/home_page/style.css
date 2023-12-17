@@ -1,0 +1,379 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.half-circle {
+  width: 100px;
+  height: 45px;
+  position: absolute;
+  bottom: -104px;
+  left: 33px;
+  background-color: rgb(255, 255, 255);
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  rotate: 195deg;
+}
+header {
+  /* margin-top: 60px; */
+  margin: 0 315px;
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo-header h1 {
+  float: right;
+  color: rgb(238, 238, 250);
+  line-height: 80px;
+}
+header .nav {
+  display: flex;
+}
+header .nav .navBar {
+  display: flex;
+}
+
+header .nav .navBar ul {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+header .nav .navBar ul li {
+  display: inline-block;
+  padding: 0 35px;
+  width: max-content;
+  align-self: center;
+}
+
+header .nav .navBar ul li:hover a {
+  color: rgb(230, 123, 51);
+}
+
+header .nav .navBar ul li a {
+  text-decoration: none;
+  font-size: 17px;
+  color: #fffffb;
+}
+
+header .nav .register {
+  cursor: pointer;
+  margin-left: 60px;
+  float: right;
+  background-color: rgb(230, 123, 51);
+  padding: 22px 24px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgb(230, 123, 51);
+}
+
+header .nav .register h2 {
+  width: max-content;
+  font-size: 18px;
+  margin: 0;
+  color: rgb(247, 254, 253);
+}
+
+.dash-board .introduction-product {
+  text-align: center;
+  margin-top: 100px;
+  position: relative;
+}
+
+.dash-board .introduction-product h1 {
+  font-size: 68px;
+  color: rgb(255, 254, 253);
+}
+
+.dash-board .introduction-product h6 {
+  color: rgb(192, 198, 226);
+  margin-top: 50px;
+  line-height: 28px;
+}
+.dash-board .start-use {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 56px;
+}
+
+.dash-board .start-use .start-btn {
+  cursor: pointer;
+  padding: 18px 20px;
+  background-color: rgb(255, 127, 92);
+  border-radius: 6px;
+  margin-right: 60px;
+}
+.dash-board .start-use .start-btn h2 {
+  color: rgb(255, 242, 239);
+  font-size: 18px;
+  margin: 0;
+}
+
+.dash-board .start-use .watch-video {
+  align-self: center;
+  position: relative;
+}
+
+.dash-board .start-use .watch-video .play-icon {
+  position: relative;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  background-color: rgb(62, 188, 150);
+  float: left;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.dash-board .start-use .watch-video .play-icon-parent {
+  content: "";
+  cursor: pointer;
+  position: absolute;
+  top: -7px;
+  left: -8px;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(32, 22, 109);
+  border-radius: 50%;
+  z-index: 1;
+
+  transition: background-color 1s;
+}
+
+.dash-board .start-use .watch-video h2 {
+  width: 10rem;
+  font-size: 18px;
+  color: rgb(250, 249, 248);
+  line-height: 30px;
+  margin-left: 30px;
+}
+
+.dash-board .img-dashboard {
+  text-align: center;
+  margin-top: 110px;
+  position: relative;
+}
+.dash-board .img-dashboard::before {
+  content: "";
+  width: 38%;
+  height: 496px;
+  top: -10px;
+  right: 31%;
+  border-radius: 10px;
+  background-color: rgb(246, 206, 196);
+  position: absolute;
+  z-index: -1;
+  mix-blend-mode: multiply;
+}
+
+.dash-board .img-dashboard::after {
+  content: "";
+  width: 40%;
+  height: 524px;
+  top: -24px;
+  right: 30%;
+  border-radius: 10px;
+  background-color: rgb(254, 229, 223);
+  position: absolute;
+  z-index: -2;
+  mix-blend-mode: multiply;
+}
+
+.dash-board .img-dashboard img {
+  width: 36%;
+  height: 478px;
+  border-radius: 20px;
+}
+
+.dash-board .img-dashboard svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -4;
+}
+
+.dash-board .img-dashboard .img-revenue {
+  position: absolute;
+  width: 196px;
+  height: 110px;
+  top: 45px;
+  right: 24%;
+  z-index: 999;
+}
+
+.dash-board .img-dashboard .img-total {
+  position: absolute;
+  width: 245px;
+  height: 160px;
+  bottom: 50px;
+  left: 20%;
+}
+
+.dash-board .img-dashboard .bi-container {
+  position: absolute;
+  bottom: -80px;
+  left: 25%;
+  z-index: -4;
+}
+
+.dash-board .img-dashboard .bi-container i {
+  font-size: 30px;
+  color: rgb(163, 158, 172);
+}
+
+.function-tool {
+  height: 1600px;
+  margin-top: 750px;
+}
+
+.function-tool .explanation {
+  text-align: center;
+  position: relative;
+}
+
+.function-tool .box-1 {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 2px;
+  left: 25%;
+  border-radius: 3px;
+  background-color: rgb(47, 170, 142);
+  box-shadow: 8px 8px rgb(86, 94, 130);
+}
+
+.function-tool .box-2 {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 2px;
+  right: 25%;
+  border-radius: 3px;
+  background-color: rgb(47, 170, 142);
+  box-shadow: 8px 8px rgb(86, 94, 130);
+}
+
+.function-tool .detail-function .project .detail-project {
+  float: right;
+  margin-right: 25%;
+  margin-top: 90px;
+  position: relative;
+}
+
+.function-tool .detail-function .project .detail-project .book-icon {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(254, 246, 231);
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  left: -150px;
+  text-align: center;
+}
+
+.function-tool .detail-function .project .detail-project .book-icon i {
+  line-height: 90px;
+  font-size: 45px;
+  color: rgb(255, 155, 0);
+}
+
+.function-tool .detail-function .task .detail-task {
+  float: left;
+  margin-left: 20%;
+  margin-top: 90px;
+  position: relative;
+}
+
+.function-tool .detail-function .task .detail-task .note-book-icon {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(252, 241, 255);
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  right: -178px;
+  text-align: center;
+}
+
+.function-tool .detail-function .task .detail-task .note-book-icon i {
+  line-height: 90px;
+  font-size: 45px;
+  color: rgb(136, 11, 255);
+}
+
+.function-tool .detail-function .team .detail-team {
+  float: right;
+  margin-right: 25%;
+  margin-top: 90px;
+  position: relative;
+}
+
+.function-tool .detail-function .team .detail-team .collaborate-book-icon {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(254, 246, 231);
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  left: -170px;
+  text-align: center;
+}
+
+.function-tool .detail-function .team .detail-team .collaborate-book-icon i {
+  line-height: 90px;
+  font-size: 45px;
+  color: rgb(255, 155, 0);
+}
+
+.function-tool .detail-function .time .detail-time {
+  float: left;
+  margin-left: 20%;
+  margin-top: 90px;
+  position: relative;
+}
+
+.function-tool .detail-function .time .detail-time .clock-book-icon {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(252, 241, 255);
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  right: -230px;
+  text-align: center;
+}
+
+.function-tool .detail-function .time .detail-time .clock-book-icon i {
+  line-height: 90px;
+  font-size: 45px;
+  color: rgb(136, 11, 255);
+}
+
+.collaboration-unit {
+  height: 450px;
+  text-align: center;
+  background-color: rgb(32, 22, 108);
+  color: rgb(255, 254, 255);
+}
+
+.collaboration-unit .number-user {
+  padding-top: 120px;
+  position: relative;
+}
+
+.collaboration-unit .number-unit {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 90px;
+}
+
+.collaboration-unit .number-unit .invision h4,
+.collaboration-unit .number-unit .slack h4,
+.collaboration-unit .number-unit .microsoft h4,
+.collaboration-unit .number-unit .treehouse h4,
+.collaboration-unit .number-unit .Lattice h4 {
+  float: right;
+  line-height: 40px;
+}
