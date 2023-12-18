@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/login.css">
-	<link rel="stylesheet" href="../fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="{{asset('pages/login.css')}}">
+	<link rel="stylesheet" href="{{asset('pages/fontawesome-free-6.5.1-web/css/all.min.css')}}">
 </head>
 <body>
-    <h2 class="htitle">Chào mừng đến với DIRA!</h2>
+    <h2 class="htitle">Welcome to DIRA!</h2>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form action="#">
@@ -38,7 +38,7 @@
 			<input type="email" placeholder="Email" />
 			<input type="password" placeholder="Password" />
 			<a href="#">Forgot your password?</a>
-			<!-- <a href="{{ route('auth.google') }}">gg</a> -->
+			<a href="{{ route('auth.google') }}">gg</a>
 			<button style="margin-top: 50px;">Sign In</button>
 		</form>
 	</div>
@@ -67,7 +67,7 @@
 	
   </div>
 </body>
-<script src="./login.js"></script>
+<script src="{{asset('pages/login.js')}}"></script>
  <!-- <a href="{{ route('logout-home') }}">logout</a> -->
 </html>
 
