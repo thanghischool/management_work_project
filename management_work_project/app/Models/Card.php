@@ -8,21 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Card extends Model
 {
     use HasFactory;
-    protected $table = "cards"; 
+    protected $table = "cards";
+    protected $fillable = [
+        "index", 'list_ID', 'title'
+    ];
+    public $timestamps = false;
     public function checklists(){
-        return $this->hasMany(Checklist::class);
+        return $this->hasMany(Checklist::class, "card_ID", "id");
     }
     public function files(){
-        return $this->hasMany(File::class);
+        return $this->hasMany(File::class, "card_ID", "id");
     }
     public function logs(){
-        return $this->hasMany(Log::class);
+        return $this->hasMany(Log::class, "card_ID", "id");
     }
     public function comments(){
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, "card_ID", "id");
     }
     public function logss(){
-        return $this->hasMany(Log::class);
+        return $this->hasMany(Log::class, "card_ID", "id");
     }
     public function column(){
         return $this->belongsTo(Column::class, "list_ID", "id");

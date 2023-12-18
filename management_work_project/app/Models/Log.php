@@ -12,4 +12,7 @@ class Log extends Model
     public function card(){
         return $this->belongsTo(Card::class, "card_ID", "id");
     }
+    public function user(){
+        return $this->belongsTo(User::class, "user_ID", "id");
+    }
 }
