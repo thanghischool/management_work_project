@@ -9,6 +9,8 @@ class Project extends Model
 {
     use HasFactory;
     protected $table = "projects";
+    public $timestamps = false;
+
     public function workspace()
     {
         return $this->belongsTo(Workspace::class, "workspace_ID", "id");

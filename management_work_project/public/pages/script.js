@@ -1,10 +1,21 @@
 const node = document.createElement("div");
 node.className = "sub-items";
-node.innerHTML = `<div class="item">
+
+const parent = document.querySelector(".workspace-container");
+var workspaces = document.querySelectorAll(".workspace-container .item");
+
+workspaces.forEach((e) => {
+    let currentLink = window.location.href;
+    let arrayCurrentLink = currentLink.split("/");
+    if (arrayCurrentLink[arrayCurrentLink.length - 2] == "workspace") {
+        currentLink = currentLink.split("/").slice(0, -1).join("/");
+    }
+
+    node.innerHTML = `<div class="item">
 <img src="pages/image/project-icon.png" alt="" class="icon">
-<h4 class="item-name">
+<a class="item-name" href="${currentLink}/${e.id}">
     Project
-</h4>
+</a>
 </div>
 <div class="item">
 <img src="pages/image/heart.png" alt="" class="icon">
@@ -24,9 +35,6 @@ node.innerHTML = `<div class="item">
     Chat box
 </h4>
 </div>`;
-const parent = document.querySelector(".workspace-container");
-var workspaces = document.querySelectorAll(".workspace-container .item");
-workspaces.forEach((e) => {
     let nodeClone = node.cloneNode(true);
     nodeClone.addEventListener("click", (e) => {
         console.log("Route to item page");

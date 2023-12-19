@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FetchDataController;
+use App\Http\Controllers\WorkspaceData;
+use App\Http\Controllers\QueryDataController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,14 +23,12 @@ Route::get('/member', function () {
     return view('memberView');
 });
 
-Route::get('/workspace', function () {
-    return view('workspace');
-});
+Route::get('/workspace', [WorkspaceData::class, 'dataProject']);
 
 Route::get('/chatbox', function () {
     return view('chatbox');
 });
 
-Route::get('/homepage', function () {
-    return view('homepage');
-});
+Route::get('/workspace/{id}', [QueryDataController::class, 'getProject'])->name('worksapce_project');
+
+// Route::get('fetchdata', [FetchDataController::class, 'index']);
