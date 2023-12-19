@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DiraController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LoginGoogleController;
 use App\Http\Controllers\LoginFBController;
 use Illuminate\Support\Facades\Route;
@@ -17,13 +18,23 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('/', function (){
-    return view('testRoute');
+Route::get('/', function () {
+    return view('welcome');
 });
-Route::get('/login', function () {
-    return view('login');
-});
-Route::get('/login', [DiraController::class, 'getlogin']);
+// Route::get('/login', function () {
+//     return view('login');
+// });
+
+
+Route::get('/login', [LoginController::class, 'getlogin'])->name('login');
+
+Route::post('/login', [LoginController::class, 'postLogin'])->name('plogin');
+
+Route::post('/signup', [LoginController::class, 'postSignup'])->name('psignup');
+
+
+
+
 Route::get('/chinhsach', function () {
     return '<h1>Chinh sach</h1>';
 });

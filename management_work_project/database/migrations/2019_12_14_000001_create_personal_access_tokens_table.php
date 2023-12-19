@@ -19,19 +19,20 @@ return new class extends Migration
             $table->text('abilities')->nullable();
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('expires_at')->nullable();
+            $table->timestamps();
         });
         Schema::create("workspaces", function (Blueprint $table) {
             $table->id();
-            $table->string("name",50)->nullable(false);
+            $talbe->string("name",50)->nullable(false);
             $table->string("avatar")->nullable(false);
-            $table->unsignedBigInteger("admin_ID");
+            $table->bigInteger("admin_ID");
             $table->tinyInteger("isPublic")->nullable(false)->default(0);
             $table->foreign("admin_ID")->references("id")->on("users");
         });
         Schema::create("projects", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("workspace_ID");
-            $table->string("name",50)->nullable(false);
+            $table->bigInteger("workspace_ID");
+            $talbe->string("name",50)->nullable(false);
             $table->string("background_color");
             $table->tinyInteger("isPublic")->nullable(false)->default(0);
             $table->smallInteger('index')->nullable(false);
@@ -40,78 +41,78 @@ return new class extends Migration
         });
         Schema::create("lists", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("project_ID");
-            $table->string("title",50)->nullable(false);
+            $table->bigInteger("project_ID");
+            $talbe->string("title",50)->nullable(false);
             $table->smallInteger('index')->nullable(false);
             $table->foreign("project_ID")->references("id")->on("projects")->onDelete("cascade");
         });
         Schema::create("cards", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("list_ID")->nullable(false);
-            $table->string("title",50)->nullable(false);
+            $table->bigInteger("list_ID")->nullable(false);
+            $talbe->string("title",50)->nullable(false);
             $table->string("description");
             $table->smallInteger('index')->nullable(false);
             $table->foreign("list_ID")->references("id")->on("lists")->onDelete("cascade");
         });
         Schema::create("files", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("card_ID")->nullable(false);
-            $table->string("link")->nullable(false);
-            $table->string("name")->nullable(false);
+            $table->bigInteger("card_ID")->nullable(false);
+            $talbe->string("link")->nullable(false);
+            $talbe->string("name")->nullable(false);
             $table->foreign("card_ID")->references("id")->on("cards")->onDelete("cascade");
         });
         Schema::create("comments", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("card_ID")->nullable(false);
-            $table->unsignedBigInteger("user_ID")->nullable(false);
+            $table->bigInteger("card_ID")->nullable(false);
+            $table->bigInteger("user_ID")->nullable(false);
             $table->dateTime('created_at');
-            $table->string("content")->nullable(false);
-            $table->foreign("card_ID")->references("id")->on("cards")->onDelete("cascade");
+            $talbe->string("content")->nullable(false);
+            $table->foreign("card_ID")->references("id")->on("activities")->onDelete("cascade");
             $table->foreign("user_ID")->references("id")->on("users")->onDelete("cascade");
         });
         Schema::create("logs", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("card_ID")->nullable(false);
-            $table->unsignedBigInteger("user_ID")->nullable(false);
+            $table->bigInteger("card_ID")->nullable(false);
+            $table->bigInteger("user_ID")->nullable(false);
             $table->dateTime('created_at');
-            $table->string("action")->nullable(false);
+            $talbe->string("action")->nullable(false);
             $table->foreign("card_ID")->references("id")->on("cards")->onDelete("cascade");
             $table->foreign("user_ID")->references("id")->on("users")->onDelete("cascade");
         });
         Schema::create("checklists", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("card_ID")->nullable(false);
-            $table->string("title")->nullable(false);
+            $table->bigInteger("card_ID")->nullable(false);
+            $talbe->string("title")->nullable(false);
             $table->foreign("card_ID")->references("id")->on("cards")->onDelete("cascade");
         });
         Schema::create("tasks", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("checkList_ID")->nullable(false);
-            $table->string("content")->nullable(false);
+            $table->bigInteger("checkList_ID")->nullable(false);
+            $talbe->string("content")->nullable(false);
             $table->foreign("checkList_ID")->references("id")->on("checklists")->onDelete("cascade");
             $table->dateTime('overdue');
         });
         Schema::create("task_user", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("task_ID")->nullable(false);
-            $table->unsignedBigInteger("user_ID")->nullable(false);
-            $table->string("content")->nullable(false);
+            $table->bigInteger("task_ID")->nullable(false);
+            $table->bigInteger("user_ID")->nullable(false);
+            $talbe->string("content")->nullable(false);
             $table->foreign("task_ID")->references("id")->on("tasks")->onDelete("cascade");
             $table->foreign("user_ID")->references("id")->on("users")->onDelete("cascade");
         });
         Schema::create("user_workspace", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("workspace_ID")->nullable(false);
-            $table->unsignedBigInteger("user_ID")->nullable(false);
+            $table->bigInteger("workspace_ID")->nullable(false);
+            $table->bigInteger("user_ID")->nullable(false);
             $table->foreign("workspace_ID")->references("id")->on("workspaces")->onDelete("cascade");
             $table->foreign("user_ID")->references("id")->on("users")->onDelete("cascade");
         });
-        Schema::create("messages", function (Blueprint $table) {
+        Schema::create("message", function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("workspace_ID")->nullable(false);
+            $table->bigInteger("workspace_ID")->nullable(false);
             $table->dateTime('created_at');
-            $table->unsignedBigInteger("user_ID")->nullable(false);
-            $table->string("content")->nullable(false);
+            $table->bigInteger("user_ID")->nullable(false);
+            $talbe->string("content")->nullable(false);
             $table->foreign("workspace_ID")->references("id")->on("workspaces")->onDelete("cascade");
             $table->foreign("user_ID")->references("id")->on("users")->onDelete("cascade");
         });
@@ -124,17 +125,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('personal_access_tokens');
-        Schema::dropIfExists('workspaces');
-        Schema::dropIfExists('projects');
-        Schema::dropIfExists('lists');
-        Schema::dropIfExists('cards');
-        Schema::dropIfExists('files');
-        Schema::dropIfExists('comments');
-        Schema::dropIfExists('logs');
-        Schema::dropIfExists('checklists');
-        Schema::dropIfExists('tasks');
-        Schema::dropIfExists('task_user');
-        Schema::dropIfExists('user_workspace');
-        Schema::dropIfExists('messages');
     }
 };
