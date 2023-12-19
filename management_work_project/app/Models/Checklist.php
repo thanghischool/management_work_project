@@ -10,9 +10,9 @@ class Checklist extends Model
     use HasFactory;
     protected $table = "checklists";
     public function tasks(){
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class,"checklist_ID", "id");
     }
     public function card(){
-        return $this->belongsTo(Checklist::class, "Checklist_ID", "id");
+        return $this->belongsTo(Card::class, "card_ID", "id");
     }
 }

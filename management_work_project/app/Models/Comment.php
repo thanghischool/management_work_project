@@ -9,4 +9,10 @@ class Comment extends Model
 {
     use HasFactory;
     protected $table = "comments";
+    public function user(){
+        return $this->belongsTo(User::class, "user_ID", "id");
+    }
+    public function card(){
+        return $this->belongsTo(Card::class, "card_ID", "id");
+    }
 }
