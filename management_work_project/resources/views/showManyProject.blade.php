@@ -16,17 +16,25 @@
     </div>
     <div class="workspace">
         <div class="workspace-header">
-            <img src="pages/image/Rectangle.png" class="avatar">
+            @isset($getWorkspace)
+            <img src="{{ $getWorkspace->avatar }}" class="avatar">
+            @endisset
+
             <div>
                 <div class="workspace-name">
-                    Workspace name
+                    @isset($getWorkspace)
+                    {{ $getWorkspace->name }}
+                    @endisset
                     <button class="edit"><img src="pages/image/pencil.png"></button>
                 </div>
                 <div class="ability">
-                    <img src="pages/image/Vector.png">
+                    @isset($getWorkspace)
+                    <img src="{{ $getWorkspace->avatar }}">
+                    @endisset
                     private
                 </div>
             </div>
+
         </div>
         <div class="_container">
             <div class="title">
@@ -49,7 +57,7 @@
     <script src="pages/script.js"></script>
     <script src="pages/dragable.js"></script>
     <script>
-        applyDragableIntoList(".project-list", ".item:not(.button)");
+    applyDragableIntoList(".project-list", ".item:not(.button)");
     </script>
     <script src="pages/editable.js"></script>
 </body>
