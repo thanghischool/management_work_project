@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="style.css" />
-        <link rel="stylesheet" href="chatBox.css" />
-    </head>
-    <body>
-        <div class="folders">
-            <div class="workspace-title">
-                <h2>Workspaces</h2>
-                <img src="pages/image/plus.png" alt="" />
-            </div>
-            <div class="item">
-                <img class="square" src="pages/image/Rectangle.png">
-                <h3>Workspace name</h3>
-                <img class="arrow" src="pages/image/arrow_down.png" alt="">
-            </div>
-            <div class="item">
-                <img class="square" src="pages/image/Rectangle.png">
-                <h3>Workspace name</h3>
-                <img class="arrow" src="pages/image/arrow_down.png" alt="">
-            </div>
+
+<head>
+    <meta charset="UTF-8" />
+    <base href="{{ asset('') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="pages/style.css" />
+    <link rel="stylesheet" href="pages/chatBox.css" />
+</head>
+
+<body>
+    <div class="folders">
+        <div class="workspace-title">
+            <h2>Workspaces</h2>
+            <img src="pages/image/plus.png" alt="" />
         </div>
+        <div class="item">
+            <img class="square" src="pages/image/Rectangle.png">
+            <h3>Workspace name</h3>
+            <img class="arrow" src="pages/image/arrow_down.png" alt="">
+        </div>
+        <div class="item">
+            <img class="square" src="pages/image/Rectangle.png">
+            <h3>Workspace name</h3>
+            <img class="arrow" src="pages/image/arrow_down.png" alt="">
+        </div>
+    </div>
     </div>
     <div class="workspace">
         <div class="workspace-header">
@@ -73,11 +76,7 @@
                     <div class="chatbox-body">
                         <div class="date">Today</div>
                         <div class="friend-message">
-                            <img
-                                src="pages/https://th.bing.com/th/id/OIP.6MMa2g_P8UGnJgsiDiQ1LwHaEJ?rs=1&pid=ImgDetMain"
-                                alt=""
-                                class="mini-avatar"
-                            />
+                            <img src="pages/https://th.bing.com/th/id/OIP.6MMa2g_P8UGnJgsiDiQ1LwHaEJ?rs=1&pid=ImgDetMain" alt="" class="mini-avatar" />
                             <div class="message-content">
                                 <span class="friend-name">Hoang Quoc</span>
                                 <p>Have a great working week!!</p>
@@ -103,11 +102,7 @@
                     </div>
                     <div class="chatbox-footer">
                         <img src="pages/image/microphone.svg" alt="" />
-                        <input
-                            id="message"
-                            type="text"
-                            placeholder="Write your message"
-                        />
+                        <input id="message" type="text" placeholder="Write your message" />
                         <div>
                             <img src="pages/image/sticker.svg" alt="" />
                             <img src="pages/image/camera.svg" alt="" />
@@ -119,5 +114,6 @@
         </div>
         <script src="pages/script.js"></script>
         <script src="pages/editable.js"></script>
-    </body>
+</body>
+
 </html>

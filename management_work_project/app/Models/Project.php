@@ -9,10 +9,14 @@ class Project extends Model
 {
     use HasFactory;
     protected $table = "projects";
-    public function workspace(){
+    public $timestamps = false;
+
+    public function workspace()
+    {
         return $this->belongsTo(Workspace::class, "workspace_ID", "id");
     }
-    public function cards(){
+    public function cards()
+    {
         return $this->hasMany(Card::class);
     }
 }

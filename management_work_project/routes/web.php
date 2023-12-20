@@ -4,6 +4,10 @@ use App\Http\Controllers\DiraController;
 use App\Http\Controllers\LoginGoogleController;
 use App\Http\Controllers\LoginFBController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FetchDataController;
+use App\Http\Controllers\WorkspaceData;
+use App\Http\Controllers\QueryDataController;
+
 use Laravel\Socialite\Facades\Socialite;
 
 /*
@@ -17,7 +21,26 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('/', function (){
+
+Route::get('/project', function () {
+    return view('projectView');
+});
+
+Route::get('/member', function () {
+    return view('memberView');
+});
+
+Route::get('/workspace', [WorkspaceData::class, 'dataProject']);
+
+Route::get('/chatbox', function () {
+    return view('chatbox');
+});
+
+Route::get('/workspace/{id}', [QueryDataController::class, 'getProject'])->name('worksapce_project');
+
+// Route::get('fetchdata', [FetchDataController::class, 'index']);
+
+Route::get('/', function () {
     return view('testRoute');
 });
 Route::get('/login', function () {
@@ -36,14 +59,13 @@ Route::get('auth/facebook', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-  
-Route::controller(LoginGoogleController::class)->group(function(){
+
+Route::controller(LoginGoogleController::class)->group(function () {
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
     Route::get('logout-home', 'logout_home')->name('logout-home');
-
 });
-Route::controller(LoginFBController::class)->group(function(){
+Route::controller(LoginFBController::class)->group(function () {
     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
     Route::get('auth/facebook/callback', 'handleFacebookCallback');
 });

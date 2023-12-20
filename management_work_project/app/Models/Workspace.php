@@ -9,13 +9,18 @@ class Workspace extends Model
 {
     use HasFactory;
     protected $table = "workspaces";
-    public function workspace(){
+    public $timestamps = false;
+
+    public function workspace()
+    {
         return $this->belongsTo(Workspace::class, "workspace_ID", "id");
     }
-    public function projects(){
+    public function projects()
+    {
         return $this->hasMany(Project::class);
     }
-    public function messages(){
-        return $this->hasMany(Messages::class);
-    }
+    // public function messages()
+    // {
+    //     return $this->hasMany(Messages::class);
+    // }
 }
