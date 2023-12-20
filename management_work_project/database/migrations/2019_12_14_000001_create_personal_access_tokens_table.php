@@ -32,7 +32,7 @@ return new class extends Migration
         Schema::create("projects", function (Blueprint $table) {
             $table->id();
             $table->bigInteger("workspace_ID");
-            $talbe->string("name",50)->nullable(false);
+            $table->string("name",50)->nullable(false);
             $table->string("background_color");
             $table->tinyInteger("isPublic")->nullable(false)->default(0);
             $table->smallInteger('index')->nullable(false);
@@ -49,7 +49,7 @@ return new class extends Migration
         Schema::create("cards", function (Blueprint $table) {
             $table->id();
             $table->bigInteger("list_ID")->nullable(false);
-            $talbe->string("title",50)->nullable(false);
+            $table->string("title",50)->nullable(false);
             $table->string("description");
             $table->smallInteger('index')->nullable(false);
             $table->foreign("list_ID")->references("id")->on("lists")->onDelete("cascade");
