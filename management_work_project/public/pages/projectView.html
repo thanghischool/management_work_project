@@ -114,6 +114,24 @@
                         <div class="card-item" draggable="true">
                             Card 3
                         </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
                     </div>
                 </div>
                 <div class="list-item" draggable="true">
@@ -214,6 +232,8 @@
     <script>
         applyDragableIntoList(".project-container",".list-item");
         applyDragableIntoCard(".cards",".card-item");
+        document.querySelector(".cards").appendChild(newCardElement("test", 1, 2));
+        reOrderIndex(".card-item",".cards");
     </script>
     <script src="list.js"></script>
     <script>

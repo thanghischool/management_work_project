@@ -52,3 +52,10 @@ var subitems = document.querySelector(".sub-items");
 
 
 // subitems.innerHTML = "";
+const container = document.querySelector(".project-container");
+container.style = "height: "+window.innerHeight*70/100 + "px";
+window.addEventListener("resize", () => {
+    const container = document.querySelector(".project-container");
+    container.style = "height: "+window.innerHeight*70/100 + "px";
+    console.log(window.innerHeight);
+})
