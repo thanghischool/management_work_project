@@ -21,8 +21,8 @@
             //         description: "Test"
             //     })
             // });
-            const response = await fetch("http://127.0.0.1:8000/api/cards/description/4",{
-                method: "PUT", // or 'PUT'
+            const response = await fetch("http://127.0.0.1:8000/api/cards/5",{
+                method: "POST", // or 'PUT'
                 headers: {
                     'Accept':'application/json',
                     'Content-Type':'application/json',
