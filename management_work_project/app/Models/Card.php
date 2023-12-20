@@ -10,7 +10,7 @@ class Card extends Model
     use HasFactory;
     protected $table = "cards";
     protected $fillable = [
-        "index", 'list_ID', 'title'
+        "index", 'list_ID', 'title', "description"
     ];
     public $timestamps = false;
     public function checklists(){

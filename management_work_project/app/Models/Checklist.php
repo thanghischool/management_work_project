@@ -9,6 +9,10 @@ class Checklist extends Model
 {
     use HasFactory;
     protected $table = "checklists";
+    protected $timestamps = false;
+    protected $fillable = [
+        "title", "card_ID"
+    ];
     public function tasks(){
         return $this->hasMany(Task::class,"checklist_ID", "id");
     }

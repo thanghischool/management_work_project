@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Project;
+use Illuminate\Queue\Console\WorkCommand;
 
 class User extends Authenticatable
 {
@@ -42,4 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function workspace()
+    {
+        return $this->hasMany(Workspace::class, 'admin_ID', 'id');
+    }
 }

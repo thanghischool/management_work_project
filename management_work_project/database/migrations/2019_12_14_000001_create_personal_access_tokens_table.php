@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Nette\Schema\Schema as SchemaSchema;
 
 return new class extends Migration
 {
@@ -23,7 +24,7 @@ return new class extends Migration
         });
         Schema::create("workspaces", function (Blueprint $table) {
             $table->id();
-            $talbe->string("name",50)->nullable(false);
+            $table->string("name", 50)->nullable(false);
             $table->string("avatar")->nullable(false);
             $table->bigInteger("admin_ID");
             $table->tinyInteger("isPublic")->nullable(false)->default(0);
@@ -31,8 +32,8 @@ return new class extends Migration
         });
         Schema::create("projects", function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("workspace_ID");
-            $table->string("name",50)->nullable(false);
+            $table->unsignedBigInteger("workspace_ID");
+            $table->string("name", 50)->nullable(false);
             $table->string("background_color");
             $table->tinyInteger("isPublic")->nullable(false)->default(0);
             $table->smallInteger('index')->nullable(false);
@@ -41,15 +42,15 @@ return new class extends Migration
         });
         Schema::create("lists", function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("project_ID");
-            $talbe->string("title",50)->nullable(false);
+            $table->unsignedBigInteger("project_ID");
+            $table->string("title", 50)->nullable(false);
             $table->smallInteger('index')->nullable(false);
             $table->foreign("project_ID")->references("id")->on("projects")->onDelete("cascade");
         });
         Schema::create("cards", function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("list_ID")->nullable(false);
-            $table->string("title",50)->nullable(false);
+            $table->unsignedBigInteger("list_ID")->nullable(false);
+            $table->string("title", 50)->nullable(false);
             $table->string("description");
             $table->smallInteger('index')->nullable(false);
             $table->foreign("list_ID")->references("id")->on("lists")->onDelete("cascade");
@@ -116,7 +117,6 @@ return new class extends Migration
             $table->foreign("workspace_ID")->references("id")->on("workspaces")->onDelete("cascade");
             $table->foreign("user_ID")->references("id")->on("users")->onDelete("cascade");
         });
-        
     }
 
     /**

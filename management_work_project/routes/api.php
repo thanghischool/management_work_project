@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::apiResource('cards', App\Http\Controllers\API\CardAPIController::class);
+Route::post('/cards', [App\Http\Controllers\API\CardAPIController::class, 'store']);
+// Route::post('/store', [App\Http\Controllers\API\CardAPIController::class, 'store']);
+// Route::get('/cards/{id}', [App\Http\Controllers\API\CardAPIController::class,"getAll"]);
+Route::get('/cards/show/{card}', [App\Http\Controllers\API\CardAPIController::class, "show"]);
+Route::delete('/cards/{card}', [App\Http\Controllers\API\CardAPIController::class, "destroy"]);
+Route::put('/cards/{card}', [App\Http\Controllers\API\CardAPIController::class, "updateTitle"]);
+Route::put('/cards/description/{card}', [App\Http\Controllers\API\CardAPIController::class, "updateDescription"]);
