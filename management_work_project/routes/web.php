@@ -21,7 +21,7 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-
+Route::get('/project/{project}', [WorkspaceData::class, 'showDataProject']);
 Route::get('/project', function () {
     return view('projectView');
 });

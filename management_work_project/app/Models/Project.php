@@ -15,8 +15,7 @@ class Project extends Model
     {
         return $this->belongsTo(Workspace::class, "workspace_ID", "id");
     }
-    public function cards()
-    {
-        return $this->hasMany(Card::class);
+    public function columns(){
+        return $this->hasMany(Column::class, "project_ID", "id");
     }
 }
