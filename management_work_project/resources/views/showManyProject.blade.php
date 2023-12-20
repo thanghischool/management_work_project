@@ -57,7 +57,7 @@
     <script src="pages/script.js"></script>
     <script src="pages/dragable.js"></script>
     <script>
-    applyDragableIntoList(".project-list", ".item:not(.button)");
+        applyDragableIntoList(".project-list", ".item:not(.button)");
     </script>
     <script src="pages/editable.js"></script>
 </body>

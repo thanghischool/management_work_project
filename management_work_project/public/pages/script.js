@@ -59,3 +59,24 @@ workspaces.forEach((e) => {
 var subitems = document.querySelector(".sub-items");
 
 // subitems.innerHTML = "";
+
+//
+function project_specific(e) {
+    let currentLink = window.location.href;
+    let arrayCurrentLink = currentLink.split("/");
+
+    for (i = 0; i < arrayCurrentLink.length; i++) {
+        if (arrayCurrentLink[i] == "workspace") {
+            arrayCurrentLink.splice(i);
+            break;
+        }
+    }
+
+    arrayCurrentLink = arrayCurrentLink.splice(
+        arrayCurrentLink.length - 1,
+        0,
+        "workspace",
+        "/",
+        ""
+    );
+}

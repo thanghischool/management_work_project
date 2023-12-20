@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FetchDataController;
 use App\Http\Controllers\WorkspaceData;
 use App\Http\Controllers\QueryDataController;
+use App\Http\Controllers\AddPeopleController;
 
 use Laravel\Socialite\Facades\Socialite;
 
@@ -69,3 +70,5 @@ Route::controller(LoginFBController::class)->group(function () {
     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
     Route::get('auth/facebook/callback', 'handleFacebookCallback');
 });
+
+Route::get('/addPeople', [AddPeopleController::class, 'index']);
