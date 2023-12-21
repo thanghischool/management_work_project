@@ -12,7 +12,9 @@ class Comment extends Model
     protected $fillable = [
         'email',
         'comment',
-        'datetime'
+        'datetime',
+        'card_id',
+        
     ];
     public $timestamps = false;
     public function user(){

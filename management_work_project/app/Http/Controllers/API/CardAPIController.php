@@ -7,6 +7,7 @@ use App\Models\Column;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Models\Comment;
 
 class CardAPIController extends Controller
 {
@@ -152,4 +153,32 @@ class CardAPIController extends Controller
         return $card;
     }
     
+
+
+
+    public function cmtstore(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'card_id' => 'required|exists:cards,id',
+            'content' => 'required',
+        ]);
+
+        $comment = Comment::create($request->all());
+        return response()->json($comment, 201);
+    }
+
+    public function cmtupdate(Request $request, $id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->update($request->all());
+        return response()->json($comment, 200);
+    }
+
+    public function cmtdestroy($id)
+    {
+        Comment::destroy($id);
+        return response()->json(null, 204);
+    }
+
 }

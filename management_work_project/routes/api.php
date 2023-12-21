@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\CardAPIController;
+use App\Http\Controllers\API\CommentAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,9 @@ Route::get('/cards/show/{card}', [App\Http\Controllers\API\CardAPIController::cl
 Route::delete('/cards/{card}', [App\Http\Controllers\API\CardAPIController::class, "destroy"]);
 Route::put('/cards/{card}', [App\Http\Controllers\API\CardAPIController::class, "updateTitle"]);
 Route::put('/cards/description/{card}', [App\Http\Controllers\API\CardAPIController::class, "updateDescription"]);
+
+Route::apiResource('comments',CommentAPIController::class);
+
+
+
+ 

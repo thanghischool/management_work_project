@@ -39,6 +39,9 @@ Route::get('/workspace', [WorkspaceData::class, 'dataProject']);
 Route::get('/chatbox', function () {
     return view('chatbox');
 });
+Route::get('/card', function () {
+    return view('card');
+});
 
 Route::get('/workspace/{id}', [QueryDataController::class, 'getProject'])->name('worksapce_project');
 
