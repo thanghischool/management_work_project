@@ -10,7 +10,7 @@ class Column extends Model
     use HasFactory;
     protected $table = "lists";
     public function cards(){
-        return $this->hasMany(Card::class, "card_ID", "id");
+        return $this->hasMany(Card::class, "list_ID", "id");
     }
     public function project(){
         return $this->belongsTo(Project::class, "project_ID", "id");

@@ -44,7 +44,8 @@
             <div class="project-list">
                 @if(isset($projects_getworkspace))
                 @foreach($projects_getworkspace as $project_getworkspace)
-                <div class="item" id="{{ $project_getworkspace->id }}" draggable="true">
+                <div class="item" id="{{ $project_getworkspace->id }}" draggable="true"
+                    onclick="project_specific('{{ $project_getworkspace->id }}')">
                     <span class="disable-select">{{ $project_getworkspace->name }}</span>
                     <div class="progress-bar"></div>
                     <div class="progress-percent">10%</div>
@@ -57,7 +58,7 @@
     <script src="pages/script.js"></script>
     <script src="pages/dragable.js"></script>
     <script>
-        applyDragableIntoList(".project-list", ".item:not(.button)");
+    applyDragableIntoList(".project-list", ".item:not(.button)");
     </script>
     <script src="pages/editable.js"></script>
 </body>

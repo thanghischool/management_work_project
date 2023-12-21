@@ -60,23 +60,16 @@ var subitems = document.querySelector(".sub-items");
 
 // subitems.innerHTML = "";
 
-//
-function project_specific(e) {
+// Acces project
+function project_specific(id) {
     let currentLink = window.location.href;
-    let arrayCurrentLink = currentLink.split("/");
-
-    for (i = 0; i < arrayCurrentLink.length; i++) {
-        if (arrayCurrentLink[i] == "workspace") {
-            arrayCurrentLink.splice(i);
-            break;
-        }
-    }
-
-    arrayCurrentLink = arrayCurrentLink.splice(
-        arrayCurrentLink.length - 1,
-        0,
-        "workspace",
-        "/",
-        ""
-    );
+    window.location.href = `${currentLink}/project/${id}`;
 }
+
+const container = document.querySelector(".project-container");
+container.style = "height: " + (window.innerHeight * 70) / 100 + "px";
+window.addEventListener("resize", () => {
+    const container = document.querySelector(".project-container");
+    container.style = "height: " + (window.innerHeight * 70) / 100 + "px";
+    console.log(window.innerHeight);
+});

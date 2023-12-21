@@ -85,6 +85,64 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
+            <div class="project-container">
+                <div class="list-item" draggable="true">
+                    <div class="block-select">
+                        <div class="block-wall"></div>
+                        <textarea class="list-title" name="" id="" cols="30" rows="10" spellcheck="false">Value</textarea>
+                    </div>
+                    <div class="cards">
+                        <div class="card-item" draggable="true">
+                            Hello
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 2
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                        <div class="card-item" draggable="true">
+                            Card 3
+                        </div>
+                    </div>
+=======
             <div class="_container">
                 <div class="title">
                     <img
@@ -97,6 +155,7 @@
                     />
                     <img src="pages/image/project-icon.png" />
                     Project Name
+>>>>>>> 814ee005414eb721e77605e6810cdf2516287697
                 </div>
                 <div class="project-container">
                     <div class="list-item" draggable="true">
@@ -233,21 +292,19 @@ Value</textarea
         <div class="card-form">
         </div>
     </div> -->
-
-        <script src="pages/script.js"></script>
-        <script src="pages/dragable.js"></script>
-        <script>
-            applyDragableIntoList(".project-container", ".list-item");
-            applyDragableIntoCard(".cards", ".card-item");
-        </script>
-        <script src="pages/list.js"></script>
-        <script>
-            applyEditableTitleToList(
-                ".list-item",
-                ".list-title",
-                ".block-wall"
-            );
-        </script>
-        <script src="pages/editable.js"></script>
-    </body>
+    
+    <script src="pages/script.js"></script>
+    <script src="pages/dragable.js"></script>
+    <script>
+        applyDragableIntoList(".project-container",".list-item");
+        applyDragableIntoCard(".cards",".card-item");
+        document.querySelector(".cards").appendChild(newCardElement("test", 1, 2));
+        reOrderIndex(".card-item",".cards");
+    </script>
+    <script src="list.js"></script>
+    <script>
+        applyEditableTitleToList(".list-item",".list-title",".block-wall");
+    </script>
+    <script src="pages/editable.js"></script>
+</body>
 </html>

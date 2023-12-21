@@ -12,7 +12,7 @@ class QueryDataController extends Controller
 
     public function getProject($id)
     {
-        $workspaces = User::find(1)->workspace()->get();
+        $workspaces = User::find(1)->workspaces()->get();
 
         //Get workspace data from workspace_id
         $getWorkspace = Workspace::where('id', $id)->first();

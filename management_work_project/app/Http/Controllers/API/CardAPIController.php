@@ -37,7 +37,7 @@ class CardAPIController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display all data of card (checklists, tasks, comments, log, file) resource.
      */
     public function show(Card $card)
     {
@@ -60,9 +60,19 @@ class CardAPIController extends Controller
             "checklists" => $card->checklists,
         ]);
     }
-
     /**
-     * Update the specified resource in storage.
+     * Update description of card
+     */
+    public function updateDescription(Card $card, Request $request){
+        $request->validate([
+            'description' => 'required|string'
+        ]);
+        $card->description = $request->description;
+        $card->save();
+        return $card;
+    }
+    /**
+     * Update title of card
      */
     public function updateTitle(Request $request, Card $card)
     {
@@ -73,6 +83,7 @@ class CardAPIController extends Controller
         $card->save();
         return $card;
     }
+    // update index of card or list_ID of card
     public function updateIndex(Request $request, Card $card)
     {
         $request->validate([
@@ -133,11 +144,12 @@ class CardAPIController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified card from database.
      */
     public function destroy(Card $card)
     {
         $card->delete();
         return $card;
     }
+    
 }

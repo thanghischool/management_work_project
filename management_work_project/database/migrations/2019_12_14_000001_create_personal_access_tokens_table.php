@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('abilities')->nullable();
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('expires_at')->nullable();
+            $table->timestamps();
         });
         Schema::create("workspaces", function (Blueprint $table) {
             $table->id();
@@ -107,7 +108,7 @@ return new class extends Migration
             $table->foreign("workspace_ID")->references("id")->on("workspaces")->onDelete("cascade");
             $table->foreign("user_ID")->references("id")->on("users")->onDelete("cascade");
         });
-        Schema::create("messages", function (Blueprint $table) {
+        Schema::create("message", function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("workspace_ID")->nullable(false);
             $table->dateTime('created_at');
@@ -124,17 +125,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('personal_access_tokens');
-        Schema::dropIfExists('workspaces');
-        Schema::dropIfExists('projects');
-        Schema::dropIfExists('lists');
-        Schema::dropIfExists('cards');
-        Schema::dropIfExists('files');
-        Schema::dropIfExists('comments');
-        Schema::dropIfExists('logs');
-        Schema::dropIfExists('checklists');
-        Schema::dropIfExists('tasks');
-        Schema::dropIfExists('task_user');
-        Schema::dropIfExists('user_workspace');
-        Schema::dropIfExists('messages');
     }
 };

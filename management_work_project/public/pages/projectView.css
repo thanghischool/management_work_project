@@ -1,8 +1,8 @@
 html {
     overflow-y: auto;
 }
-.workspace {
-    height: fit-content;
+.workspace{
+    height: 100%;
 }
 ._container {
     width: 100%;
@@ -11,13 +11,14 @@ html {
 .project-container {
     display: block;
     width: 95%;
-    max-height: 80%;
-    height: 80%;
-    overflow-y: auto;
+    height: 5%;
+    overflow-y: scroll;
     white-space: nowrap;
     margin-top: 24px;
     font-size: 0;
-    background-color: whitesmoke;
+    background-color: #31304D;
+    padding: 10px;
+    border-radius: 10px;
 }
 .list-item {
     display: inline-flex;
@@ -29,6 +30,7 @@ html {
     margin: 10px 0 0 10px;
     padding: 10px;
     vertical-align: top;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 .non-selectable {
     -webkit-user-select: none; /* Safari */
@@ -39,9 +41,8 @@ html {
     margin-top: 10px;
     padding: 13px;
 }
-
-.card-item {
-    background: whitesmoke;
+.card-item{
+    background: #B6BBC4;
     border-radius: 100px;
     margin-bottom: 10px;
     padding: 12px 16px 12px 30px;
@@ -91,3 +92,26 @@ textarea:disabled {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #31304D;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #B6BBC4;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  ::-webkit-scrollbar-corner{
+    background-color: #31304D;
+  }

@@ -1,3 +1,4 @@
+
 function applyDragableIntoList(container, item){
     const sortableLists = document.querySelectorAll(container);
     for(const sortableList of sortableLists){
@@ -13,6 +14,7 @@ function applyDragableIntoList(container, item){
             // Removing dragging class from item on dragend event
             item.addEventListener("dragend", () => {
                 item.classList.remove("dragging");
+                // gọi API đổi chỗ vị trí list
             });
         });
         
@@ -51,12 +53,46 @@ function applyDragableIntoList(container, item){
         sortableList.addEventListener("dragenter", e => e.preventDefault());   
     }
 }
+function newCardElement(title, index, list_ID){
+    const card = document.createElement("div");
+    card.className = "card-item";
+    card.draggable = "true";
+    card.index = index;
+    card.list_ID = list_ID;
+    card.innerHTML = " "+title+ " ";
+    card.addEventListener("dragstart", (e) => {
+        // Adding dragging class to item after a delay
+        e.stopPropagation();
+        setTimeout(() => {
+            card.classList.add("dragging");
+        }, 0);
+    });
+    // Removing dragging class from item on dragend event
+    card.addEventListener("dragend", () => {
+        card.classList.remove("dragging");
+        // let list_ID = item.parentElement.id;
+        let index = card.nextElementSibling;
+    });
+    return card;
+}
+function reOrderIndex(itemSelector, containerSelector){
+    const containers = document.querySelectorAll(containerSelector);
+    containers.forEach((container) => {
+        const items = container.querySelectorAll(itemSelector);
+        items.forEach((item, index) => {
+            item.setAttribute("index", index);
+        });
+    });
+}
 function applyDragableIntoCard(container, item){
     const sortableLists = document.querySelectorAll(container);
     for(const key_list in sortableLists){
+        if(typeof sortableLists[key_list] == "function"){
+            break;
+        }
         const items = sortableLists[key_list].querySelectorAll(item);
-        const container1 = sortableLists[key_list].parentElement.parentElement;
-        items.forEach((item) => {
+        const container1 = sortableLists[key_list]?.parentElement?.parentElement;
+        items?.forEach((item,key) => {
             item.addEventListener("dragstart", (e) => {
                 // Adding dragging class to item after a delay
                 e.stopPropagation();
@@ -67,6 +103,8 @@ function applyDragableIntoCard(container, item){
             // Removing dragging class from item on dragend event
             item.addEventListener("dragend", () => {
                 item.classList.remove("dragging");
+                // let list_ID = item.parentElement.id;
+                let index = item.nextElementSibling;
             });
         });
         
@@ -78,7 +116,6 @@ function applyDragableIntoCard(container, item){
             let siblings = [...sortableLists[key_list].querySelectorAll(item)];
             // Finding the sibling after which the dragging item should be placed
             let aroundItems;
-            let insertedList = sortableLists[parseInt(key_list) + 1];
             if (e.clientX + container1.scrollLeft > sortableLists[key_list].offsetLeft && sortableLists[key_list] !== draggingItem.parentElement) sortableLists[key_list].appendChild(draggingItem);
             for(let key in siblings){
                 if(siblings[key] === draggingItem) {

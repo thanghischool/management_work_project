@@ -22,13 +22,13 @@
             //     })
             // });
             const response = await fetch("http://127.0.0.1:8000/api/cards/5",{
-                method: "PUT", // or 'PUT'
+                method: "POST", // or 'PUT'
                 headers: {
                     'Accept':'application/json',
                     'Content-Type':'application/json',
                 },
                 body: JSON.stringify({
-                    title: 'Test update title'
+                    description: 'Test update descript'
                 })
             });
             const movies = await response.json();
