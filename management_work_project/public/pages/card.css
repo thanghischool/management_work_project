@@ -5,8 +5,10 @@
 }
 
 body{
-    height: 100vh;
+    height: 200vh;
     overflow: hidden;
+    color: #172b4d;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .modal{
@@ -51,7 +53,7 @@ body{
     padding-right: 20px;
 }
 .fa-xmark{
-    margin-left: 550px;
+    margin-left: 610px;
 }
 .slide-header{
     display: flex;
@@ -91,4 +93,25 @@ body{
 }
 .slide-body textarea:hover{
     background-color: #cfd3db;
+}
+.btnn{
+    border: none;
+    background-color: #e2e4ea;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.btnn:hover{
+    background-color: #cfd3db;;
+}
+.check{
+    display: flex;
+    margin-bottom: 30px;
+}
+.check input{
+    width: 50px;
+    margin-right: 20px;
+}
+.hide{
+    display: none;
 }

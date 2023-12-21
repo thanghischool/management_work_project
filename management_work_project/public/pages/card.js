@@ -1,15 +1,15 @@
-function showPopup() {
-    document.querySelector(".popup").style.display = "block";
+var openModal = document.querySelector('.open-modal-btn')
+var Modal = document.querySelector('.modal')
+var closeModal = document.querySelector('.modal__header .fa-xmark')
+
+function toggleModal(e){
+    Modal.classList.toggle('hide')
+}
+
+openModal.addEventListener('click', toggleModal)
+Modal.addEventListener('click', function(e){
+  if(e.target == e.currentTarget){
+    toggleModal();
   }
-  
-  function closePopup() {
-    document.querySelector(".popup").style.display = "none";
-  }
-  
-  // Lắng nghe sự kiện click của nút
-  document.querySelector(".open-popup").addEventListener("click", showPopup);
-  
-  // Thêm nút đóng vào bảng pop up
-  document.querySelector(".popup").appendChild(document.createElement("button"));
-  document.querySelector(".popup .close").addEventListener("click", closePopup);
-  
+})
+closeModal.addEventListener('click', toggleModal)
