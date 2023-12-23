@@ -47,8 +47,11 @@ class QueryDataController extends Controller
         if ($request->name_workspace && $request->hasFile('avatar_workspace')) {
             $workspace = new Workspace;
             $workspace->name = $request->name_workspace;
+            $image = $request->file('avatar');
             $workspace->avatar = $request->file('avatar');
-            // $path_avatar = 
+            $path_avatar = $image->move('pages/image', $image->getClientOriginalName());
+
+            $workspace->save();
         }
     }
 }

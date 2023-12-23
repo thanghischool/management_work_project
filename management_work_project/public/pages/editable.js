@@ -44,7 +44,6 @@ function doAfterClickCancel(e) {
 }
 
 setTimeout(() => {
-    // form.querySelector("#save").addEventListener("click", uploadData);
     form.querySelector("#cancel").addEventListener("click", doAfterClickCancel);
 }, 0);
 
