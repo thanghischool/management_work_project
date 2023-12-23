@@ -24,9 +24,7 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 Route::get('workspace/{id_workspace}/project/{id_project}', [WorkspaceData::class, 'showDataProject']);
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/project', function () {
     return view('projectView');
 });
@@ -35,7 +33,7 @@ Route::get('/member', function () {
     return view('memberView');
 });
 
-Route::get('/workspace', [WorkspaceData::class, 'dataProject']);
+Route::get('/workspace', [WorkspaceData::class, 'dataProject'])->name('homepageAfterLogin');
 
 Route::get('/chatbox', function () {
     return view('chatbox');
@@ -43,14 +41,18 @@ Route::get('/chatbox', function () {
 
 Route::get('/workspace/{id}', [QueryDataController::class, 'getProject'])->name('worksapce_project');
 
+Route::post('/workspace/{id}', [QueryDataController::class, 'updateWorkspace'])->name('update_Workspace');
+
 // Route::get('fetchdata', [FetchDataController::class, 'index']);
 
-Route::get('/', function () {
-    return view('testRoute');
-});
+// Route::get('/', function () {
+//     return view('testRoute');
+// })->name('homepageAfterLogin');
 // Route::get('/login', function () {
 //     return view('login');
 // });
+
+Route::post('/workspace/{?id}', [QueryDataController::class, 'createWorkspace'])->name('create_Workspace');
 
 
 Route::get('/login', [LoginController::class, 'getlogin'])->name('login');

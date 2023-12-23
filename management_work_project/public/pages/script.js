@@ -60,7 +60,7 @@ var subitems = document.querySelector(".sub-items");
 
 // subitems.innerHTML = "";
 
-// Acces project
+// Access project
 function project_specific(id) {
     let currentLink = window.location.href;
     window.location.href = `${currentLink}/project/${id}`;
@@ -73,3 +73,5 @@ window.addEventListener("resize", () => {
     container.style = "height: " + (window.innerHeight * 70) / 100 + "px";
     console.log(window.innerHeight);
 });
+
+console.log(navbar_button);
