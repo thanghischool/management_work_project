@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FetchDataController;
 use App\Http\Controllers\WorkspaceData;
 use App\Http\Controllers\QueryDataController;
-
+use App\Http\Controllers\AddPeopleController;
 use Laravel\Socialite\Facades\Socialite;
 
 /*
@@ -22,10 +22,8 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('/project/{project}', [WorkspaceData::class, 'showDataProject']);
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('workspace/{id_workspace}/project/{id_project}', [WorkspaceData::class, 'showDataProject']);
+
 Route::get('/project', function () {
     return view('projectView');
 });
@@ -34,7 +32,7 @@ Route::get('/member', function () {
     return view('memberView');
 });
 
-Route::get('/workspace', [WorkspaceData::class, 'dataProject']);
+Route::get('/workspace', [WorkspaceData::class, 'dataProject'])->name('homepageAfterLogin');
 
 Route::get('/chatbox', function () {
     return view('chatbox');
@@ -45,14 +43,18 @@ Route::get('/card', function () {
 
 Route::get('/workspace/{id}', [QueryDataController::class, 'getProject'])->name('worksapce_project');
 
+Route::post('/workspace/{id}', [QueryDataController::class, 'updateWorkspace'])->name('update_Workspace');
+
 // Route::get('fetchdata', [FetchDataController::class, 'index']);
 
-Route::get('/', function () {
-    return view('testRoute');
-});
+// Route::get('/', function () {
+//     return view('testRoute');
+// })->name('homepageAfterLogin');
 // Route::get('/login', function () {
 //     return view('login');
 // });
+
+Route::post('/workspace/{?id}', [QueryDataController::class, 'createWorkspace'])->name('create_Workspace');
 
 
 Route::get('/login', [LoginController::class, 'getlogin'])->name('login');
@@ -83,3 +85,5 @@ Route::controller(LoginController::class)->group(function () {
 Route::controller(LoginGoogleController::class)->group(function () {
     Route::get('Sshow', 'Sshow')->name('Sshow');
 });
+
+Route::get('/addPeople', [AddPeopleController::class, 'index']);

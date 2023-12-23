@@ -12,7 +12,7 @@
     <h2 class="htitle">Welcome to DIRA!</h2>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="{{route('psignup')}}" method="POST">
+		<form action="{{ route('psignup') }}" method="POST">
 			@csrf
 			<h1>Create Account</h1>
 			<div class="social-container">
@@ -28,7 +28,7 @@
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="{{route('plogin')}}" method="POST">
+		<form action="{{ route('plogin') }}" method="POST">
 			@csrf
 			<h1>Sign in</h1>
 			<div class="social-container">

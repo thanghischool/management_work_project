@@ -20,13 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::apiResource('cards', App\Http\Controllers\API\CardAPIController::class);
 Route::post('/cards', [App\Http\Controllers\API\CardAPIController::class, 'store']);
-// Route::post('/store', [App\Http\Controllers\API\CardAPIController::class, 'store']);
-// Route::get('/cards/{id}', [App\Http\Controllers\API\CardAPIController::class,"getAll"]);
 Route::get('/cards/show/{card}', [App\Http\Controllers\API\CardAPIController::class, "show"]);
 Route::delete('/cards/{card}', [App\Http\Controllers\API\CardAPIController::class, "destroy"]);
-Route::put('/cards/{card}', [App\Http\Controllers\API\CardAPIController::class, "updateTitle"]);
+Route::put('/cards/title/{card}', [App\Http\Controllers\API\CardAPIController::class, "updateTitle"]);
+Route::put('/cards/index/{card}', [App\Http\Controllers\API\CardAPIController::class, "updateIndex"]);
 Route::put('/cards/description/{card}', [App\Http\Controllers\API\CardAPIController::class, "updateDescription"]);
 
 Route::apiResource('comments',CommentAPIController::class);
@@ -34,3 +32,5 @@ Route::apiResource('comments',CommentAPIController::class);
 
 
  
+Route::put('/lists/index/{list}', [App\Http\Controllers\API\ListAPIController::class, "updateIndex"]);
+Route::put('/lists/title/{list}', [App\Http\Controllers\API\ListAPIController::class, "updateTitle"]);
