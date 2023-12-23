@@ -24,7 +24,7 @@ return new class extends Migration
         });
         Schema::create("workspaces", function (Blueprint $table) {
             $table->id();
-            $table->string("name", 50)->nullable(false);
+            $table->string("name", 255)->nullable(false);
             $table->string("avatar")->nullable(false);
             $table->unsignedBigInteger("admin_ID");
             $table->tinyInteger("isPublic")->nullable(false)->default(0);
@@ -33,7 +33,7 @@ return new class extends Migration
         Schema::create("projects", function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("workspace_ID");
-            $table->string("name", 50)->nullable(false);
+            $table->string("name", 255)->nullable(false);
             $table->string("background_color");
             $table->tinyInteger("isPublic")->nullable(false)->default(0);
             $table->smallInteger('index')->nullable(false);
@@ -43,14 +43,14 @@ return new class extends Migration
         Schema::create("lists", function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("project_ID");
-            $table->string("title", 50)->nullable(false);
+            $table->string("title", 255)->nullable(false);
             $table->smallInteger('index')->nullable(false);
             $table->foreign("project_ID")->references("id")->on("projects")->onDelete("cascade");
         });
         Schema::create("cards", function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("list_ID")->nullable(false);
-            $table->string("title", 50)->nullable(false);
+            $table->string("title", 255)->nullable(false);
             $table->string("description");
             $table->smallInteger('index')->nullable(false);
             $table->foreign("list_ID")->references("id")->on("lists")->onDelete("cascade");

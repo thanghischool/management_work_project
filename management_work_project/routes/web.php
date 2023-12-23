@@ -9,7 +9,6 @@ use App\Http\Controllers\FetchDataController;
 use App\Http\Controllers\WorkspaceData;
 use App\Http\Controllers\QueryDataController;
 use App\Http\Controllers\AddPeopleController;
-
 use Laravel\Socialite\Facades\Socialite;
 
 /*
@@ -37,6 +36,9 @@ Route::get('/workspace', [WorkspaceData::class, 'dataProject'])->name('homepageA
 
 Route::get('/chatbox', function () {
     return view('chatbox');
+});
+Route::get('/card', function () {
+    return view('card');
 });
 
 Route::get('/workspace/{id}', [QueryDataController::class, 'getProject'])->name('worksapce_project');

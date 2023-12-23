@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="card.css">
-    <link rel="stylesheet" href="fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="{{asset('pages/card.css')}}">
+    <link rel="stylesheet" href="{{asset('pages/fontawesome-free-6.5.1-web/css/all.min.css')}}">
 </head>
 <body>
     <div class="popup">
@@ -93,5 +93,5 @@
        
 </body>
 
-    <script src="card.js"></script>
+    <script src="{{asset('pages/card.js')}}"></script>
 </html>

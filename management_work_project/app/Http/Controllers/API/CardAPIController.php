@@ -7,6 +7,11 @@ use App\Models\Column;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Models\Comment;
+use App\Events\CardCreated;
+use App\Events\ModifyCardPosition;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class CardAPIController extends Controller
 {
@@ -22,17 +27,20 @@ class CardAPIController extends Controller
     {
         $rule = [
             'list_ID' => 'required|integer|min:0',
-            'index' => 'required|integer|min:0',
             'title' => 'required|string',
             'description' => 'nullable|string'
         ];
         $request->validate($rule);
+        $column = Column::find($request->list_ID);
+        $cards_length = count($column->cards);
         $card = new Card;
         $card->list_ID = $request->list_ID;
-        $card->index = $request->index;
+        $card->index = $cards_length;
         $card->title = $request->title;
-        $card->description = $request->description;
+        $card->description = $request->description ? $request->description : "";
         $card->save();
+        $project_ID = $card->column->project_ID;
+        broadcast(new CardCreated($project_ID, $card));
         return $card;
     }
 
@@ -90,56 +98,69 @@ class CardAPIController extends Controller
             'index' => 'integer|min:0',
             'list_ID' => 'integer|min:0'
         ]);
+        $cards = Card::where("list_ID", "=", $request->list_ID)->get();
+        $length = count($cards);
         // kiểm tra card có chuyển đổi sang list khác hay không ?
-        if($card->list_ID != $request->list_ID){
+        if($card->list_ID != $request->list_ID && $request->index <= $length){
             // trường hợp card chuyển sang list khác:
+            // chuyển tất cả card có index lớn hớn -1
+            $oldList = Card::where("list_ID", "=", $card->list_ID)->where("index", ">", $card->index)->get();
+            foreach($oldList as $cardL){
+                // ta - 1 cho tất cả card đã lấy về và lưu lại
+                $cardL->index -= 1;
+                $cardL->save();
+            }
             // ta thay đổi dữ liệu list_ID của card vì đã chuyển đổi sang list khác
             $card->list_ID = $request->list_ID;
             // lấy dữ liệu của những card nằm trong list mình chuyển tới có index lớn hơn index mình muốn chèn vào list đó
-            $cards = DB::table("cards")->where("list_ID",'=', $request->list_ID)->where('index', '>=', $request->index)->get();
-            if(count($cards) != 0) {
-                // kiểm tra nếu dữ liệu card lấy về khác 0 thì ta cho tất cả những card lấy về index + 1
-                for($i = 0; $i < count($cards); $i++){
-                    $c = Card::find($cards[$i]->id);
-                    $c->index += 1;
-                    $c->save();
-                }
+            $cardsFilter = array();
+            foreach($cards as $value){
+                if ($value->index >= $request->index) array_push($cardsFilter, $value);
             }
+            if(count($cardsFilter) != 0) {
+                // kiểm tra nếu dữ liệu card lấy về khác 0 thì ta cho tất cả những card lấy về index + 1
+                foreach($cardsFilter as $cardf){
+                    $cardf->index += 1;
+                    $cardf->save();
+                }
+                $card->index = $request->index;
+            } else $card->index = $length;
             // ta cật nhật dữ liệu index của card mình muốn chèn
-            $card->index = $request->index;
             $card->save();
-        } else {
+        } else if ($request->index < $length){
             // Ngược lại trường hợp card di chuyển index trong local list
-
-            // tìm lấy dữ liệu của list
-            $column = Column::find($card->list_ID);
             // so sánh index muốn chèn có nhỏ hơn index của card hiện tại hay không
             if($card->index > $request->index){
                 // nếu index muốn chèn nhỏ hơn
                 // thì ta lấy tất cả card trong local list có index từ index muốn chèn tới (index hiện tại của card - 1)
-                $cards = DB::table("cards")->where("list_ID",'=', $column->id)->whereBetween('index',[(int)$request->index,(int) $card->index - 1])->get();
-                for($i = 0; $i < count($cards); $i++){
-                    $c = Card::find($cards[$i]->id);
+                $cardsFilter = array();
+                foreach($cards as $value){
+                    if ($value->index >= $request->index && $value->index < $card->index) array_push($cardsFilter, $value);
+                }
+                foreach($cardsFilter as $cardf){
                     // ta + 1 cho tất cả card đã lấy về và lưu lại
-                    $c->index += 1;
-                    $c->save();
+                    $cardf->index += 1;
+                    $cardf->save();
                 }
             } else if($card->index < $request->index){
                 // Ngược lại nếu index muốn chèn lớn hơn index của card hiện tại thì
                 // ta lấy tất dữ liệu của card có index từ (index của card + 1) đến index minh muốn chèn
-                $cards = DB::table("cards")->where("list_ID",'=', $column->id)->whereBetween('index',[(int) $card->index + 1, (int)$request->index])->get();
-                for($i = 0; $i < count($cards); $i++){
-                    $c = Card::find($cards[$i]->id);
-                    // cật nhật lại index của card đã lấy về
-                    $c->index -= 1;
-                    $c->save();
+                $cardsFilter = array();
+                foreach($cards as $value){
+                    if ($value->index <= $request->index && $value->index > $card->index) array_push($cardsFilter, $value);
+                }
+                foreach($cardsFilter as $cardf){
+                    // ta - 1 cho tất cả card đã lấy về và lưu lại
+                    $cardf->index -= 1;
+                    $cardf->save();
                 }
             }
             // cật nhật vị trí của card muốn chèn
             $card->index = $request->index;
             $card->save();
         }
-        
+        $project_ID = $card->column->project_ID;
+        broadcast(new ModifyCardPosition($project_ID, $card))->toOthers();
         return $card;
     }
 
@@ -148,8 +169,41 @@ class CardAPIController extends Controller
      */
     public function destroy(Card $card)
     {
+        $list = Card::where("list_ID", "=", $card->list_ID)->where("index", ">", $card->index)->get();
+        foreach($list as $item){
+            $item->index -= 1;
+            $item->save();
+        }
         $card->delete();
         return $card;
     }
     
+
+
+
+    public function cmtstore(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'card_id' => 'required|exists:cards,id',
+            'content' => 'required',
+        ]);
+
+        $comment = Comment::create($request->all());
+        return response()->json($comment, 201);
+    }
+
+    public function cmtupdate(Request $request, $id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->update($request->all());
+        return response()->json($comment, 200);
+    }
+
+    public function cmtdestroy($id)
+    {
+        Comment::destroy($id);
+        return response()->json(null, 204);
+    }
+
 }

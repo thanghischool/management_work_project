@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Models\Project;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +20,12 @@ use Illuminate\Support\Facades\Broadcast;
 
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
+});
+Broadcast::channel('project.{project}', function ($user, Project $project) {
+    $worspace_project_id = $project->workspace_ID;
+    $results = DB::select('select * from user_workspace where workspace_ID = ? and user_ID = ?', [$worspace_project_id, $user->id]);
+    if($results){
+        return true;
+    }
+    return false;
 });
