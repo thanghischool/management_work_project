@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <a href="{{}}">Logout</a>
     <div class="folders">
         @include('sidebar.folder')
     </div>

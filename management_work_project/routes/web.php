@@ -33,7 +33,7 @@ Route::get('/member', function () {
     return view('memberView');
 });
 
-Route::get('/workspace', [WorkspaceData::class, 'dataProject']);
+Route::middleware(['signedin'])->get('/workspace', [WorkspaceData::class, 'dataProject']);
 
 Route::get('/chatbox', function () {
     return view('chatbox');
@@ -72,9 +72,7 @@ Route::get('auth/facebook/callback', function () {
 Route::get('auth/facebook', function () {
     return Socialite::driver('facebook')->redirect();
 });
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
 
 Route::controller(LoginGoogleController::class)->group(function () {
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
