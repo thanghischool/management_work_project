@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FetchDataController;
 use App\Http\Controllers\WorkspaceData;
 use App\Http\Controllers\QueryDataController;
-
 use Laravel\Socialite\Facades\Socialite;
 
 /*

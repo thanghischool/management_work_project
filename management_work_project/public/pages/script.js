@@ -67,3 +67,4 @@ window.addEventListener("resize", () => {
     container.style = "height: "+window.innerHeight*70/100 + "px";
     console.log(window.innerHeight);
 })
+

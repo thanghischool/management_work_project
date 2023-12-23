@@ -9,8 +9,12 @@ class Column extends Model
 {
     use HasFactory;
     protected $table = "lists";
+    public $timestamps = false;
+    protected $fillable = [
+        "title", "index"
+    ];
     public function cards(){
-        return $this->hasMany(Card::class, "list_ID", "id");
+        return $this->hasMany(Card::class, "list_ID", "id")->orderBy('index');;
     }
     public function project(){
         return $this->belongsTo(Project::class, "project_ID", "id");

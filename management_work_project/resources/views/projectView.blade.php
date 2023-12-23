@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <base href="{{ asset('') }}">
@@ -38,7 +37,7 @@
             <div class="project-container">
                 @if(isset($columns))
                     @foreach($columns as $column)
-                    <div class="list-item" draggable="true" id="{{ $column->id }}">
+                    <div class="list-item" draggable="true" id="{{ $column->id }}" index="{{$column->index}}">
                         <div class="block-select">
                             <div class="block-wall"></div>
                             <textarea class="list-title" name="" id="" cols="30" rows="10" spellcheck="false">{{ $column->title }}</textarea>
@@ -71,9 +70,32 @@
     </script>
     <script src="pages/list.js"></script>
     <script>
+      
         applyEditableTitleToList(".list-item", ".list-title", ".block-wall");
     </script>
     <script src="pages/editable.js"></script>
+    <script type="module">
+        import * as EventHandle from './pages/CardEventModule.js';
+        import '{{mix('resources/js/bootstrap.js')}}';
+        window.Echo.private('project.{{$project->id}}')
+        .listen("CardCreated", function (e) {
+            const card = e.card;
+            EventHandle.newCardElement(card.title, card.index, card.list_ID);
+        })
+        .listen("ModifyCardPosition", function (e) {
+            const card = e.card;
+            console.log(e);
+            EventHandle.moveCard(card.id, card.index, card.list_ID);
+        })
+        .listen("ModifyListPosition", function (e) {
+            const list = e.list;
+            EventHandle.moveList(list.id, list.index);
+        })
+        .listen("ModifyListTitle", function (e) {
+            const list = e.list;
+            EventHandle.modifyListTitle(list.id, list.title);
+        });
+    </script>
 </body>
 
 </html>
