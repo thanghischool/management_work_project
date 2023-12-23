@@ -6,13 +6,13 @@ use App\Models\Workspace;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
-
+use Auth;
 class QueryDataController extends Controller
 {
 
     public function getProject($id)
     {
-        $workspaces = User::find(1)->workspaces()->get();
+        $workspaces = User::find(Auth::user()->id)->workspaces()->get();
 
         //Get workspace data from workspace_id
         $getWorkspace = Workspace::where('id', $id)->first();

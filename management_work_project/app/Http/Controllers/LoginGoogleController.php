@@ -76,31 +76,30 @@ class LoginGoogleController extends Controller
         
             $user = Socialite::driver('google')->user();
          
-            $finduser = User::where('google_id', $user->google_id)->first();
+            $finduser = User::where('google_id', (string)$user->id)->first();
          
             if($finduser){
          
                 Auth::login($finduser);
         
-                return redirect()->intended('/');
+                return redirect()->intended('workspace');
          
             }else{
                 $newUser = User::updateOrCreate(['email' => $user->email],[
                         'name' => $user->name,
-                        'google_id'=> $user->id,
+                        'google_id'=> (string)$user->id,
                         'password' => encrypt('GiCungDuoc')
                     ]);
          
                 Auth::login($newUser);
         
-                return redirect()->intended('/');
+                return redirect()->intended('workspace');
             }
         
         } catch (Exception $e) {
             dd($e->getMessage());
         }
     }
-
     public function logout_home(){
         Auth::logout();
         return redirect()->back();

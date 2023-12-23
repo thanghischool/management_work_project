@@ -6,7 +6,13 @@
     <title>Document</title>
 </head>
 <body>
+    <p>{{Auth::user()->name}}</p>
+        <p>{{Auth::user()->email}}</p>
+        <p>{{Auth::user()->id}}</p>
+        <a href="{{route('logout')}}" >logut</a>
     <script>
+        
+        
         async function logMovies() {
             // const response = await fetch("http://127.0.0.1:8000/api/cards/1", {
             //     method: "POST", // *GET, POST, PUT, DELETE, etc.

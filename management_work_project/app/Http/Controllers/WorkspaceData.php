@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\Workspace;
+use Auth;
 
 class WorkspaceData extends Controller
 {
     // Get data workspace and project from models
     public function dataProject()
     {
-
+        
         $randomProjects = Project::inRandomOrder()->limit(3)->get();
 
-
-        $workspaces = User::find(1)->workspaces()->get();
+        $workspaces = User::find(Auth::user()->id)->workspaces()->get(); 
         // $workspaces_id = User::find(1)->workspaces()->pluck('id');
 
         $projects = collect();
@@ -33,7 +33,7 @@ class WorkspaceData extends Controller
     }
     public function showDataProject(Project $project){
         $workspace = $project->workspace;
-        $workspaces = User::find(1)->workspaces()->get();
+        $workspaces = User::find(Auth::user()->id)->workspaces();
         $columns = $project->columns;
         foreach ($columns as $column){
             $cards = $column->cards;

@@ -181,9 +181,10 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-    'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+    
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ])->toArray(),
 
 ];

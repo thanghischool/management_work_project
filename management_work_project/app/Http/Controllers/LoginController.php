@@ -23,8 +23,11 @@ class LoginController extends Controller
     public function postLogin(Request $request){
         
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            return redirect()->route('/');
+            return redirect()->route('card');
         }else return redirect()->back()->with('error','Dữ liệu không chính xác !');
     }
-
+    public function logout(){
+        Auth::logout();
+        return view('login');
+    }
 }

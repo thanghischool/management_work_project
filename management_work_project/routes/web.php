@@ -64,25 +64,22 @@ Route::post('/signup', [LoginController::class, 'postSignup'])->name('psignup');
 
 
 
-Route::get('/chinhsach', function () {
-    return '<h1>Chinh sach</h1>';
-});
-Route::get('auth/facebook/callback', function () {
-    return 'Call Back Login';
-});
-Route::get('auth/facebook', function () {
-    return Socialite::driver('facebook')->redirect();
-});
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 Route::controller(LoginGoogleController::class)->group(function () {
-    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
-    Route::get('auth/google/callback', 'handleGoogleCallback');
-    Route::get('logout-home', 'logout_home')->name('logout-home');
+    Route::get('/auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('/auth/google/callback', 'handleGoogleCallback');
+    Route::get('/logout-home', 'logout_home')->name('logout-home');
 });
 Route::controller(LoginFBController::class)->group(function () {
-    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-    Route::get('auth/facebook/callback', 'handleFacebookCallback');
+    Route::get('/auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+    Route::get('/auth/facebook/callback', 'handleFacebookCallback');
+});
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/logout', 'logout')->name('logout');
+   
+    
+});
+
+Route::controller(LoginGoogleController::class)->group(function () {
+    Route::get('Sshow', 'Sshow')->name('Sshow');
 });
