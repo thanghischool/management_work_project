@@ -23,8 +23,8 @@ class LoginController extends Controller
     public function postLogin(Request $request){
         
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            return redirect()->route('/');
-        }else return redirect()->back()->with('error','Dữ liệu không chính xác !');
+            return redirect('/workspace');
+        } else return redirect()->back()->with('error','Dữ liệu không chính xác !');
     }
 
 }

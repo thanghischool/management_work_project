@@ -16,6 +16,6 @@ class Project extends Model
         return $this->belongsTo(Workspace::class, "workspace_ID", "id");
     }
     public function columns(){
-        return $this->hasMany(Column::class, "project_ID", "id");
+        return $this->hasMany(Column::class, "project_ID", "id")->orderBy('index');
     }
 }

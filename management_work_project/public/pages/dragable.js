@@ -1,4 +1,33 @@
 
+async function modifyCardPosition(id, index, list_ID){
+    const response = await fetch("http://127.0.0.1:8000/api/cards/index/"+id,{
+        method: "PUT", // or 'PUT'
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            list_ID: list_ID,
+            index: index,
+        })
+    });
+    const result = await response.json();
+    console.log(result);
+}
+async function modifyListPosition(id, index){
+    const response = await fetch("http://127.0.0.1:8000/api/lists/index/"+id,{
+        method: "PUT", // or 'PUT'
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            index: index,
+        })
+    });
+    const result = await response.json();
+    console.log(result);
+}
 function applyDragableIntoList(container, item){
     const sortableLists = document.querySelectorAll(container);
     for(const sortableList of sortableLists){
@@ -12,9 +41,12 @@ function applyDragableIntoList(container, item){
                 }, 0);
             });
             // Removing dragging class from item on dragend event
-            item.addEventListener("dragend", () => {
+            item.addEventListener("dragend", (e) => {
+                e.stopPropagation();
                 item.classList.remove("dragging");
                 // gọi API đổi chỗ vị trí list
+                reOrderIndex(".list-item", ".project-container");
+                modifyListPosition(item.id, item.getAttribute('index'));
             });
         });
         
@@ -53,37 +85,7 @@ function applyDragableIntoList(container, item){
         sortableList.addEventListener("dragenter", e => e.preventDefault());   
     }
 }
-function newCardElement(title, index, list_ID){
-    const card = document.createElement("div");
-    card.className = "card-item";
-    card.draggable = "true";
-    card.index = index;
-    card.list_ID = list_ID;
-    card.innerHTML = " "+title+ " ";
-    card.addEventListener("dragstart", (e) => {
-        // Adding dragging class to item after a delay
-        e.stopPropagation();
-        setTimeout(() => {
-            card.classList.add("dragging");
-        }, 0);
-    });
-    // Removing dragging class from item on dragend event
-    card.addEventListener("dragend", () => {
-        card.classList.remove("dragging");
-        // let list_ID = item.parentElement.id;
-        let index = card.nextElementSibling;
-    });
-    return card;
-}
-function reOrderIndex(itemSelector, containerSelector){
-    const containers = document.querySelectorAll(containerSelector);
-    containers.forEach((container) => {
-        const items = container.querySelectorAll(itemSelector);
-        items.forEach((item, index) => {
-            item.setAttribute("index", index);
-        });
-    });
-}
+
 function applyDragableIntoCard(container, item){
     const sortableLists = document.querySelectorAll(container);
     for(const key_list in sortableLists){
@@ -101,10 +103,14 @@ function applyDragableIntoCard(container, item){
                 }, 0);
             });
             // Removing dragging class from item on dragend event
-            item.addEventListener("dragend", () => {
+            item.addEventListener("dragend", (e) => {
+                e.stopPropagation();
                 item.classList.remove("dragging");
-                // let list_ID = item.parentElement.id;
-                let index = item.nextElementSibling;
+                reOrderIndex(".card-item", ".cards");
+                let list_ID = item.parentElement.parentElement.getAttribute("id");
+                let index = item.getAttribute("index");
+                let card_ID = item.getAttribute("id");
+                modifyCardPosition(card_ID, index, list_ID);
             });
         });
         
@@ -145,3 +151,13 @@ function applyDragableIntoCard(container, item){
     }
 }
 
+
+function reOrderIndex(itemSelector, containerSelector){
+    const containers = document.querySelectorAll(containerSelector);
+    containers.forEach((container) => {
+        const items = container.querySelectorAll(itemSelector);
+        items.forEach((item, index) => {
+            item.setAttribute("index", index);
+        });
+    });
+}
