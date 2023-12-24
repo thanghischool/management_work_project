@@ -12,7 +12,8 @@ export function newCardElement(title, index, list_ID){
         }, 0);
     });
     // Removing dragging class from item on dragend event
-    card.addEventListener("dragend", () => {
+    card.addEventListener("dragend", (e) => {
+        e.stopPropagation();
         card.classList.remove("dragging");
         reOrderIndex(".card-item", ".cards");
     });
@@ -75,6 +76,7 @@ async function modifyListPosition(id, index){
     const response = await fetch("http://127.0.0.1:8000/api/lists/index/"+id,{
         method: "PUT", // or 'PUT'
         headers: {
+            'X-Socket-ID': window.Echo.socketId(),
             'Accept':'application/json',
             'Content-Type':'application/json',
         },
@@ -89,6 +91,7 @@ async function modifyCardPosition(id, index, list_ID){
     const response = await fetch("http://127.0.0.1:8000/api/cards/index/"+id,{
         method: "PUT", // or 'PUT'
         headers: {
+            'X-Socket-ID': window.Echo.socketId(),
             'Accept':'application/json',
             'Content-Type':'application/json',
         },

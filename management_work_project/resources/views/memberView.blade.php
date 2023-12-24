@@ -8,72 +8,118 @@
     <title>Document</title>
     <link rel="stylesheet" href="pages/style.css">
     <link rel="stylesheet" href="pages/menber.css">
+    <link rel="stylesheet" href="pages/navbarHome.css">
 </head>
 
 <body>
-    <div class="folders">
-        @include('sidebar.folder')
-    </div>
-    <div class="workspace">
-        <div class="workspace-header">
-            <img src="pages/image/Rectangle.png" class="avatar">
-            <div>
-                <div class="workspace-name">
-                    Workspace name
-                    <button class="edit"><img src="pages/image/pencil.png"></button>
-                </div>
-                <div class="ability">
-                    <img src="pages/image/Vector.png">
-                    private
-                </div>
+    <div class="navbar">
+        <ul class="navbar-left">
+            <li>
+                <h2 style="display: inline-block">Dira</h2>
+            </li>
+            <li>
+                <a href="">Workspaces</a>
+                <i class="bi bi-caret-down"></i>
+            </li>
+            <li>
+                <a href="">Recently</a>
+                <i class="bi bi-caret-down"></i>
+            </li>
+            <li>
+                <a href="">Starred</a>
+                <i class="bi bi-caret-down"></i>
+            </li>
+            <li>
+                <a href="">Template</a>
+                <i class="bi bi-caret-down"></i>
+            </li>
+            <button class="navbar-button" style="background-color: rgb(12,102,228); color: rgb(255,255,253); padding: 5px 15px; border-radius: 3px; border: none; cursor: pointer">News</button>
+        </ul>
+
+        <div class="navbar-right">
+            <div class="search-input">
+                <i class="bi bi-search"></i>
+                <input type="text" name="" id="" placeholder="Search">
+            </div>
+            <div class="information-icon">
+                <span>
+                    <i class="bi bi-bell"></i>
+                </span>
+                <span>
+                    <i class="bi bi-question-circle"></i>
+                </span>
+                <span>
+                    <img src="" alt="" srcset="">
+                </span>
             </div>
         </div>
-        <div class="_container">
-            <div class="title">
-                <img src="pages/image/group.png">
-                Menbers
-            </div>
-            <div class="invitation">
-                <div class="invitedByLink">
-                    <h4 class="invitation-title">Invite members to join your group</h4>
-                    <div class="invitation-body">
-                        <p>Anyone with the invite link can join this free Workspace. You can also disable and create a
-                            new invite link for this Workspace at any time.</p>
-                        <div class="invitation-link">
-                            <img src="pages/image/link.svg" alt="">
-                            Invite by link
-                        </div>
+
+    </div>
+    <div class="body">
+        <div class="folders">
+            @include('sidebar.folder')
+        </div>
+        <div class="workspace">
+            <div class="workspace-header">
+                <img src="pages/image/Rectangle.png" class="avatar">
+                <div>
+                    <div class="workspace-name">
+                        Workspace name
+                        <button class="edit"><img src="pages/image/pencil.png"></button>
+                    </div>
+                    <div class="ability">
+                        <img src="pages/image/Vector.png">
+                        private
                     </div>
                 </div>
-                <div class="menbers">
-                    <div class="menber-item">
-                        <div class="left">
-                            <img class="avatar"
-                                src="https://www.imagdisplays.co.uk/wp-content/uploads/2020/10/Outdoor-LED-Screen-Hire-Technical-Event-Production-iMAG.jpg"
-                                alt="">
-                            <div>
-                                <span class="name">Nam Phan</span>
-                                <span class="username">@namhaycode</span>
+            </div>
+            <div class="_container">
+                <div class="title">
+                    <img src="pages/image/group.png">
+                    Menbers
+                </div>
+                <div class="invitation">
+                    <div class="invitedByLink">
+                        <h4 class="invitation-title">Invite members to join your group</h4>
+                        <div class="invitation-body">
+                            <p>Anyone with the invite link can join this free Workspace. You can also disable and create a
+                                new invite link for this Workspace at any time.</p>
+                            <div class="invitation-link">
+                                <img src="pages/image/link.svg" alt="">
+                                Invite by link
                             </div>
-                        </div>
-                        <div class="right">
-                            <img src="pages/image/close.svg" alt="">
-                            Leave
                         </div>
                     </div>
-                    <div class="menber-item">
-                        <div class="left">
-                            <img class="avatar"
-                                src="https://www.imagdisplays.co.uk/wp-content/uploads/2020/10/Outdoor-LED-Screen-Hire-Technical-Event-Production-iMAG.jpg"
-                                alt="">
-                            <div>
-                                <span class="name">Nam Phan</span>
-                                <span class="username">@namhaycode</span>
+                    <div class="menbers">
+                        <div class="menber-item">
+                            <div class="left">
+                                <img class="avatar"
+                                    src="https://www.imagdisplays.co.uk/wp-content/uploads/2020/10/Outdoor-LED-Screen-Hire-Technical-Event-Production-iMAG.jpg"
+                                    alt="">
+                                <div>
+                                    <span class="name">Nam Phan</span>
+                                    <span class="username">@namhaycode</span>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <img src="pages/image/close.svg" alt="">
+                                Leave
                             </div>
                         </div>
-                        <div class="right">
-                            <img src="pages/image/close.svg" alt="">
-                            Remove
+                        <div class="menber-item">
+                            <div class="left">
+                                <img class="avatar"
+                                    src="https://www.imagdisplays.co.uk/wp-content/uploads/2020/10/Outdoor-LED-Screen-Hire-Technical-Event-Production-iMAG.jpg"
+                                    alt="">
+                                <div>
+                                    <span class="name">Nam Phan</span>
+                                    <span class="username">@namhaycode</span>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <img src="pages/image/close.svg" alt="">
+                                Remove
+                            </div>
                         </div>
                     </div>
                 </div>

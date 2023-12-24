@@ -9,7 +9,11 @@
 </head>
 <body>
     <div class="popup">
-        
+        <p>{{Auth::user()->name}}</p>
+        <p>{{Auth::user()->email}}</p>
+        <p>{{Auth::user()->id}}</p>
+        <p>{{ session('id_user') }}</p>
+        <a href="{{route('logout')}}" >logut</a>
         <button class="open-modal-btn">Card</button>
         <div class="modal hide">
             <div class="modal__inner">

@@ -58,13 +58,20 @@ workspaces.forEach((e) => {
 });
 var subitems = document.querySelector(".sub-items");
 
-
 // subitems.innerHTML = "";
+
+// Access project
+function project_specific(id) {
+    let currentLink = window.location.href;
+    window.location.href = `${currentLink}/project/${id}`;
+}
+
 const container = document.querySelector(".project-container");
-container.style = "height: "+window.innerHeight*70/100 + "px";
+container.style = "height: " + (window.innerHeight * 70) / 100 + "px";
 window.addEventListener("resize", () => {
     const container = document.querySelector(".project-container");
-    container.style = "height: "+window.innerHeight*70/100 + "px";
+    container.style = "height: " + (window.innerHeight * 70) / 100 + "px";
     console.log(window.innerHeight);
-})
+});
 
+console.log(navbar_button);

@@ -8,59 +8,101 @@
     <title>Document</title>
     <link rel="stylesheet" href="pages/style.css">
     <link rel="stylesheet" href="pages/projectView.css">
+    <link rel="stylesheet" href="pages/navbarHome.css">
 </head>
 
 <body>
-    <div class="folders">
-        @include('sidebar.folder')
-    </div>
-    <div class="workspace">
-        <div class="workspace-header">
-            <img src="pages/image/Rectangle.png" class="avatar">
-            <div>
-                <div class="workspace-name">
-                    {{ $workspace->name }}
-                    <button class="edit"><img src="pages/image/pencil.png"></button>
-                </div>
-                <div class="ability">
-                    <img src="pages/image/Vector.png">
-                    private
-                </div>
+    <div class="navbar">
+        <ul class="navbar-left">
+            <li>
+                <h2 style="display: inline-block">Dira</h2>
+            </li>
+            <li>
+                <a href="">Workspaces</a>
+                <i class="bi bi-caret-down"></i>
+            </li>
+            <li>
+                <a href="">Recently</a>
+                <i class="bi bi-caret-down"></i>
+            </li>
+            <li>
+                <a href="">Starred</a>
+                <i class="bi bi-caret-down"></i>
+            </li>
+            <li>
+                <a href="">Template</a>
+                <i class="bi bi-caret-down"></i>
+            </li>
+            <button class="navbar-button" style="background-color: rgb(12,102,228); color: rgb(255,255,253); padding: 5px 15px; border-radius: 3px; border: none; cursor: pointer">News</button>
+        </ul>
+
+        <div class="navbar-right">
+            <div class="search-input">
+                <i class="bi bi-search"></i>
+                <input type="text" name="" id="" placeholder="Search">
+            </div>
+            <div class="information-icon">
+                <span>
+                    <i class="bi bi-bell"></i>
+                </span>
+                <span>
+                    <i class="bi bi-question-circle"></i>
+                </span>
+                <span>
+                    <img src="" alt="" srcset="">
+                </span>
             </div>
         </div>
-        <div class="_container">
-            <div class="title">
-                <img src="pages/image/arrow_down.png" style="transform: rotate(90deg); height: fit-content; width: fit-content;">
-                <img src="pages/image/project-icon.png">
-                {{ $project->name }}
-            </div>
-            <div class="project-container">
-                @if(isset($columns))
-                    @foreach($columns as $column)
-                    <div class="list-item" draggable="true" id="{{ $column->id }}" index="{{$column->index}}">
-                        <div class="block-select">
-                            <div class="block-wall"></div>
-                            <textarea class="list-title" name="" id="" cols="30" rows="10" spellcheck="false">{{ $column->title }}</textarea>
-                        </div>
-                        <div class="cards">
-                            @if(isset($column->cards))
-                                @foreach($column->cards as $card)
-                                <div class="card-item" draggable="true" index="{{ $card->index }}" id="{{ $card->id }}">
-                                    {{ $card->title }}
-                                </div>
-                                @endforeach
-                            @endif
-                        </div>
+
+    </div>
+    <div class="body">
+        <div class="folders">
+            @include('sidebar.folder')
+        </div>
+        <div class="workspace">
+            <div class="workspace-header">
+                <img src="pages/image/Rectangle.png" class="avatar">
+                <div>
+                    <div class="workspace-name">
+                        {{ $workspace->name }}
+                        <button class="edit"><img src="pages/image/pencil.png"></button>
                     </div>
-                    @endforeach
-                @endif
+                    <div class="ability">
+                        <img src="pages/image/Vector.png">
+                        private
+                    </div>
+                </div>
+            </div>
+            <div class="_container">
+                <div class="title">
+                    <img src="pages/image/arrow_down.png" style="transform: rotate(90deg); height: fit-content; width: fit-content;">
+                    <img src="pages/image/project-icon.png">
+                    {{ $project->name }}
+                </div>
+                <div class="project-container">
+                    @if(isset($columns))
+                        @foreach($columns as $column)
+                        <div class="list-item" draggable="true" id="{{ $column->id }}" index="{{$column->index}}">
+                            <div class="block-select">
+                                <div class="block-wall"></div>
+                                <textarea class="list-title" name="" id="" cols="30" rows="10" spellcheck="false">{{ $column->title }}</textarea>
+                            </div>
+                            <div class="cards">
+                                @if(isset($column->cards))
+                                    @foreach($column->cards as $card)
+                                    <div class="card-item" draggable="true" index="{{ $card->index }}" id="{{ $card->id }}">
+                                        {{ $card->title }}
+                                    </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
         </div>
     </div>
-    <!-- <div class="block-background">
-        <div class="card-form">
-        </div>
-    </div> -->
 
     <script src="pages/script.js"></script>
     <script src="pages/dragable.js"></script>
@@ -80,6 +122,7 @@
         window.Echo.private('project.{{$project->id}}')
         .listen("CardCreated", function (e) {
             const card = e.card;
+            console.log(e);
             EventHandle.newCardElement(card.title, card.index, card.list_ID);
         })
         .listen("ModifyCardPosition", function (e) {
@@ -89,10 +132,12 @@
         })
         .listen("ModifyListPosition", function (e) {
             const list = e.list;
+            console.log(e);
             EventHandle.moveList(list.id, list.index);
         })
         .listen("ModifyListTitle", function (e) {
             const list = e.list;
+            console.log(e);
             EventHandle.modifyListTitle(list.id, list.title);
         });
     </script>

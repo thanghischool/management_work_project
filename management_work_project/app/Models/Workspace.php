@@ -10,10 +10,9 @@ class Workspace extends Model
     use HasFactory;
     protected $table = "workspaces";
     public $timestamps = false;
-    
     public function projects()
     {
-        return $this->hasMany(Project::class);
+        return $this->hasMany(Project::class, "workspace_ID", "id");
     }
     // public function messages()
     // {

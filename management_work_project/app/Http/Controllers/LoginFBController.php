@@ -79,20 +79,17 @@ class LoginFBController extends Controller
             $finduser = User::where('email', $user->email)->first();
          
             if($finduser){
-         
+                session(['id_user' => $id_user]);
                 Auth::login($finduser);
-       
                 return redirect()->intended('/');
-         
             }else{
                 $newUser = User::updateOrCreate(['email' => $user->email],[
                         'name' => $user->name,
                         'facebook_id'=> $user->id,
                         'password' => encrypt('koNhoGiHet')
                     ]);
-        
                 Auth::login($newUser);
-        
+                session(['id_user' => Auth::id()]);
                 return redirect()->intended('/');
             }
        

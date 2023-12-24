@@ -42,6 +42,7 @@ async function modifyListTitle(id, title){
     const response = await fetch("http://127.0.0.1:8000/api/lists/title/"+id,{
         method: "PUT", // or 'PUT'
         headers: {
+            'X-Socket-ID': window.Echo.socketId(),
             'Accept':'application/json',
             'Content-Type':'application/json',
         },
