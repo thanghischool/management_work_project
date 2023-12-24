@@ -16,6 +16,8 @@
 </head>
 
 <body>
+    <div class="pseudo-opacity"></div>
+
     <div class="navbar">
         <ul class="navbar-left">
             <li>
@@ -37,7 +39,8 @@
                 <a href="">Template</a>
                 <i class="bi bi-caret-down"></i>
             </li>
-            <button class="navbar-button" style="background-color: rgb(12,102,228); color: rgb(255,255,253); padding: 5px 15px; border-radius: 3px; border: none; cursor: pointer">News</button>
+            <button class="navbar-button"
+                style="background-color: rgb(12,102,228); color: rgb(255,255,253); padding: 5px 15px; border-radius: 3px; border: none; cursor: pointer">News</button>
         </ul>
 
         <div class="navbar-right">
@@ -93,7 +96,8 @@
             <div class="project-list">
                 @if(isset($projects_getworkspace))
                 @foreach($projects_getworkspace as $project_getworkspace)
-                <div class="item" id="{{ $project_getworkspace->id }}" draggable="true" onclick="project_specific('{{ $project_getworkspace->id }}')">
+                <div class="item" id="{{ $project_getworkspace->id }}" draggable="true"
+                    onclick="project_specific('{{ $project_getworkspace->id }}')">
                     <span class="disable-select">{{ $project_getworkspace->name }}</span>
                     <div class="progress-bar"></div>
                     <div class="progress-percent">10%</div>
@@ -108,7 +112,8 @@
     <div class="new-workspace">
 
         <div class="create-workspace">
-            <form action="" method="post">
+            <form action="{{ route('create_Workspace') }}" method="post" enctype="multipart/form-data">
+                @csrf
                 <h1>Let's build a Workspace</h1>
                 <h3 style="margin: 30px 0; color: rgb(97,110,133)">Increase your productivity by helping everyone
                     <br>people easily access
@@ -122,6 +127,8 @@
 
                 <input type="submit" value="Continue" style="width: 100%; height: 30px">
             </form>
+
+
         </div>
         <div class="background-right-workspace">
             <img src="pages/image/background.png" alt="" style="width: 100%; height: 332px">
@@ -132,23 +139,24 @@
 
     <!-- Create new board -->
     <script>
+    let navbar_button = document.querySelector(".navbar-button");
+    navbar_button.addEventListener("click", function add_workspace(e) {
+        let new_workspace = document.querySelector(".new-workspace");
         let navbar_button = document.querySelector(".navbar-button");
-        navbar_button.addEventListener("click", function add_workspace(e) {
-            let new_workspace = document.querySelector(".new-workspace");
-            let navbar_button = document.querySelector(".navbar-button");
-            let body = document.body;
+        let pseudo_opacity = document.querySelector(".pseudo-opacity");
+        let body = document.body;
 
-            new_workspace.style.display = "flex";
-            // body.style.backdropFilter = "blur(15px)";
-            // new_workspace.style.opacity = "1";
+        new_workspace.style.display = "flex";
+        pseudo_opacity.style.display = "block";
 
-        });
+
+    });
     </script>
 
     <script src="pages/script.js"></script>
     <script src="pages/dragable.js"></script>
     <script>
-        applyDragableIntoList(".project-list", ".item:not(.button)");
+    applyDragableIntoList(".project-list", ".item:not(.button)");
     </script>
     <script src="pages/editable.js"></script>
 </body>

@@ -12,15 +12,23 @@
 </head>
 
 <body>
-
-    <div class="_container">
-        <div class="title">
-            <img src="pages/image/arrow_down.png"
-                style="transform: rotate(90deg); height: fit-content; width: fit-content;">
-            <img src="pages/image/project-icon.png">
-            {{ $project->name }}
+    <div class="folders">
+        @include('sidebar.folder')
+    </div>
+    <div class="workspace">
+        <div class="workspace-header">
+            <img src="pages/image/Rectangle.png" class="avatar">
+            <div>
+                <div class="workspace-name">
+                    {{ $workspace->name }}
+                    <button class="edit"><img src="pages/image/pencil.png"></button>
+                </div>
+                <div class="ability">
+                    <img src="pages/image/Vector.png">
+                    private
+                </div>
+            </div>
         </div>
-
         <div class="_container">
             <div class="title">
                 <img src="pages/image/arrow_down.png"
@@ -46,22 +54,16 @@
                         @endforeach
                         @endif
                     </div>
-
                 </div>
                 @endforeach
                 @endif
             </div>
         </div>
-        @endforeach
-        @endif
-    </div>
-    </div>
     </div>
     <!-- <div class="block-background">
         <div class="card-form">
         </div>
     </div> -->
-
     <script src="pages/script.js"></script>
     <script src="pages/dragable.js"></script>
     <script>

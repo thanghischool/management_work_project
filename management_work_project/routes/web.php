@@ -22,7 +22,7 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('workspace/{id_workspace}/project/{id_project}', [WorkspaceData::class, 'showDataProject']);
+Route::get('workspace/{workspace}/project/{project}', [WorkspaceData::class, 'showDataProject']);
 
 Route::get('/project', function () {
     return view('projectView');
@@ -54,7 +54,7 @@ Route::post('/workspace/{id}', [QueryDataController::class, 'updateWorkspace'])-
 //     return view('login');
 // });
 
-Route::post('/workspace/{?id}', [QueryDataController::class, 'createWorkspace'])->name('create_Workspace');
+Route::post('/uploadfile', [QueryDataController::class, 'createWorkspace'])->name('create_Workspace');
 
 
 Route::get('/login', [LoginController::class, 'getlogin'])->name('login');
