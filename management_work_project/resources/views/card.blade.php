@@ -43,7 +43,7 @@
                             <div class="slide">
                                 <div class="slide-header">
                                     <div class="name">
-                                        <i class="fa-solid fa-clipboard-check fa-lg"></i>          
+                                        <i class="fa-solid fa-clipboard-check fa-lg"><h/i>          
                                         <h4>To do list</h4>
                                     </div>      
                                     <button class="btnn">Delete</button>

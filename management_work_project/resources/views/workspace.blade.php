@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <base href="{{ asset('') }}">
-    </base>
+    {{-- </base> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="pages/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="pages/navbarHome.css">
+    <link rel="stylesheet" href="pages\fontawesome-free-6.5.1-web\css\all.min.css">
 
 </head>
 
@@ -53,6 +54,16 @@
                 <span>
                     <img src="" alt="" srcset="">
                 </span>
+            </div>
+            <div class="avatar open-subnav-btn">
+                <img class="avtimg" src="{{Auth::user()->avatar}}" alt="avt" >
+                <i class="fa-solid fa-chevron-down fa-xs" style="color: #ffffff;"></i>
+                <ul class="subnav hide">
+                    <li><a href="#"><i class="fa-solid fa-gear"></i>Setting</a></li>
+                    <li><a href="{{route('profile')}}"><i class="fa-solid fa-id-badge"></i>Profile</a></li>
+                    <li><a href="#"><i class="fa-solid fa-info"></i>About</a></li>
+                    <li><a href="{{route('logout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
+                  </ul>
             </div>
         </div>
 
@@ -140,6 +151,7 @@
     </script>
 
     <script src="pages/script.js"></script>
+    <script src="pages/subnav.js"></script>
     <script src="pages/dragable.js"></script>
     <script src="pages/editable.js"></script>
 </body>
