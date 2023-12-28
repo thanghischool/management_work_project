@@ -55,7 +55,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <strong>Gender</strong>
-                                <input type="text" name="gender" value="{{Auth::user()->gender}}" class="form-control" placeholder="Input Gender">
+                                <select name="gender" class="form-control">
+                                    <option value="" {{Auth::user()->gender=="" ? "selected" : "" }}>None</option>
+                                    <option value="Male" {{Auth::user()->gender=="Male" ? "selected" : "" }}>Male</option>
+                                    <option value="Female" {{Auth::user()->gender=="Female" ? "selected" : "" }}>Female</option>
+                                </select>
+                                <!-- <input type="text" name="gender" value="{{Auth::user()->gender}}" class="form-control" placeholder="Input Gender"> -->
                             </div>
                         </div>
                         <div class="col-md-6">

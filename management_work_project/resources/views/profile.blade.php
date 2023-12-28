@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600">Birthday</p>
-                                            <h6 id="birthday-info" class="text-muted f-w-400">{{Auth::user()->birthday}}</h6>
+                                            <h6 id="birthday-info" class="text-muted f-w-400">{{Carbon\Carbon::parse(Auth::user()->birthday)->format("d/m/Y")}}</h6>
                                             {{-- <input type="datetime" id="birthday-input" class="form-control" style="display: none;">
                                             <button onclick="editField('birthday')">Edit Birthday</button>
                                             <button id="save-birthday" onclick="saveField('birthday')" style="display: none;">Save Birthday</button> --}}

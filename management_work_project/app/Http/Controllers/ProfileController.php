@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Validation\Rule;
+
 class ProfileController extends Controller
 {
     public function index(){
@@ -16,11 +18,11 @@ class ProfileController extends Controller
     }
     public function update(Request $request){
         $request->validate([
-            'gender' => 'string',
-            'phone' => 'numeric|min:0',
+            'gender' => [Rule::in(['Male', 'Female', ''])],
+            'phone' => 'integer|min:0|nullable',
             // 'address' =>'string',
-            'birthday' =>'date',
-            'bio' =>'string',
+            'birthday' =>'date|nullable|before:today',
+            'bio' =>'string|nullable|max:255',
             // 'avatar' =>'string',
             // 'name' =>'string',
         ]);
