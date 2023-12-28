@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,25 @@
 </head>
 <body>
     <div class="popup">
+        <?php 
+        use Carbon\Carbon;
+        // $datetime1 = Carbon::parse('2023/12/27T23:32');
+        // $datetime2 = Carbon::now();
+        
+        // // Calculate the difference
+        // if($datetime1->lt($datetime2)) {
+        //     echo "Hehe";
+        // }
+        echo Carbon::now()->format("Y-m-d\Th:i");
+        // echo $interval->format('%d days, %h hours, %i minutes, %s seconds');
+        ?>
+        <label for="party">Enter a date and time for your party booking:</label>
+        <input
+        id="party"
+        type="datetime-local"
+        name="partydate"
+        min="<?php echo Carbon::now()->format("Y-m-d\Th:i"); ?>"
+        value="<?php echo Carbon::now()->format("Y-m-d\Th:i"); ?>" />
         <p>{{Auth::user()->name}}</p>
         <p>{{Auth::user()->email}}</p>
         <p>{{Auth::user()->id}}</p>
@@ -96,6 +116,32 @@
       </div>
        
 </body>
-
+    <script>
+         async function logMovies(overdue) {
+            const response = await fetch("http://127.0.0.1:8000/api/workspaces/1/checklists/1",{
+                method: "POST", // or 'PUT'
+                headers: {
+                    'Accept':'application/json',
+                    'Content-Type':'application/json',
+                },
+                body: JSON.stringify({
+                    content: "test task",
+                    user_IDs: [1, 2, 3],
+                    overdue: overdue,
+                })
+            });
+            const movies = await response.json();
+            console.log(movies);
+        }
+        
+        document.getElementById("party").onchange = (e) => {
+            var date = e.target.value;
+            var dateInput = new Date(Number(date.substring(0, 4)), Number(date.substring(5, 7))-1, 
+                Number(date.substring(8, 10)), Number(date.substring(11, 13)), 
+                Number(date.substring(14, 16)));;
+            console.log(date);
+            logMovies(date);
+        }
+    </script>
     <script src="{{asset('pages/card.js')}}"></script>
 </html>

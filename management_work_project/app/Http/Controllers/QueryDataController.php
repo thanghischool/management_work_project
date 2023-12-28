@@ -35,7 +35,7 @@ class QueryDataController extends Controller
             $update_workspace->save();
         }
 
-        return redirect()->route('worksapce_project', ['id' => $id_workspace]);
+        return redirect()->back();
     }
 
     public function createWorkspace(Request $request)

@@ -11,7 +11,7 @@ class Column extends Model
     protected $table = "lists";
     public $timestamps = false;
     protected $fillable = [
-        "title", "index"
+        "title", "index", "project_ID"
     ];
     public function cards(){
         return $this->hasMany(Card::class, "list_ID", "id")->orderBy('index');;

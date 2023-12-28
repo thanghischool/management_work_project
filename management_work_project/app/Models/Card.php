@@ -23,10 +23,10 @@ class Card extends Model
         return $this->hasMany(Log::class, "card_ID", "id");
     }
     public function comments(){
-        return $this->hasMany(Comment::class, "card_ID", "id");
+        return $this->hasMany(Comment::class, "card_ID", "id")->orderBy("created_at");
     }
     public function logss(){
-        return $this->hasMany(Log::class, "card_ID", "id");
+        return $this->hasMany(Log::class, "card_ID", "id")->orderBy("created_at");
     }
     public function column(){
         return $this->belongsTo(Column::class, "list_ID", "id");

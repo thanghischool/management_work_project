@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <base href="{{ asset('') }}">
     </base>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="project_ID" content="{{ $project->id }}">
+    <meta name="updateworkspaceurl" content="{{ route('update_Workspace',['id' => $workspace->id]) }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="pages/style.css">
     <link rel="stylesheet" href="pages/projectView.css">
     <link rel="stylesheet" href="pages/navbarHome.css">
+    <link rel="stylesheet" href="pages\fontawesome-free-6.5.1-web\css\all.min.css">
 </head>
 
 <body>
@@ -95,15 +99,17 @@
                                     </div>
                                     @endforeach
                                 @endif
+                                <button class="addcardbtn">Add +</button>
                             </div>
                         </div>
                         @endforeach
                     @endif
+                    <button id="addlistbtn">Add +</button>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="pages/editable.js"></script>
     <script src="pages/script.js"></script>
     <script src="pages/dragable.js"></script>
     <script>
@@ -112,18 +118,17 @@
     </script>
     <script src="pages/list.js"></script>
     <script>
-      
         applyEditableTitleToList(".list-item", ".list-title", ".block-wall");
     </script>
     <script src="pages/editable.js"></script>
     <script type="module">
         import * as EventHandle from './pages/CardEventModule.js';
-        import '{{mix('resources/js/bootstrap.js')}}';
+        import '{{mix('resources/js/app.js')}}';
         window.Echo.private('project.{{$project->id}}')
         .listen("CardCreated", function (e) {
             const card = e.card;
             console.log(e);
-            EventHandle.newCardElement(card.title, card.index, card.list_ID);
+            EventHandle.newCardElement(card.id, card.title, card.list_ID);
         })
         .listen("ModifyCardPosition", function (e) {
             const card = e.card;
@@ -139,6 +144,13 @@
             const list = e.list;
             console.log(e);
             EventHandle.modifyListTitle(list.id, list.title);
+        })
+        .listen("ListCreated", function (e) {
+            const list = e.list;
+            console.log(e);
+            EventHandle.newListElement(list.id, list.title, list.index);
+            EventHandle.addCardButton();
+            applyDragableIntoCard(".cards", ".card-item");
         });
     </script>
 </body>

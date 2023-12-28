@@ -55,4 +55,9 @@ class User extends Authenticatable
          where uw.user_ID = :uid and w.id = uw.workspace_ID', ['uid' => session('id_user')]);
         return $workspaces;
     }
+    public static function isBelongsToWorkspace($user_ID, $workspace_ID){
+        $isBelong = DB::select('select id from user_workspace
+        where user_ID = :uid and workspace_ID = :wid', ['uid' => $user_ID, 'wid' => $workspace_ID]);
+        return count($isBelong) !== 0;
+    }
 }

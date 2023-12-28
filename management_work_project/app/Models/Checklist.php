@@ -9,7 +9,7 @@ class Checklist extends Model
 {
     use HasFactory;
     protected $table = "checklists";
-    protected $timestamps = false;
+    public $timestamps = false;
     protected $fillable = [
         "title", "card_ID"
     ];
