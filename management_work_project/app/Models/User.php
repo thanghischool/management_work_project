@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Project;
+use App\Models\Workspace;
 use Illuminate\Queue\Console\WorkCommand;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -49,6 +51,8 @@ class User extends Authenticatable
 
     public function workspaces()
     {
-        return $this->hasMany(Workspace::class, 'admin_ID', 'id');
+        $workspaces = DB::select('select w.* from workspaces as w, user_workspace as uw
+         where uw.user_ID = :uid and w.id = uw.workspace_ID', ['uid' => session('id_user')]);
+        return $workspaces;
     }
 }

@@ -1,7 +1,120 @@
-html {
+/* html {
     overflow-y: hidden;
+} */
+/* Css board */
+
+.body {
+    position: relative;
 }
-.workspace{
+
+.body .add-people-board {
+    position: fixed;
+    width: 600px;
+    height: 400px;
+    background-color: rgb(255, 255, 255);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.body .add-people-board * {
+    margin-top: 10px;
+}
+
+.body .add-people-board .name-function-share {
+    display: flex;
+    justify-content: space-between;
+}
+
+.body .add-people-board .name-function-share i {
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+.body .add-people-board .name-function-share h2 {
+    color: rgb(95, 109, 132);
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.body .add-people-board form input[type="text"] {
+    width: 350px;
+    height: 30px;
+    border: solid rgb(220, 223, 228) 3px;
+    margin-left: 20px;
+}
+
+.body .add-people-board form button {
+    width: 120px;
+    height: 35px;
+    background-color: rgb(241, 242, 244);
+    border: 0;
+    border-radius: 3px;
+    margin-left: 10px;
+}
+
+.body .add-people-board form input[type="submit"] {
+    width: 50px;
+    height: 35px;
+    background-color: rgb(12, 102, 228);
+    border: 0;
+    border-radius: 3px;
+    margin-left: 10px;
+    color: rgb(255, 255, 255);
+}
+
+.body .add-people-board .link-add .link-icon {
+    display: inline-block;
+    font-size: 25px;
+    margin-left: 20px;
+    background-color: rgb(241, 242, 244);
+    text-align: center;
+    border-radius: 3px;
+}
+
+.body .add-people-board .link-add .capacity-member {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.body .add-people-board .link-add .capacity-member a {
+    color: rgb(30, 113, 230);
+    text-decoration: none;
+}
+
+.body .add-people-board .link-add button {
+    width: 295px;
+    height: 30px;
+    background-color: rgb(241, 242, 244);
+    border: 0;
+    border-radius: 3px;
+    margin-left: 72px;
+    padding-top: 3px;
+}
+
+.body .add-people-board .members .member-single span {
+    margin-left: 20px;
+    border-radius: 50%;
+}
+
+.body .add-people-board .members .member-single p {
+    display: inline-block;
+    margin-left: 10px;
+    color: rgb(117, 129, 149);
+}
+
+.body .add-people-board .members .member-single button {
+    width: 100px;
+    height: 30px;
+    float: right;
+    margin-right: 28px;
+    border: 0;
+    border-radius: 3px;
+}
+
+.workspace {
     height: 100%;
 }
 ._container {
@@ -16,7 +129,7 @@ html {
     white-space: nowrap;
     margin-top: 24px;
     font-size: 0;
-    background-color: #31304D;
+    background-color: #31304d;
     padding: 10px;
     border-radius: 10px;
 }
@@ -30,7 +143,8 @@ html {
     margin: 10px 0 0 10px;
     padding: 10px;
     vertical-align: top;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+        rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 .non-selectable {
     -webkit-user-select: none; /* Safari */
@@ -41,10 +155,10 @@ html {
     margin-top: 10px;
     padding: 13px;
 }
-.card-item{
+.card-item {
     text-wrap: wrap;
     word-break: break-all;
-    background: #B6BBC4;
+    background: #b6bbc4;
     border-radius: 10px;
     margin-bottom: 10px;
     padding: 12px 16px 12px 16px;
@@ -103,22 +217,22 @@ textarea:disabled {
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #31304D;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #B6BBC4;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #31304d;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #b6bbc4;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background: #555;
-  }
-  ::-webkit-scrollbar-corner{
-    background-color: #31304D;
-  }
+}
+::-webkit-scrollbar-corner {
+    background-color: #31304d;
+}

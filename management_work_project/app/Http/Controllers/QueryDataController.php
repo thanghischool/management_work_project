@@ -6,6 +6,8 @@ use App\Models\Workspace;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use Auth;
+use Illuminate\Support\Facades\DB;
 
 class QueryDataController extends Controller
 {
@@ -13,20 +15,16 @@ class QueryDataController extends Controller
     public function getProject($id_workspace)
     {
         $id_user = session('id_user');
-        if ($id_user) {
-            $workspaces = User::find($id_user)->workspaces()->get();
+        $workspaces = User::find($id_user)->workspaces();
 
-            //Get workspace data from workspace_id
-            $getWorkspace = Workspace::where('id', $id_workspace)->first();
+        //Get workspace data from workspace_id
+        $getWorkspace = Workspace::where('id', $id_workspace)->first();
 
-            //Get project data from workspace_id
-            $projects_getworkspace =  Workspace::find($id_workspace)->projects()->get();
+        //Get project data from workspace_id
+        $projects_getworkspace =  Workspace::find($id_workspace)->projects;
 
 
-            return view('showManyProject', ['projects_getworkspace' => $projects_getworkspace, 'workspaces' => $workspaces, 'getWorkspace' => $getWorkspace]);
-        } else {
-            return redirect()->back();
-        }
+        return view('showManyProject', ['projects_getworkspace' => $projects_getworkspace, 'workspaces' => $workspaces, 'getWorkspace' => $getWorkspace]);
     }
 
     public function updateWorkspace($id_workspace, Request $request)
@@ -62,6 +60,11 @@ class QueryDataController extends Controller
             $path_avatar = $image->move('pages/image', $imageFileName);
 
             $workspace->save();
+
+            DB::table('user_workspace')->insert([
+                'workspace_ID' => $workspace->id,
+                'user_ID' => session('id_user')
+            ]);
 
             return redirect()->route('homepageAfterLogin');
         }

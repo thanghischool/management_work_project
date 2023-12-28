@@ -24,8 +24,11 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 Broadcast::channel('project.{project}', function ($user, Project $project) {
     $worspace_project_id = $project->workspace_ID;
     $results = DB::select('select * from user_workspace where workspace_ID = ? and user_ID = ?', [$worspace_project_id, $user->id]);
-    if($results){
+    if ($results) {
         return true;
     }
     return false;
 });
+
+
+// Broadcast::channel('workspace.{workspace_}', function ($user, Workspace $workspace) {})

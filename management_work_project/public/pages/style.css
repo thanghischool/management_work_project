@@ -4,8 +4,14 @@ html {
     font-family: "Inter", sans-serif;
 }
 body {
+    /* display: flex;
+    flex-direction: column; */
+    overflow-x: hidden;
+}
+.body {
     display: flex;
-    position: relative;
+    margin-top: 80px;
+    /* position: relative; */
 }
 .folders {
     margin-left: 22px;
@@ -36,7 +42,7 @@ body {
 }
 .workspace {
     overflow: hidden;
-    margin-top: 110px !important;
+    /* margin-top: 110px !important; */
 }
 .workspace-container {
     display: block;
@@ -256,17 +262,19 @@ body {
 }
 
 .new-workspace {
-    position: absolute;
+    position: fixed;
     width: 50%;
     height: 500px;
     top: 50%;
-    left: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: none;
     justify-content: space-evenly;
     background-color: rgb(255, 255, 255);
     padding: 50px;
     border-radius: 5px;
     z-index: 3;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .pseudo-opacity {

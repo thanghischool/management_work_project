@@ -75,6 +75,6 @@
   </div>
 </body>
 <script src="{{asset('pages/login.js')}}"></script>
- <!-- <a href="{{ route('logout-home') }}">logout</a> -->
+ 
 </html>
 

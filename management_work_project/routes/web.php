@@ -22,28 +22,9 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('workspace/{workspace}/project/{project}', [WorkspaceData::class, 'showDataProject']);
 
-Route::get('/project', function () {
-    return view('projectView');
-});
+// Route::middleware(['signedin'])->get('/workspace', [WorkspaceData::class, 'dataProject']);
 
-Route::get('/member', function () {
-    return view('memberView');
-});
-
-Route::get('/workspace', [WorkspaceData::class, 'dataProject'])->name('homepageAfterLogin');
-
-Route::get('/chatbox', function () {
-    return view('chatbox');
-});
-Route::get('/card', function () {
-    return view('card');
-});
-
-Route::get('/workspace/{id}', [QueryDataController::class, 'getProject'])->name('worksapce_project');
-
-Route::post('/workspace/{id}', [QueryDataController::class, 'updateWorkspace'])->name('update_Workspace');
 
 // Route::get('fetchdata', [FetchDataController::class, 'index']);
 
@@ -54,39 +35,54 @@ Route::post('/workspace/{id}', [QueryDataController::class, 'updateWorkspace'])-
 //     return view('login');
 // });
 
-Route::post('/uploadfile', [QueryDataController::class, 'createWorkspace'])->name('create_Workspace');
-
-
-Route::get('/login', [LoginController::class, 'getlogin'])->name('login');
-
-Route::post('/login', [LoginController::class, 'postLogin'])->name('plogin');
-
-Route::post('/signup', [LoginController::class, 'postSignup'])->name('psignup');
 
 
 
 
-Route::get('/chinhsach', function () {
-    return '<h1>Chinh sach</h1>';
+Route::middleware(['signedin'])->group(
+    function () {
+        Route::post('/uploadfile', [QueryDataController::class, 'createWorkspace'])->name('create_Workspace');
+        Route::post('/addPeople', [AddPeopleController::class, 'addPeople'])->name('addPeopleOnTeam');
+
+        Route::get('/workspace', [WorkspaceData::class, 'dataProject'])->name('homepageAfterLogin');
+        Route::get('/workspace/{id}', [QueryDataController::class, 'getProject'])->name('worksapce_project');
+        Route::post('/workspace/{id}', [QueryDataController::class, 'updateWorkspace'])->name('update_Workspace');
+        Route::get('/chatbox', function () {
+            return view('chatbox');
+        });
+        Route::get('/card', function () {
+            return view('card');
+        });
+        Route::get('workspace/{workspace}/project/{project}', [WorkspaceData::class, 'showDataProject']);
+        Route::get('/project', function () {
+            return view('projectView');
+        });
+        Route::get('/member', function () {
+            return view('memberView');
+        });
+        Route::controller(LoginController::class)->group(function () {
+            Route::get('/logout', 'logout')->name('logout');
+        });
+    }
+);
+Route::middleware(['notsigned'])->group(function () {
+    Route::get('/login', [LoginController::class, 'getlogin'])->name('login');
+
+    Route::post('/login', [LoginController::class, 'postLogin'])->name('plogin');
+
+    Route::post('/signup', [LoginController::class, 'postSignup'])->name('psignup');
+
+    Route::controller(LoginGoogleController::class)->group(function () {
+        Route::get('/auth/google', 'redirectToGoogle')->name('auth.google');
+        Route::get('/auth/google/callback', 'handleGoogleCallback');
+        Route::get('/logout-home', 'logout_home')->name('logout-home');
+    });
+    Route::controller(LoginFBController::class)->group(function () {
+        Route::get('/auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+        Route::get('/auth/facebook/callback', 'handleFacebookCallback');
+    });
+
+    Route::controller(LoginGoogleController::class)->group(function () {
+        Route::get('Sshow', 'Sshow')->name('Sshow');
+    });
 });
-Route::get('auth/facebook/callback', function () {
-    return 'Call Back Login';
-});
-Route::get('auth/facebook', function () {
-    return Socialite::driver('facebook')->redirect();
-});
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::controller(LoginGoogleController::class)->group(function () {
-    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
-    Route::get('auth/google/callback', 'handleGoogleCallback');
-    Route::get('logout-home', 'logout_home')->name('logout-home');
-});
-Route::controller(LoginFBController::class)->group(function () {
-    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-    Route::get('auth/facebook/callback', 'handleFacebookCallback');
-});
-
-Route::get('/addPeople', [AddPeopleController::class, 'index']);
