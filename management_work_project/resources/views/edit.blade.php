@@ -11,7 +11,8 @@
     </style>
 </head>
 <body>
-    <div class="container" style="width: 50%; margin-top: 100px;">
+    @include('layouts.header')
+    <div class="container" style="width: 50%; margin-top: 180px;">
         <div class="card">
             <div class="card-header">
                 <div class="row">

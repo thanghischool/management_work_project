@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profile</title>
+    <link rel="stylesheet" href="pages/fontawesome-free-6.5.1-web/css/all.min.css">
     <link rel="stylesheet" href="pages/profile.css">
+    <link rel="stylesheet" href="pages/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="page-content page-container" id="page-content">
+    @include('layouts.header')
+    <div class="page-content page-container" id="page-content" style="margin-top: 80px">
         <div class="padding">
             <div class="row d-flex justify-content-center">
                 <div class="col-xl-6 col-md-12">

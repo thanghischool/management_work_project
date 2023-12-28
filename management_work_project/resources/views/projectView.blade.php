@@ -11,54 +11,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="pages/style.css">
     <link rel="stylesheet" href="pages/projectView.css">
-    <link rel="stylesheet" href="pages/navbarHome.css">
     <link rel="stylesheet" href="pages\fontawesome-free-6.5.1-web\css\all.min.css">
 </head>
 
 <body>
-    <div class="navbar">
-        <ul class="navbar-left">
-            <li>
-                <h2 style="display: inline-block">Dira</h2>
-            </li>
-            <li>
-                <a href="">Workspaces</a>
-                <i class="bi bi-caret-down"></i>
-            </li>
-            <li>
-                <a href="">Recently</a>
-                <i class="bi bi-caret-down"></i>
-            </li>
-            <li>
-                <a href="">Starred</a>
-                <i class="bi bi-caret-down"></i>
-            </li>
-            <li>
-                <a href="">Template</a>
-                <i class="bi bi-caret-down"></i>
-            </li>
-            <button class="navbar-button" style="background-color: rgb(12,102,228); color: rgb(255,255,253); padding: 5px 15px; border-radius: 3px; border: none; cursor: pointer">News</button>
-        </ul>
-
-        <div class="navbar-right">
-            <div class="search-input">
-                <i class="bi bi-search"></i>
-                <input type="text" name="" id="" placeholder="Search">
-            </div>
-            <div class="information-icon">
-                <span>
-                    <i class="bi bi-bell"></i>
-                </span>
-                <span>
-                    <i class="bi bi-question-circle"></i>
-                </span>
-                <span>
-                    <img src="" alt="" srcset="">
-                </span>
-            </div>
-        </div>
-
-    </div>
+    @include('layouts.header')
     <div class="body">
         <div class="folders">
             @include('sidebar.folder')
