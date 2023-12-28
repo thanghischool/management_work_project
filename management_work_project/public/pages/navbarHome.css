@@ -63,3 +63,79 @@
 .navbar .navbar-right .information-icon span i {
     font-size: 15px;
 }
+.navbar .navbar-right .avatar .avtimg{
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 50%;
+    margin-top: 5px;
+    border: 1px solid rgb(119, 119, 119);
+}
+.navbar .navbar-right .avatar{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    /* width: 40px;
+    height: 40px; */
+}
+.navbar .navbar-right .avatar .fa-chevron-down{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(7, 7, 7);
+    border-radius: 10px;
+    position: absolute;
+    padding: 2px;
+    width: 8px;
+    height: 8px;
+    bottom: 0;
+    left: 27px;
+}
+
+.hide{
+    display: none !important;
+}
+  
+.navbar .navbar-right .avatar .subnav {
+    display: block;
+    position: absolute;
+    top: 52px;
+    left: 1px;
+    width: 100px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    list-style-type: none;
+    text-decoration: none;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+.navbar .navbar-right .avatar .subnav a {
+    color: #434343;
+    padding-left: 10px;
+    line-height: 38px;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    justify-content: center;
+  } 
+/* .navbar .navbar-right .avatar .subnav li{
+ 
+}  */
+.navbar .navbar-right .avatar .subnav li:hover {
+    color: #000;
+    background-color: #ccc;
+  }
+  
+.navbar .navbar-right .avatar:hover .subnav {
+    display: block;
+  }
+
+.navbar .navbar-right .avatar i{
+    margin-right: 10px;
+    width: 16px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}

@@ -75,3 +75,4 @@ function project_specific(id) {
 // });
 
 console.log(navbar_button);
+

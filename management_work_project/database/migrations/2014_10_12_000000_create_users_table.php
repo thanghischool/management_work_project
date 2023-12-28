@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('password');
             $table->string("google_id")->nullable();
             $table->string("facebook_id")->nullable();
+            $table->string("avatar");
+            $table->number("phone");
+            $table->string("gender");
+            $table->string("bio");
+            $table->date("birthday");
             $table->rememberToken();
             $table->timestamps();
         });

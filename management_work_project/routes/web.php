@@ -11,6 +11,7 @@ use App\Http\Controllers\QueryDataController;
 use App\Http\Controllers\AddPeopleController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\Column;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::middleware(['signedin'])->group(function(){
         // Column::destroy(24);
         return view('card');
     });
+    
     Route::get('workspace/{workspace}/project/{project}', [WorkspaceData::class, 'showDataProject']);
     Route::post('workspace/{id_workspace}/project/{project}',[QueryDataController::class, 'updateWorkspace']);
     Route::get('/project', function () {
@@ -64,6 +66,10 @@ Route::middleware(['signedin'])->group(function(){
         Route::get('/logout', 'logout')->name('logout');
        
     });
+    Route::post('/update-profile', [ProfileController::class, 'update'])->name('profileUpdate');
+    Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('profileEdit');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    
 }
 );
 Route::middleware(['notsigned'])->group(function(){
@@ -83,7 +89,5 @@ Route::middleware(['notsigned'])->group(function(){
         Route::get('/auth/facebook/callback', 'handleFacebookCallback');
     });
     
-    Route::controller(LoginGoogleController::class)->group(function () {
-        Route::get('Sshow', 'Sshow')->name('Sshow');
-    });
+
 });
