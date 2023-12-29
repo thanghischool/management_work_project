@@ -17,8 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string("google_id");
-            $table->string("facebook_id");
+            $table->string("google_id")->nullable();
+            $table->string("facebook_id")->nullable();
+            $table->string("avatar")->nullable();
+            $table->string("phone")->nullable();
+            $table->string("gender")->nullable();
+            $table->string("bio")->nullable();
+            $table->date("birthday")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -29,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        // Schema::dropIfExists('users');
     }
 };

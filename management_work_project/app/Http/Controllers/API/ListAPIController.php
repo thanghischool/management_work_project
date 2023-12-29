@@ -5,8 +5,10 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Column;
+use App\Models\Project;
 use App\Events\ModifyListPosition;
 use App\Events\ModifyListTitle;
+use App\Events\ListCreated;
 
 class ListAPIController extends Controller
 {
@@ -51,5 +53,32 @@ class ListAPIController extends Controller
         $list->save();
         broadcast(new ModifyListTitle($list))->toOthers();
         return $list;
+    }
+    public function store(Request $request){
+        $request->validate([
+            "title" => "string|max:255|min:1",
+            "project_ID" => "integer|min:0",
+        ]);
+        $project = Project::find($request->project_ID);
+        $length = count($project->columns);
+        $list = new Column();
+        $list->title = $request->title;
+        $list->index = $length;
+        $list->project_ID = $request->project_ID;
+        $list->save();
+        broadcast(new ListCreated($list));
+        return $list;
+    }
+    // Delete
+    public function destroy(Column $column){
+        $project_ID = $column->project_ID;
+        $lists = Column::where("project_ID", "=", $project_ID)->where("index", ">", $column->index)->get();
+        foreach($list as $item){
+            $item->index -= 1;
+            $item->save();
+        }
+        $column->delete();
+        return $column;
+
     }
 }

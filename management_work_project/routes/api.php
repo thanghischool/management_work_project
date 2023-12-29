@@ -34,3 +34,6 @@ Route::apiResource('comments',CommentAPIController::class);
  
 Route::put('/lists/index/{list}', [App\Http\Controllers\API\ListAPIController::class, "updateIndex"]);
 Route::put('/lists/title/{list}', [App\Http\Controllers\API\ListAPIController::class, "updateTitle"]);
+Route::post('/lists', [App\Http\Controllers\API\ListAPIController::class, "store"]);
+
+Route::post('/workspaces/{workspace}/checklists/{checklist}', [App\Http\Controllers\API\ChecklistAPIController::class,"storeItem"]);

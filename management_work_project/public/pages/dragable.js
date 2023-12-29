@@ -34,21 +34,21 @@ function applyDragableIntoList(container, item){
     for(const sortableList of sortableLists){
         const items = sortableList.querySelectorAll(item);
         items.forEach((item) => {
-            item.addEventListener("dragstart", (e) => {
+            item.ondragstart = (e) => {
                 // Adding dragging class to item after a delay
                 e.stopPropagation();
                 setTimeout(() => {
                     item.classList.add("dragging");
                 }, 0);
-            });
+            };
             // Removing dragging class from item on dragend event
-            item.addEventListener("dragend", (e) => {
+            item.ondragend = (e) => {
                 e.stopPropagation();
                 item.classList.remove("dragging");
                 // gọi API đổi chỗ vị trí list
                 reOrderIndex(".list-item", ".project-container");
                 modifyListPosition(item.id, item.getAttribute('index'));
-            });
+            };
         });
         
         const initSortableList = (e) => {
@@ -65,25 +65,25 @@ function applyDragableIntoList(container, item){
                     break;
                 }
             }
-            if(aroundItems[0] && aroundItems[1]){
-                if (e.clientX + sortableList.scrollLeft + window.scrollX <= aroundItems[0].offsetLeft + aroundItems[0].offsetWidth / 2) {
-                    sortableList.insertBefore(draggingItem, aroundItems[0]);
-                } else if(e.clientX + sortableList.scrollLeft + window.scrollX >= aroundItems[1].offsetLeft + aroundItems[1].offsetWidth / 2){
-                    sortableList.insertBefore(draggingItem, aroundItems[1].nextSibling);
+                if(aroundItems[0] && aroundItems[1]){
+                    if (e.clientX + sortableList.scrollLeft + window.scrollX <= aroundItems[0].offsetLeft + aroundItems[0].offsetWidth / 2) {
+                        sortableList.insertBefore(draggingItem, aroundItems[0]);
+                    } else if(e.clientX + sortableList.scrollLeft + window.scrollX >= aroundItems[1].offsetLeft + aroundItems[1].offsetWidth / 2){
+                        sortableList.insertBefore(draggingItem, aroundItems[1].nextSibling);
+                    }
+                } else if (aroundItems[0]){
+                    if (e.clientX + sortableList.scrollLeft + window.scrollX <= aroundItems[0].offsetLeft + aroundItems[0].offsetWidth / 2) {
+                        sortableList.insertBefore(draggingItem, aroundItems[0]);
+                    }
+                } else if (aroundItems[1]){
+                    if(e.clientX + sortableList.scrollLeft + window.scrollX >= aroundItems[1].offsetLeft + aroundItems[1].offsetWidth / 2){
+                        sortableList.insertBefore(draggingItem, aroundItems[1].nextSibling);
+                    }
                 }
-            } else if (aroundItems[0]){
-                if (e.clientX + sortableList.scrollLeft + window.scrollX <= aroundItems[0].offsetLeft + aroundItems[0].offsetWidth / 2) {
-                    sortableList.insertBefore(draggingItem, aroundItems[0]);
-                }
-            } else if (aroundItems[1]){
-                if(e.clientX + sortableList.scrollLeft + window.scrollX >= aroundItems[1].offsetLeft + aroundItems[1].offsetWidth / 2){
-                    sortableList.insertBefore(draggingItem, aroundItems[1].nextSibling);
-                }
-            }
         }
         
-        sortableList.addEventListener("dragover", initSortableList);
-        sortableList.addEventListener("dragenter", e => e.preventDefault());   
+        sortableList.ondragover = initSortableList;
+        sortableList.ondragenter = e => {e.preventDefault()};   
     }
 }
 
@@ -96,15 +96,15 @@ function applyDragableIntoCard(container, item){
         const items = sortableLists[key_list].querySelectorAll(item);
         const container1 = sortableLists[key_list]?.parentElement?.parentElement;
         items?.forEach((item,key) => {
-            item.addEventListener("dragstart", (e) => {
+            item.ondragstart = (e) => {
                 // Adding dragging class to item after a delay
                 e.stopPropagation();
                 setTimeout(() => {
                     item.classList.add("dragging");
                 }, 0);
-            });
+            };
             // Removing dragging class from item on dragend event
-            item.addEventListener("dragend", (e) => {
+            item.ondragend = (e) => {
                 e.stopPropagation();
                 item.classList.remove("dragging");
                 reOrderIndex(".card-item", ".cards");
@@ -112,7 +112,7 @@ function applyDragableIntoCard(container, item){
                 let index = item.getAttribute("index");
                 let card_ID = item.getAttribute("id");
                 modifyCardPosition(card_ID, index, list_ID);
-            });
+            };
         });
         
         const initSortableList = (e) => {
@@ -123,7 +123,8 @@ function applyDragableIntoCard(container, item){
             let siblings = [...sortableLists[key_list].querySelectorAll(item)];
             // Finding the sibling after which the dragging item should be placed
             let aroundItems;
-            if (e.clientX + container1.scrollLeft + window.scrollX  > sortableLists[key_list].offsetLeft && sortableLists[key_list] !== draggingItem.parentElement) sortableLists[key_list].appendChild(draggingItem);
+                if (e.clientX + container1.scrollLeft + window.scrollX  > sortableLists[key_list].offsetLeft && sortableLists[key_list] !== draggingItem?.parentElement) 
+                sortableLists[key_list].insertBefore(draggingItem, sortableLists[key_list].lastElementChild);
             for(let key in siblings){
                 if(siblings[key] === draggingItem) {
                         aroundItems = [siblings[parseInt(key)-1],siblings[parseInt(key)+1]];
@@ -147,8 +148,8 @@ function applyDragableIntoCard(container, item){
             }
         }
         
-        sortableLists[key_list].addEventListener("dragover", initSortableList);
-        sortableLists[key_list].addEventListener("dragenter", e => e.preventDefault());   
+        sortableLists[key_list].ondragover = initSortableList;
+        sortableLists[key_list].ondragenter =  e => e.preventDefault();   
     }
 }
 

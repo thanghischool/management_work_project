@@ -9,12 +9,29 @@
     <link rel="stylesheet" href="{{asset('pages/fontawesome-free-6.5.1-web/css/all.min.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
 </head>
 
 <body>
     <div class="popup">
+        <?php 
+        use Carbon\Carbon;
+        // $datetime1 = Carbon::parse('2023/12/27T23:32');
+        // $datetime2 = Carbon::now();
+        
+        // // Calculate the difference
+        // if($datetime1->lt($datetime2)) {
+        //     echo "Hehe";
+        // }
+        echo Carbon::now()->format("Y-m-d\Th:i");
+        // echo $interval->format('%d days, %h hours, %i minutes, %s seconds');
+        ?>
+        <label for="party">Enter a date and time for your party booking:</label>
+        <input id="party" type="datetime-local" name="partydate"
+            min="<?php echo Carbon::now()->format("Y-m-d\Th:i"); ?>"
+            value="<?php echo Carbon::now()->format("Y-m-d\Th:i"); ?>" />
         <p>{{Auth::user()->name}}</p>
         <p>{{Auth::user()->email}}</p>
         <p>{{Auth::user()->id}}</p>
@@ -43,14 +60,19 @@
                                     </div>
                                 </div>
                                 <div class="slide-body">
-                                    <textarea name="" id="" cols="50" rows="4" placeholder="Thêm mô tả chi tiết ..."></textarea>
+                                    <textarea name="" id="" cols="50" rows="4"
+                                        placeholder="Thêm mô tả chi tiết ..."></textarea>
                                 </div>
                             </div>
                             <div class="slide">
                                 <div class="slide-header">
                                     <div class="name">
-                                        <i class="fa-solid fa-clipboard-check fa-lg"></i>
-                                        <h4>To do list</h4>
+                                        <<<<<<< HEAD <i class="fa-solid fa-clipboard-check fa-lg"></i>
+                                            =======
+                                            <i class="fa-solid fa-clipboard-check fa-lg">
+                                                <h /i>
+                                                    >>>>>>> aff330f498127bcf102bc0cc7fc7dc215c58cf8c
+                                                    <h4>To do list</h4>
                                     </div>
                                     <button class="btnn">Delete</button>
 
@@ -125,6 +147,35 @@
 
 </body>
 
+<script src="{{asset('pages/card.js')}}"></script>
+
+<script>
+async function logMovies(overdue) {
+    const response = await fetch("http://127.0.0.1:8000/api/workspaces/1/checklists/1", {
+        method: "POST", // or 'PUT'
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            content: "test task",
+            user_IDs: [1, 2, 3],
+            overdue: overdue,
+        })
+    });
+    const movies = await response.json();
+    console.log(movies);
+}
+
+document.getElementById("party").onchange = (e) => {
+    var date = e.target.value;
+    var dateInput = new Date(Number(date.substring(0, 4)), Number(date.substring(5, 7)) - 1,
+        Number(date.substring(8, 10)), Number(date.substring(11, 13)),
+        Number(date.substring(14, 16)));;
+    console.log(date);
+    logMovies(date);
+}
+</script>
 <script src="{{asset('pages/card.js')}}"></script>
 
 </html>

@@ -133,7 +133,9 @@
     padding: 10px;
     border-radius: 10px;
 }
-.list-item {
+.list-item,
+#addlistbtn,
+#addlistform {
     display: inline-flex;
     flex-direction: column;
     width: 233px;
@@ -155,7 +157,11 @@
     margin-top: 10px;
     padding: 13px;
 }
-.card-item {
+
+.card-item,
+.addcardbtn {
+    display: block;
+
     text-wrap: wrap;
     word-break: break-all;
     background: #b6bbc4;
@@ -235,4 +241,72 @@ textarea:disabled {
 }
 ::-webkit-scrollbar-corner {
     background-color: #31304d;
+}
+#addlistbtn {
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+#addlistbtn:hover,
+.addcardbtn:hover {
+    transform: scale(1.04);
+}
+#addlistbtn:active,
+.addcardbtn:active {
+    transform: scale(0.96);
+}
+
+.addcardbtn {
+    font-weight: bold;
+    width: -webkit-fill-available;
+    height: fit-content;
+}
+#addlistform textarea,
+#addcardform textarea {
+    font-size: 2rem;
+    font-weight: bold;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid black inset;
+}
+#addlistform .button,
+#addcardform .button {
+    display: block;
+    height: 40px;
+}
+#addlistform .button svg,
+#addcardform .button svg {
+    float: right;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+}
+svg.close {
+    background-color: rgb(191, 49, 49, 0.9);
+}
+svg.check {
+    background-color: rgb(101, 183, 65, 0.9);
+}
+svg.close:hover {
+    background-color: rgb(191, 49, 49);
+}
+svg.check:hover {
+    background-color: rgb(101, 183, 65);
+}
+
+#addcardform {
+    display: block;
+}
+#addcardform textarea {
+    font-size: 1.2rem;
+    padding: 12px 16px 12px 16px;
+    width: calc(100% - 32px);
+    height: 17px;
+    word-break: break-all;
+    font-family: "Inter", sans-serif;
 }

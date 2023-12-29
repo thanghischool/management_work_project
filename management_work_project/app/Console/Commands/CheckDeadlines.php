@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Models\User;
+use App\Notifications\DeadlineNotification;
 
 class CheckDeadlines extends Command
 {
@@ -25,6 +27,7 @@ class CheckDeadlines extends Command
      */
     public function handle()
     {
-        //
+        $user = User::find(session('id_user'));
+        $user->notify(new DeadlineNotification("hello"));
     }
 }

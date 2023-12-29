@@ -19,3 +19,5 @@ const element = document.querySelector("asd");
 element.addEventListener("click", (event) => {
     alert(element.textContent);
 });
+
+

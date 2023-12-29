@@ -5,62 +5,16 @@
     <meta charset="UTF-8">
     <base href="{{ asset('') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="updateworkspaceurl" content="{{ route('update_Workspace',['id' => $getWorkspace->id]) }}">
     </base>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="pages/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-
-    <link rel="stylesheet" href="pages/navbarHome.css">
-
 </head>
 
 <body>
-    <div class="pseudo-opacity"></div>
-    <div class="navbar">
-        <ul class="navbar-left">
-            <li>
-                <h2 style="display: inline-block">Dira</h2>
-            </li>
-            <li>
-                <a href="">Workspaces</a>
-                <i class="bi bi-caret-down"></i>
-            </li>
-            <li>
-                <a href="">Recently</a>
-                <i class="bi bi-caret-down"></i>
-            </li>
-            <li>
-                <a href="">Starred</a>
-                <i class="bi bi-caret-down"></i>
-            </li>
-            <li>
-                <a href="">Template</a>
-                <i class="bi bi-caret-down"></i>
-            </li>
-            <button class="navbar-button"
-                style="background-color: rgb(12,102,228); color: rgb(255,255,253); padding: 5px 15px; border-radius: 3px; border: none; cursor: pointer">News</button>
-        </ul>
-
-        <div class="navbar-right">
-            <div class="search-input">
-                <i class="bi bi-search"></i>
-                <input type="text" name="" id="" placeholder="Search">
-            </div>
-            <div class="information-icon">
-                <span>
-                    <i class="bi bi-bell"></i>
-                </span>
-                <span>
-                    <i class="bi bi-question-circle"></i>
-                </span>
-                <span>
-                    <img src="" alt="" srcset="">
-                </span>
-            </div>
-        </div>
-
-    </div>
+    @include('layouts.header')
     <div class="body">
         <div class="folders">
             @include('sidebar.folder')
@@ -93,8 +47,7 @@
                 <div class="project-list">
                     @if(isset($projects_getworkspace))
                     @foreach($projects_getworkspace as $project_getworkspace)
-                    <div class="item" id="{{ $project_getworkspace->id }}" draggable="true"
-                        onclick="project_specific('{{ $project_getworkspace->id }}')">
+                    <div class="item" id="{{ $project_getworkspace->id }}" draggable="true" onclick="project_specific('{{ $project_getworkspace->id }}')">
                         <span class="disable-select">{{ $project_getworkspace->name }}</span>
                         <div class="progress-bar"></div>
                         <div class="progress-percent">10%</div>
@@ -135,23 +88,25 @@
 
     <!-- Create new board -->
     <script>
-    let navbar_button = document.querySelector(".navbar-button");
-    navbar_button.addEventListener("click", function add_workspace(e) {
-        let new_workspace = document.querySelector(".new-workspace");
-        let pseudo_opacity = document.querySelector(".pseudo-opacity");
-        let body = document.body;
+        let navbar_button = document.querySelector(".navbar-button");
+        navbar_button.addEventListener("click", function add_workspace(e) {
+            let new_workspace = document.querySelector(".new-workspace");
+            let pseudo_opacity = document.querySelector(".pseudo-opacity");
+            let body = document.body;
 
-        new_workspace.style.display = "flex";
-        pseudo_opacity.style.display = "block";
+            new_workspace.style.display = "flex";
+            pseudo_opacity.style.display = "block";
 
 
-    });
+        });
     </script>
 
     <script src="pages/script.js"></script>
     <script src="pages/dragable.js"></script>
     <script>
-    applyDragableIntoList(".project-list", ".item:not(.button)");
+        applyDragableIntoList(".project-list", ".item:not(.button)");
     </script>
+
+
     <script src="pages/editable.js"></script>
 </body>

@@ -11,6 +11,8 @@ use App\Models\Project;
 use App\Models\Workspace;
 use Illuminate\Queue\Console\WorkCommand;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Broadcasting\PrivateChannel;
+
 
 class User extends Authenticatable
 {
@@ -26,7 +28,12 @@ class User extends Authenticatable
         'email',
         'password',
         'google_id',
-        'facebook_id'
+        'facebook_id',
+        'avatar',
+        'phone',
+        'gender',
+        'birthday',
+        'bio',
     ];
 
     /**
@@ -54,5 +61,16 @@ class User extends Authenticatable
         $workspaces = DB::select('select w.* from workspaces as w, user_workspace as uw
          where uw.user_ID = :uid and w.id = uw.workspace_ID', ['uid' => session('id_user')]);
         return $workspaces;
+    }
+    public static function isBelongsToWorkspace($user_ID, $workspace_ID)
+    {
+        $isBelong = DB::select('select id from user_workspace
+        where user_ID = :uid and workspace_ID = :wid', ['uid' => $user_ID, 'wid' => $workspace_ID]);
+        return count($isBelong) !== 0;
+    }
+
+    public function receivesBroadcastNotificationsOn(): string
+    {
+        return 'users.' . $this->id;
     }
 }

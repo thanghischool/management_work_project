@@ -27,8 +27,7 @@ class CardAPIController extends Controller
     {
         $rule = [
             'list_ID' => 'required|integer|min:0',
-            'title' => 'required|string',
-            'description' => 'nullable|string'
+            'title' => 'required|string'
         ];
         $request->validate($rule);
         $column = Column::find($request->list_ID);
@@ -37,9 +36,9 @@ class CardAPIController extends Controller
         $card->list_ID = $request->list_ID;
         $card->index = $cards_length;
         $card->title = $request->title;
-        $card->description = $request->description ? $request->description : "";
+        $card->description = "";
         $card->save();
-        $project_ID = $card->column->project_ID;
+        $project_ID = $column->project_ID;
         broadcast(new CardCreated($project_ID, $card));
         return $card;
     }

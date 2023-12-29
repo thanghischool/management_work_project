@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{asset('pages/login.css')}}">
 	<link rel="stylesheet" href="{{asset('pages/fontawesome-free-6.5.1-web/css/all.min.css')}}">
+	@vite(['resources/js/app.js'])
 </head>
 <body>
     <h2 class="htitle">Welcome to DIRA!</h2>

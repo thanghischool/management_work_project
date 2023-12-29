@@ -1,10 +1,14 @@
+var form;
 function editWorkspaceTitle(e) {
     e.stopPropagation();
-    let form = e.target.parentElement.parentElement;
-
+    console.log(e.target);
+    form = e.target.parentElement.parentElement;
+    console.log(form);
     let prevoustStatus = form.cloneNode(true);
     form.innerHTML = `<form class="workspacename" action="${
-        window.location.href
+        document
+        .querySelector('meta[name="updateworkspaceurl"]')
+        .getAttribute("content")}"
     }" method="post">
     <input type="hidden" name="_token" value="${document
         .querySelector('meta[name="csrf-token"]')
@@ -27,25 +31,15 @@ function editWorkspaceTitle(e) {
 
     </div>
 </form>`;
+    setTimeout(() => {
+        document.querySelector(".workspace-header #cancel").onclick = doAfterClickCancel;
+    }, 0);
 }
 
 function doAfterClickCancel(e) {
     e.preventDefault();
-    form.parentElement.replaceChild(prevoustStatus, form);
-    // lam gi khi click cancel
-    form.querySelector("#save").removeEventListener("click", doAfterClickSave);
-    form.querySelector("#cancel").removeEventListener(
-        "click",
-        doAfterClickCancel
-    );
-    document
-        .querySelector(".workspace-name .edit")
-        .addEventListener("click", editWorkspaceTitle);
+    window.location.reload();
 }
-
-setTimeout(() => {
-    form.querySelector("#cancel").addEventListener("click", doAfterClickCancel);
-}, 0);
 
 document
     .querySelector(".workspace-name .edit")

@@ -75,7 +75,7 @@ class LoginGoogleController extends Controller
         try {
         
             $user = Socialite::driver('google')->user();
-         
+            // dd($user);
             $finduser = User::where('google_id', (string)$user->id)->first();
          
             if($finduser){
@@ -84,7 +84,11 @@ class LoginGoogleController extends Controller
                 $newUser = User::updateOrCreate(['email' => $user->email],[
                         'name' => $user->name,
                         'google_id'=> (string)$user->id,
-                        'password' => encrypt('GiCungDuoc')
+                        'password' => encrypt('GiCungDuoc'),
+                        'avatar'=> $user->avatar, 
+                        'rgende' => $user->gender,
+                        'birthday' => $user->birthday,
+                        'phone' => $user->phone,
                     ]);
                 Auth::login($newUser);
             }
