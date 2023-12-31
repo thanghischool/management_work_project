@@ -106,6 +106,8 @@ body{
     padding: 5px;
     border-radius: 3px;
     cursor: pointer;
+    font-weight:600 !important;
+
 }
 .btnn:hover{
     background-color: #cfd3db;;
@@ -115,14 +117,19 @@ body{
     margin-bottom: 30px;
 }
 .check input{
-    width: 50px;
+    width: 20px !important;
+    height: 20px;
     margin-right: 20px;
 }
+.check-content{
+    width: 90%;
+}
 .hide{
-    display: none;
+    display: none !important;
 }
 .activity{
     margin-left: 40px;
+    width: 30%;
 }
 .activity button{
     width: 180px;
@@ -145,4 +152,105 @@ body{
 }
 .delcard:hover{
     background-color: rgb(137, 64, 64);
+}
+.subnav {
+    display: block;
+    position: absolute;
+    width: 200px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    list-style-type: none;
+    text-decoration: none;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+.todolist-popup{
+    top: 218px;
+    left: 624px;
+}
+.activity-name{
+    font-weight: 700;
+}
+
+.subnav a {
+    color: #434343;
+    padding-left: 10px;
+    line-height: 38px;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    justify-content: center;
+  } 
+/* .subnav li:hover {
+    color: #000;
+    background-color: #ccc;
+  } */
+.subnav {
+    display: block;
+    text-decoration: none !important;
+  }
+.addtodolist-btn {
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .subnav li {
+    margin: 10px;
+  }
+  .subnav input{
+    width: 100%;
+    height: 30px;
+  }
+.cardfile{
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: flex;
+}
+.cardfile:hover{
+    background-color: #f0f1f4;
+}
+.cardfile img{
+    width: 130px;
+    height: 80px;
+    margin: 10px;
+}
+.contentfile{
+    width: 100%;
+    height: 80px;
+    margin: 10px;
+
+}
+.contentfile div{
+    margin: 5px;
+}
+.descfile{
+    font-weight: 300;
+    font-size: small;
+    color: #787878;
+}
+.cancel:hover{
+    background-color:rgb(255, 69, 69) !important;
+    color: white !important;
+}
+
+
+
+.addcheck li {
+    list-style-type: none;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+.addcheck button{
+    margin-right: 15px;
+}
+.addcheck input{
+    width: 100%;
+    height: 50px;
+    border: 2px solid rgb(68, 68, 160);
+}
+.addcheck input::placeholder{
+    margin: 10px;
+    padding: 10px;
 }
