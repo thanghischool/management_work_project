@@ -62,7 +62,8 @@
         <div class="new-workspace">
 
             <div class="create-workspace">
-                <form action="" method="post">
+                <form action="{{ route('create_Workspace') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <h1>Let's build a Workspace</h1>
                     <h3 style="margin: 30px 0; color: rgb(97,110,133)">Increase your productivity by helping everyone
                         <br>people easily access
@@ -90,19 +91,22 @@
         let navbar_button = document.querySelector(".navbar-button");
         navbar_button.addEventListener("click", function add_workspace(e) {
             let new_workspace = document.querySelector(".new-workspace");
-            let navbar_button = document.querySelector(".navbar-button");
+            let pseudo_opacity = document.querySelector(".pseudo-opacity");
             let body = document.body;
 
             new_workspace.style.display = "flex";
-            // body.style.backdropFilter = "blur(15px)";
-            // new_workspace.style.opacity = "1";
+            pseudo_opacity.style.display = "block";
+
 
         });
     </script>
 
     <script src="pages/script.js"></script>
     <script src="pages/dragable.js"></script>
+    <script>
+        applyDragableIntoList(".project-list", ".item:not(.button)");
+    </script>
+
+
     <script src="pages/editable.js"></script>
 </body>
-
-</html>

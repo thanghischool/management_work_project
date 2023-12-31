@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
 use Auth;
+use Illuminate\Support\Facades\DB;
+
 class QueryDataController extends Controller
 {
 
@@ -40,14 +42,31 @@ class QueryDataController extends Controller
 
     public function createWorkspace(Request $request)
     {
+
         if ($request->name_workspace && $request->hasFile('avatar_workspace')) {
             $workspace = new Workspace;
+
             $workspace->name = $request->name_workspace;
-            $image = $request->file('avatar');
-            $workspace->avatar = $request->file('avatar');
-            $path_avatar = $image->move('pages/image', $image->getClientOriginalName());
+            $workspace->admin_ID = session('id_user');
+            $image = $request->file('avatar_workspace');
+
+            // Lấy tên file gốc
+            $imageFileName = $image->getClientOriginalName();
+
+            // Gán đường dẫn file vào trường avatar
+            $workspace->avatar = 'pages/image/' . $imageFileName;
+
+            // Di chuyển file đến đường dẫn mong muốn
+            $path_avatar = $image->move('pages/image', $imageFileName);
 
             $workspace->save();
+
+            DB::table('user_workspace')->insert([
+                'workspace_ID' => $workspace->id,
+                'user_ID' => session('id_user')
+            ]);
+
+            return redirect()->route('homepageAfterLogin');
         }
     }
 }

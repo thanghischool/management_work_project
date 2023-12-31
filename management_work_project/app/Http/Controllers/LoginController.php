@@ -31,9 +31,11 @@ class LoginController extends Controller
     public function postLogin(Request $request)
     {
 
+
         // if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
         //     return redirect('/workspace');
         // } else return redirect()->back()->with('error', 'Dữ liệu không chính xác !');
+
 
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -43,7 +45,8 @@ class LoginController extends Controller
             return redirect()->route('homepageAfterLogin');
         } else return redirect()->back()->with('error', 'Dữ liệu không chính xác !');
     }
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         session()->forget('id_user');
         return view('login');

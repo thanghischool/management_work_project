@@ -12,6 +12,13 @@
 
 <body>
     @include('layouts.header')
+
+    <script>
+    window.Echo.private('users.{userId}')
+        .notification((notification) => {
+            console.log(notification);
+        });
+    </script>
     <div class="body">
         <div class="folders">
             @include('sidebar.folder')
@@ -56,9 +63,11 @@
         <div class="new-workspace">
 
             <div class="create-workspace">
-                <form action="" method="post">
+                <form action="{{ route('create_Workspace') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <h1>Let's build a Workspace</h1>
-                    <h3 style="margin: 30px 0; color: rgb(97,110,133)">Increase your productivity by helping everyone
+                    <h3 style="margin: 30px 0; color: rgb(97,110,133)">Increase your productivity by helping
+                        everyone
                         <br>people easily access
                         the board in one location.
                     </h3>
@@ -79,23 +88,56 @@
         </div>
     </div>
 
+
+    <div class="new-workspace">
+
+        <div class="create-workspace">
+            <form action="{{ route('create_Workspace') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <h1>Let's build a Workspace</h1>
+                <h3 style="margin: 30px 0; color: rgb(97,110,133)">Increase your productivity by helping everyone
+                    <br>people easily access
+                    the board in one location.
+                </h3>
+                <label for="name_workspace">Workspace Name</label> <br>
+                <input type="text" name="name_workspace" style="width: 100%; height: 30px; margin: 30px 0;"><br>
+
+                <label for="">Workspace Avatar </label> <br>
+                <input type="file" name="avatar_workspace" style=" margin: 30px 0;"> <br>
+
+                <input type="submit" value="Continue" style="width: 100%; height: 30px">
+            </form>
+        </div>
+        <div class="background-right-workspace">
+            <img src="pages/image/background.png" alt="" style="width: 100%; height: 332px">
+        </div>
+
+
+    </div>
+
+
+
     <!-- Create new board -->
     <script>
-        let navbar_button = document.querySelector(".navbar-button");
-        navbar_button.addEventListener("click", function add_workspace(e) {
-            let new_workspace = document.querySelector(".new-workspace");
-            let navbar_button = document.querySelector(".navbar-button");
-            let body = document.body;
+    let navbar_button = document.querySelector(".navbar-button");
+    navbar_button.addEventListener("click", function add_workspace(e) {
+        let new_workspace = document.querySelector(".new-workspace");
+        let pseudo_opacity = document.querySelector(".pseudo-opacity");
+        let body = document.body;
 
-            new_workspace.style.display = "flex";
-            // body.style.backdropFilter = "blur(15px)";
-            // new_workspace.style.opacity = "1";
+        new_workspace.style.display = "flex";
+        pseudo_opacity.style.display = "block";
 
-        });
+
+    });
     </script>
 
     <script src="pages/script.js"></script>
     <script src="pages/dragable.js"></script>
+    <script>
+    applyDragableIntoList(".project-list", ".item:not(.button)");
+    </script>
+
     <script src="pages/editable.js"></script>
 </body>
 
