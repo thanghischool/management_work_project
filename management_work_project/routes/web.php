@@ -12,6 +12,7 @@ use App\Http\Controllers\AddPeopleController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\Column;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ChatBoxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +44,9 @@ use App\Http\Controllers\ProfileController;
 Route::middleware(['signedin'])->group(
     function () {
         Route::get('/workspace', [WorkspaceData::class, 'dataProject'])->name('homepageAfterLogin');
-        Route::post('/workspace/{id?}', [QueryDataController::class, 'createWorkspace'])->name('create_Workspace');
-        Route::middleware("auth.member")->get('/workspace/{id_workspace}', [QueryDataController::class, 'getProject'])->name('worksapce_project');
-        Route::post('/workspace/{id}', [QueryDataController::class, 'updateWorkspace'])->name('update_Workspace');
+        Route::post('/workspace', [QueryDataController::class, 'createWorkspace'])->name('create_Workspace');
+        Route::middleware("auth.member")->get('/workspace/{workspace}', [QueryDataController::class, 'getProject'])->name('worksapce_project');
+        Route::post('/workspace/{workspace}', [QueryDataController::class, 'updateWorkspace'])->name('update_Workspace');
         Route::get('/chatbox', function () {
             return view('chatbox');
         });
@@ -54,8 +55,7 @@ Route::middleware(['signedin'])->group(
             return view('card');
         });
 
-        Route::get('workspace/{workspace}/project/{project}', [WorkspaceData::class, 'showDataProject']);
-        Route::post('workspace/{id_workspace}/project/{project}', [QueryDataController::class, 'updateWorkspace']);
+        Route::middleware(['auth.member','auth.workspace.project'])->get('workspace/{workspace}/project/{project}', [WorkspaceData::class, 'showDataProject']);
         Route::get('/project', function () {
             return view('projectView');
         });
@@ -68,6 +68,8 @@ Route::middleware(['signedin'])->group(
         Route::post('/update-profile', [ProfileController::class, 'update'])->name('profileUpdate');
         Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('profileEdit');
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+        
+        Route::get('/workspace/{workspace}/chatbox', [ChatBoxController::class, "index"]);
     }
 );
 Route::middleware(['notsigned'])->group(function () {

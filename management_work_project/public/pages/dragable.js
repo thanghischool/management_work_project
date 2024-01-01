@@ -4,12 +4,14 @@ async function modifyCardPosition(id, index, list_ID){
         method: "PUT", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept':'application/json',
             'Content-Type':'application/json',
         },
         body: JSON.stringify({
             list_ID: list_ID,
             index: index,
+            workspace_ID: window.workspace_ID,
         })
     });
     const result = await response.json();
@@ -19,11 +21,13 @@ async function modifyListPosition(id, index){
         method: "PUT", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept':'application/json',
             'Content-Type':'application/json',
         },
         body: JSON.stringify({
             index: index,
+            workspace_ID: window.workspace_ID,
         })
     });
     const result = await response.json();

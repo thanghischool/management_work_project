@@ -116,11 +116,13 @@ async function modifyListPosition(id, index){
         method: "PUT", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept':'application/json',
             'Content-Type':'application/json',
         },
         body: JSON.stringify({
             index: index,
+            workspace_ID: window.workspace_ID,
         })
     });
     const result = await response.json();
@@ -129,6 +131,7 @@ async function modifyListPosition(id, index){
 async function modifyCardPosition(id, index, list_ID){
     const response = await fetch("http://127.0.0.1:8000/api/cards/index/"+id,{
         method: "PUT", // or 'PUT'
+        credentials: "same-origin",
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
             'Accept':'application/json',
@@ -137,6 +140,7 @@ async function modifyCardPosition(id, index, list_ID){
         body: JSON.stringify({
             list_ID: list_ID,
             index: index,
+            workspace_ID: window.workspace_ID,
         })
     });
     const result = await response.json();
@@ -209,7 +213,7 @@ export function addCardButton(){
         font-weight: bold;
         font-family: "Inter", sans-serif;
         cursor: pointer;
-        width: ${document.querySelector('.card-item').offsetWidth - 32}px;
+        width: 175px;
         visibility: hidden;
         position: fixed;
         white-space: pre-wrap;`;
@@ -249,12 +253,14 @@ async function addCardFetch(title, list_ID){
         method: "POST", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept':'application/json',
             'Content-Type':'application/json',
         },
         body: JSON.stringify({
             title: title,
             list_ID: list_ID,
+            workspace_ID: window.workspace_ID,
         })
     });
     const result = await response.json();

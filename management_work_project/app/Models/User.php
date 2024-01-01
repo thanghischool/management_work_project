@@ -12,7 +12,7 @@ use App\Models\Workspace;
 use Illuminate\Queue\Console\WorkCommand;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Broadcasting\PrivateChannel;
-
+use Log;
 
 class User extends Authenticatable
 {

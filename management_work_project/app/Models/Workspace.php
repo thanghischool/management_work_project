@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Message;
 use Illuminate\Support\Facades\DB;
 
 class Workspace extends Model
@@ -27,8 +28,11 @@ class Workspace extends Model
         }
         return $users;
     }
-    // public function messages()
-    // {
-    //     return $this->hasMany(Messages::class);
-    // }
+    public function messages()
+    {
+        return $this->hasMany(Message::class, "workspace_ID", "id")
+        ->join('users', 'users.id', '=', 'messages.user_ID')
+        ->select("messages.*", "users.name as username", "users.avatar as avatar")
+        ->orderBy("messages.created_at", "DESC");
+    }
 }

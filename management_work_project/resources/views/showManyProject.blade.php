@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <base href="{{ asset('') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="updateworkspaceurl" content="{{ route('update_Workspace',['id' => $getWorkspace->id]) }}">
-    </base>
+    <meta name="updateworkspaceurl" content="{{ route('update_Workspace', ['workspace' => $getWorkspace->id]) }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="pages/style.css">
@@ -22,19 +21,17 @@
         <div class=" workspace">
             <div class="workspace-header">
                 @isset($getWorkspace)
-                <img src="{{ $getWorkspace->avatar }}" class="avatar">
+                    <img src="{{ $getWorkspace->avatar }}" class="avatar">
                 @endisset
 
                 <div>
                     <div class="workspace-name">
-                        @isset($getWorkspace)
-                        {{ $getWorkspace->name }}
-                        @endisset
+                        <span id="workspace-name" title="{{ $getWorkspace->name }}">
+                            @isset($getWorkspace)
+                                {{ $getWorkspace->name }}
+                            @endisset
+                        </span>
                         <button class="edit"><img src="pages/image/pencil.png"></button>
-                    </div>
-                    <div class="ability">
-                        <img src="pages/image/Vector.png">
-                        private
                     </div>
                 </div>
 
@@ -45,14 +42,18 @@
                     Your Projects
                 </div>
                 <div class="project-list">
-                    @if(isset($projects_getworkspace))
-                    @foreach($projects_getworkspace as $project_getworkspace)
-                    <div class="item" id="{{ $project_getworkspace->id }}" draggable="true" onclick="project_specific('{{ $project_getworkspace->id }}')">
-                        <span class="disable-select">{{ $project_getworkspace->name }}</span>
-                        <div class="progress-bar"></div>
-                        <div class="progress-percent">10%</div>
-                    </div>
-                    @endforeach
+                    @if (isset($projects_getworkspace))
+                        @foreach ($projects_getworkspace as $project_getworkspace)
+                            <div class="item" id="{{ $project_getworkspace->id }}" draggable="true"
+                                onclick="project_specific('{{ $project_getworkspace->id }}')">
+                                <span class="disable-select"
+                                    title="{{ $project_getworkspace->name }}">{{ $project_getworkspace->name }}</span>
+                                <div class="progress-bar"
+                                    style="background: linear-gradient(90deg, #fdbd19 {{ $project_getworkspace->rate }}%, #d9d9d9 0%);">
+                                </div>
+                                <div class="progress-percent">{{ $project_getworkspace->rate }}%</div>
+                            </div>
+                        @endforeach
                     @endif
                 </div>
             </div>

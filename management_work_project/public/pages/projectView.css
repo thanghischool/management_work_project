@@ -3,10 +3,6 @@
 } */
 /* Css board */
 
-.body {
-    position: relative;
-}
-
 .body .add-people-board {
     position: fixed;
     width: 600px;
@@ -124,7 +120,7 @@
 .project-container {
     display: block;
     width: 95%;
-    height: 5%;
+    height: 60vh;
     overflow-y: scroll;
     white-space: nowrap;
     margin-top: 24px;
@@ -180,6 +176,7 @@
     cursor: pointer;
     border: none;
     overflow: hidden;
+    word-break: break-all;
 }
 textarea {
     resize: none;

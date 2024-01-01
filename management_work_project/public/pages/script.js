@@ -3,7 +3,7 @@ node.className = "sub-items";
 
 const parent = document.querySelector(".workspace-container");
 var workspaces = document.querySelectorAll(".workspace-container .item");
-
+let baseURL = document.querySelector('base').getAttribute('href');
 workspaces.forEach((e) => {
     let currentLink = window.location.href;
     let arrayCurrentLink = currentLink.split("/");
@@ -13,7 +13,7 @@ workspaces.forEach((e) => {
 
     node.innerHTML = `<div class="item">
 <img src="pages/image/project-icon.png" alt="" class="icon">
-<a class="item-name" href="${currentLink}/${e.id}">
+<a class="item-name" href="${baseURL}workspace/${e.id}">
     Project
 </a>
 </div>
@@ -29,7 +29,7 @@ workspaces.forEach((e) => {
     Menbers
 </h4>
 </div>
-<div class="item">
+<div class="item" onclick="location.href='${document.querySelector('base').getAttribute('href')}workspace/${e.id}/chatbox'">
 <img src="pages/image/chatbox.png" alt="" class="icon">
 <h4 class="item-name">
     Chat box
@@ -74,5 +74,4 @@ function project_specific(id) {
 //     console.log(window.innerHeight);
 // });
 
-console.log(navbar_button);
 
