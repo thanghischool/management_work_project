@@ -11,6 +11,7 @@ use App\Models\Project;
 use App\Models\Workspace;
 use Illuminate\Queue\Console\WorkCommand;
 use DB;
+use Log;
 
 class User extends Authenticatable
 {

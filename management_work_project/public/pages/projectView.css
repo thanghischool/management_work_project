@@ -61,6 +61,7 @@
     cursor: pointer;
     border: none;
     overflow: hidden;
+    word-break: break-all;
 }
 textarea {
     resize: none;

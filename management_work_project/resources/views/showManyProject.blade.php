@@ -27,14 +27,10 @@
 
                 <div>
                     <div class="workspace-name">
-                        @isset($getWorkspace)
+                        <span id="workspace-name" title="{{ $getWorkspace->name }}">@isset($getWorkspace)
                         {{ $getWorkspace->name }}
-                        @endisset
+                        @endisset</span>
                         <button class="edit"><img src="pages/image/pencil.png"></button>
-                    </div>
-                    <div class="ability">
-                        <img src="pages/image/Vector.png">
-                        private
                     </div>
                 </div>
 
@@ -48,9 +44,9 @@
                     @if(isset($projects_getworkspace))
                     @foreach($projects_getworkspace as $project_getworkspace)
                     <div class="item" id="{{ $project_getworkspace->id }}" draggable="true" onclick="project_specific('{{ $project_getworkspace->id }}')">
-                        <span class="disable-select">{{ $project_getworkspace->name }}</span>
-                        <div class="progress-bar"></div>
-                        <div class="progress-percent">10%</div>
+                        <span class="disable-select" title="{{ $project_getworkspace->name }}">{{ $project_getworkspace->name }}</span>
+                        <div class="progress-bar" style="background: linear-gradient(90deg, #fdbd19 {{$project_getworkspace->rate}}%, #d9d9d9 0%);"></div>
+                        <div class="progress-percent">{{ $project_getworkspace->rate }}%</div>
                     </div>
                     @endforeach
                     @endif

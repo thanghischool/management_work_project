@@ -74,5 +74,4 @@ function project_specific(id) {
 //     console.log(window.innerHeight);
 // });
 
-console.log(navbar_button);
 

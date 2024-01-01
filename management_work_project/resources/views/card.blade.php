@@ -12,15 +12,15 @@
     <div class="popup">
         <?php 
         use Carbon\Carbon;
-        // $datetime1 = Carbon::parse('2023/12/27T23:32');
-        // $datetime2 = Carbon::now();
-        
+        $datetime1 = Carbon::parse('2023/12/30T23:32');
+        $datetime2 = Carbon::now();
+        $interval = $datetime1->diffInDays($datetime2);
         // // Calculate the difference
         // if($datetime1->lt($datetime2)) {
         //     echo "Hehe";
         // }
         echo Carbon::now()->format("Y-m-d\Th:i");
-        // echo $interval->format('%d days, %h hours, %i minutes, %s seconds');
+        echo $interval;
         ?>
         <label for="party">Enter a date and time for your party booking:</label>
         <input
@@ -60,10 +60,10 @@
                                     <textarea name="" id="" cols="50" rows="4" placeholder="Thêm mô tả chi tiết ..."></textarea>
                                 </div>       
                             </div>
-                            <div class="slide">
+                            <div class="slide checklist">
                                 <div class="slide-header">
                                     <div class="name">
-                                        <i class="fa-solid fa-clipboard-check fa-lg"><h/i>          
+                                        <i class="fa-solid fa-clipboard-check fa-lg"></i>          
                                         <h4>To do list</h4>
                                     </div>      
                                     <button class="btnn">Delete</button>
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="slide-body">
                                     <div class="check">
-                                        <input type="checkbox" checked="checked">
+                                        <input type="checkbox">
                                         <p class="check-content">Thắng code phần chức năng của Workspace như sau show dữ liệu ra workspace view, thêm sửa xóa 1 workspace. ngoài ra còn các tính năng liên quan đến workspace như mời bạn tham gia vào 1 group th</p>
                                     </div>
                                     <div class="check">
@@ -116,6 +116,7 @@
       </div>
        
 </body>
+    <script src="pages/test.js"></script>
     <script>
          async function logMovies(overdue) {
             const response = await fetch("http://127.0.0.1:8000/api/workspaces/1/checklists/1",{

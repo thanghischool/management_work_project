@@ -86,21 +86,27 @@ class LoginGoogleController extends Controller
                         'google_id'=> (string)$user->id,
                         'password' => encrypt('GiCungDuoc'),
                         'avatar'=> $user->avatar, 
-                        'rgende' => $user->gender,
+                        'gender' => $user->gender,
                         'birthday' => $user->birthday,
                         'phone' => $user->phone,
                     ]);
                 Auth::login($newUser);
             }
+            $token = Auth::user()->createToken("authToken")->plainTextToken;
+            session(['authToken' => $token]);
             session(['id_user' => Auth::id()]);
-            return redirect()->intended('workspace');
+            $_COOKIE['bearerToken'] = $token;
+            return redirect()->route("homepageAfterLogin");
         
         } catch (Exception $e) {
             dd($e->getMessage());
         }
     }
     public function logout_home(){
+        dd(auth()->user()->currentAccessToken());
+        Auth::user()->currentAccessToken()->where("tokenable_id", Auth::id())->delete();
         Auth::logout();
+        session()->forget("id_user");
         return redirect()->back();
     }
 

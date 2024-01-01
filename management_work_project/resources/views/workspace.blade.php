@@ -37,15 +37,15 @@
             <div class="_container">
                 <div class="title">
                     <img src="pages/image/project-icon.png">
-                    Your Projects
+                    Projects
                 </div>
                 <div class="project-list">
                     @if(isset($randomProjects))
                     @foreach($randomProjects as $randomProject)
                     <div class="item" id="{{ $randomProject->id }}" draggable="true">
                         <span class="disable-select">{{ $randomProject->name }}</span>
-                        <div class="progress-bar"></div>
-                        <div class="progress-percent">10%</div>
+                        <div class="progress-bar" style="background: linear-gradient(90deg, #fdbd19 {{$randomProject->rate}}%, #d9d9d9 0%);"></div>
+                        <div class="progress-percent">{{ $randomProject->rate }}%</div>
                     </div>
                     @endforeach
                     @endif
@@ -93,10 +93,7 @@
 
         });
     </script>
-
     <script src="pages/script.js"></script>
-    <script src="pages/dragable.js"></script>
-    <script src="pages/editable.js"></script>
 </body>
 
 </html>

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Project;
+use App\Models\Workspace;
+use App\Models\User;
 
 
 /*
@@ -28,4 +30,7 @@ Broadcast::channel('project.{project}', function ($user, Project $project) {
         return true;
     }
     return false;
+});
+Broadcast::channel('workspace.{workspace}', function ($user,Workspace $workspace) {
+    return User::isBelongsToWorkspace((int) $user->id, (int) $workspace->id);
 });
