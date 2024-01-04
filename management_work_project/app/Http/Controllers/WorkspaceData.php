@@ -17,6 +17,14 @@ class WorkspaceData extends Controller
     public function dataProject()
     {
         $id_user = session('id_user');
+        $check_notification_user = DB::table('notifications')
+                                    ->where('notifiable_id', $id_user)->get();
+        if($check_notification_user) {
+            $notification_user = $check_notification_user->pluck('data')->all();
+        } else {
+            $notification_user = "";
+        }
+
         $randomProjects = Project::inRandomOrder()->limit(3)->get();
         $workspaces = User::find($id_user)->workspaces();
         $projects = collect();
@@ -24,7 +32,7 @@ class WorkspaceData extends Controller
             $project_take = Workspace::find($workspace->id)->projects;
             $projects = $projects->merge($project_take);
         }
-        return view('workspace', ['workspaces' => $workspaces, 'projects' => $projects, 'randomProjects' => $randomProjects]);
+        return view('workspace', ['workspaces' => $workspaces, 'projects' => $projects, 'randomProjects' => $randomProjects, 'id_user' => $id_user, 'notification_user' => $notification_user]);
     }
 
 
@@ -33,11 +41,20 @@ class WorkspaceData extends Controller
         $user_ID_array =  DB::table('user_workspace')->where('workspace_ID', $workspace->id)->pluck('user_ID');
         $users_workspace = User::whereIn('id', $user_ID_array)->get();
         $id_user = session('id_user');
+
+        $check_notification_user = DB::table('notifications')
+                                    ->where('notifiable_id', $id_user)->get();
+        if($check_notification_user) {
+            $notification_user = $check_notification_user->pluck('data')->all();
+        } else {
+            $notification_user = "";
+        }
+
         $workspaces = User::find($id_user)->workspaces();
         $columns = $project->columns;
         foreach ($columns as $column) {
             $cards = $column->cards;
         }
-        return view('projectView', compact('project', 'columns', 'workspace', 'workspaces', 'users_workspace'));
+        return view('projectView', compact('project', 'columns', 'workspace', 'workspaces', 'users_workspace', 'notification_user'));
     }
 }

@@ -11,14 +11,7 @@
 </head>
 
 <body>
-    @include('layouts.header')
-
-    <script>
-    window.Echo.private('users.{userId}')
-        .notification((notification) => {
-            console.log(notification);
-        });
-    </script>
+    @include('layouts.header')    
     <div class="body">
         <div class="folders">
             @include('sidebar.folder')

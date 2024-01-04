@@ -44,6 +44,7 @@ Route::middleware(['signedin'])->group(
     function () {
         Route::get('/workspace', [WorkspaceData::class, 'dataProject'])->name('homepageAfterLogin');
         Route::post('/workspace/{id?}', [QueryDataController::class, 'createWorkspace'])->name('create_Workspace');
+        Route::post('/addpeople', [AddPeopleController::class, 'addPeople'])->name('addPeopleOnTeam');
         Route::middleware("auth.member")->get('/workspace/{id_workspace}', [QueryDataController::class, 'getProject'])->name('worksapce_project');
         Route::post('/workspace/{id}', [QueryDataController::class, 'updateWorkspace'])->name('update_Workspace');
         Route::get('/chatbox', function () {

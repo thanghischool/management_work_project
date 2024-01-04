@@ -68,9 +68,4 @@ class User extends Authenticatable
         where user_ID = :uid and workspace_ID = :wid', ['uid' => $user_ID, 'wid' => $workspace_ID]);
         return count($isBelong) !== 0;
     }
-
-    public function receivesBroadcastNotificationsOn(): string
-    {
-        return 'users.' . $this->id;
-    }
 }

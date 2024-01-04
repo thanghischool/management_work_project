@@ -15,6 +15,15 @@ class QueryDataController extends Controller
     public function getProject($id_workspace)
     {
         $id_user = session('id_user');
+
+        $check_notification_user = DB::table('notifications')
+                                    ->where('notifiable_id', $id_user)->get();
+        if($check_notification_user) {
+            $notification_user = $check_notification_user->pluck('data')->all();
+        } else {
+            $notification_user = "";
+        }
+
         $workspaces = User::find($id_user)->workspaces();
 
         //Get workspace data from workspace_id
@@ -24,7 +33,7 @@ class QueryDataController extends Controller
         $projects_getworkspace =  Workspace::find($id_workspace)->projects;
 
 
-        return view('showManyProject', ['projects_getworkspace' => $projects_getworkspace, 'workspaces' => $workspaces, 'getWorkspace' => $getWorkspace]);
+        return view('showManyProject', ['projects_getworkspace' => $projects_getworkspace, 'workspaces' => $workspaces, 'getWorkspace' => $getWorkspace, 'notification_user' => $notification_user]);
     }
 
     public function updateWorkspace($id_workspace, Request $request)
