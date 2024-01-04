@@ -67,11 +67,16 @@ ol, ul{
 
 #navbar .navbar-right .search-input input {
     height: 20px;
+    padding: 2px 20px 2px 20px;
 }
 
 #navbar .navbar-right .search-input ::placeholder {
     position: absolute;
     left: 25px;
+}
+
+#navbar .navbar-right .information-icon {
+ position: relative;
 }
 
 #navbar .navbar-right .information-icon span {
@@ -81,7 +86,61 @@ ol, ul{
 
 #navbar .navbar-right .information-icon span i {
     font-size: 15px;
+    cursor: pointer;
 }
+
+#navbar .navbar-right .information-icon .signal-icon {
+    top: -5px;
+    position: absolute;
+    content: "";
+    right: 60px;
+    font-size: 25px;
+    color: red;
+    display: none;
+}
+
+#navbar .navbar-right .information-icon .information-notificate {
+    width: 400px;
+    top: 120%;
+    right: -112px;
+    position: absolute;
+    background-color: rgb(255,255,255);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 8px;
+    
+}
+
+#navbar .navbar-right .information-icon .information-notificate .element-notificate {
+    width: 320px;
+    margin-left: 20px;
+    margin-top: 20px;
+    background-color: rgb(241,242,244);
+    border-radius: 8px;
+    display: none;
+}
+
+#navbar .navbar-right .information-icon .information-notificate .element-notificate .name-sender {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#navbar .navbar-right .information-icon .information-notificate .element-notificate img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-left: 10px;
+    float: left;
+}
+
+#navbar .navbar-right .information-icon .information-notificate .element-notificate .message-sender {
+    line-height: 20px;
+    margin-left: 50px;
+    padding-bottom: 10px;
+    color: rgb(134,144,162);
+}
+
 #navbar .navbar-right .avatar .avtimg{
     display: block;
     width: 40px;

@@ -1,14 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{{asset('pages/login.css')}}">
-	<link rel="stylesheet" href="{{asset('pages/fontawesome-free-6.5.1-web/css/all.min.css')}}">
-	@vite(['resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('pages/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('pages/fontawesome-free-6.5.1-web/css/all.min.css') }}">
+    @vite(['resources/js/app.js'])
 </head>
+
 <body>
     <h2 class="htitle">Welcome to DIRA!</h2>
 <div class="container" id="container">
@@ -68,14 +69,13 @@
 </div>
 
 
-<div class="glow-container">
-	<div class="ball"></div>
-	<div class="ball" style="--delay:-12s;--size:0.35;--speed:25s;"></div>
-	<div class="ball" style="--delay:-10s;--size:0.3;--speed:15s;"></div>
-	
-  </div>
-</body>
-<script src="{{asset('pages/login.js')}}"></script>
- 
-</html>
+    <div class="glow-container">
+        <div class="ball"></div>
+        <div class="ball" style="--delay:-12s;--size:0.35;--speed:25s;"></div>
+        <div class="ball" style="--delay:-10s;--size:0.3;--speed:15s;"></div>
 
+    </div>
+</body>
+<script src="{{ asset('pages/login.js') }}"></script>
+
+</html>

@@ -5,7 +5,7 @@
 <div class="workspace-container">
     @if(isset($workspaces))
     @foreach($workspaces as $workspace)
-    <div class="item" id="{{ $workspace->id }}">
+    <div class="item" id="{{ $workspace->id }}" title="{{ $workspace->name }}">
         <img class="square" src="{{ $workspace->avatar }}">
         <h3>{{ $workspace->name }}</h3>
         <img class="arrow" src="pages/image/arrow_down.png" alt="">

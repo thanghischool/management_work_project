@@ -27,7 +27,8 @@ class CheckDeadlines extends Command
      */
     public function handle()
     {
-        $user = User::find(session('id_user'));
+        $user = User::find(3);
         $user->notify(new DeadlineNotification("hello"));
+        // echo "hello";
     }
 }

@@ -9,22 +9,21 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\User;
-use App\Models\Workspace;
 
-class Notification implements ShouldBroadcast
+class AddPeople implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
 
     /**
      * Create a new event instance.
      */
-    public $user;
-    public $workspace;
-    public function __construct(User $user, Workspace $workspace)
+    public $user_added_id;
+    public $data;
+
+    public function __construct($user_added_id, $data)
     {
-        $this->user = $user;
-        $this->workspace = $workspace;
+        $this->user_added_id = $user_added_id;
+        $this->data = $data;
     }
 
     /**
@@ -32,8 +31,12 @@ class Notification implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn()
+    public function broadcastOn(): array
     {
-        return new PrivateChannel('workspace.' . $this->workspace->id);
+        return [
+            new PrivateChannel('AddPeopleOnTeam.' . $this->user_added_id),
+        ];
     }
+
+   
 }

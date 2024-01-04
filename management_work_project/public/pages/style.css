@@ -15,7 +15,7 @@ body {
 }
 .folders {
     margin-left: 22px;
-    width: fit-content;
+    width: 317px;
     margin-top: 57px;
 }
 .dragging {
@@ -57,6 +57,7 @@ body {
     font-size: 1.6rem;
     margin: 5px 0 0 0;
     border-radius: 10px;
+    overflow: hidden;
 }
 .workspace-container .item:hover {
     background-color: #d4d4d4;
@@ -69,6 +70,10 @@ body {
 .workspace-container .item h3 {
     margin-left: 13px;
     width: 100%;
+    word-break: break-all;
+    text-align:start;
+    white-space: wrap;
+    height: 100%;
 }
 
 .workspace-container .item a {
@@ -132,9 +137,8 @@ body {
 }
 .workspace-header .avatar {
     width: 69px;
-    height: fit-content;
+    height: 69px;
     border-radius: 10px;
-    aspect-ratio: 1 / 1;
 }
 .workspace-header .ability {
     display: flex;
@@ -147,8 +151,20 @@ body {
     height: 20px;
     margin-right: 8px;
 }
+.workspace-header .workspace-name{
+    display: flex;
+    align-items: start;
+}
+.workspace-header .workspace-name #workspace-name{
+    word-break: break-all;
+    max-width: 100%;
+    min-height: 36px;
+    max-height: 72px;
+    overflow-y: hidden;
+}
 .workspace-header .workspace-name button {
     margin-left: 16px;
+    margin-top: 5px;
     padding: 0;
     cursor: pointer;
     background: transparent;
@@ -160,7 +176,6 @@ body {
     font-weight: bold;
     margin-bottom: 10px;
 }
-
 ._container {
     font-size: 2rem;
     height: fit-content;
@@ -169,6 +184,7 @@ body {
     display: flex;
     align-items: center;
     margin-top: 23px;
+    position: relative;
 }
 ._container .title img {
     margin-right: 20px;
@@ -178,13 +194,16 @@ body {
 .project-list {
     margin-top: 24px;
     font-size: 0;
-    display: block;
+    display: flex;
     white-space: nowrap;
     text-wrap: nowrap;
     overflow-x: scroll;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px
 }
 .project-list .item {
-    display: inline-block;
+    display: inline-flex;
     font-size: 1.7rem;
     color: #ffffff75;
     width: 200px;
@@ -209,7 +228,6 @@ body {
     border-radius: 10px;
     height: 10px;
     width: 80%;
-    background: linear-gradient(90deg, #fdbd19 10%, #d9d9d9 0%);
     transform: translateX(-50%);
 }
 .project-list .item .progress-percent {
@@ -223,6 +241,8 @@ body {
     top: 15px;
     left: 20px;
     position: absolute;
+    word-break: break-all;
+    width: 80%;
 }
 .project-list .item.button {
     font-size: 2.5rem;
@@ -286,5 +306,19 @@ body {
     z-index: 2;
     opacity: 0.5;
     background-color: rgb(255, 255, 255);
+    display: none;
+}
+
+.project-name{
+    width: calc(100% - 40px);
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 15px 20px 15px 20px;
+    font-size: 1.7rem;
+    color: #ffffff75;
+    resize: none;
+}
+.project-name::-webkit-scrollbar{
     display: none;
 }

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Session;
 use Mail;
 use App\Mail\ForgetPasswordMailable;
 use Carbon\Carbon;
+
 
 class LoginController extends Controller
 {
@@ -43,16 +45,16 @@ class LoginController extends Controller
 
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $id_user = Auth::id();
+            $user = Auth::user();
             // Lưu giá trị $id_user vào flash session
-            session(['id_user' => $id_user]);
-            return redirect()->route('homepageAfterLogin');
+            session(['id_user' => Auth::id()]);
+            return redirect()->route("homepageAfterLogin");
         } else return redirect()->back()->with('error', 'Dữ liệu không chính xác !');
     }
-    public function logout()
-    {
+    public function logout(Request $request){
         Auth::logout();
         session()->forget('id_user');
+        session()->forget('authToken');
         return view('login');
     }
 

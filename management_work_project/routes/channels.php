@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Project;
+use App\Models\Workspace;
+use App\Models\User;
 
 
 /*
@@ -30,5 +32,13 @@ Broadcast::channel('project.{project}', function ($user, Project $project) {
     return false;
 });
 
+Broadcast::channel('AddPeopleOnTeam.{userID}', function ($user, $userID) {
+    Log::info("error");
+    return $user->id == $userID;
+}); 
+
 
 // Broadcast::channel('workspace.{workspace_}', function ($user, Workspace $workspace) {})
+Broadcast::channel('workspace.{workspace}', function ($user,Workspace $workspace) {
+    return User::isBelongsToWorkspace((int) $user->id, (int) $workspace->id);
+});

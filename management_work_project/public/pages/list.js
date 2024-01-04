@@ -1,3 +1,12 @@
+function reOrderIndex(itemSelector, containerSelector){
+    const containers = document.querySelectorAll(containerSelector);
+    containers.forEach((container) => {
+        const items = container.querySelectorAll(itemSelector);
+        items.forEach((item, index) => {
+            item.setAttribute("index", index);
+        });
+    });
+}
 function applyEditableTitleToList(listQuery, titleQuery, blockwallQuery){
     lists = Array.from(document.querySelectorAll(listQuery));
     let span = document.getElementById("heightExpanded");
@@ -8,7 +17,7 @@ function applyEditableTitleToList(listQuery, titleQuery, blockwallQuery){
         span.style.setProperty('word-break','break-all');
         span.style.setProperty('font-size',2 + "rem");
         span.style.setProperty('font-weight', 'bold');  
-        span.style.setProperty('font-family', 'monospace');
+        span.style.setProperty('font-family', 'Inter, sans-serif');
         span.style.setProperty('width', document.querySelector(titleQuery).offsetWidth + "px");
         span.style.setProperty('visibility', "hidden");
         span.style.setProperty('position', "fixed");
@@ -84,11 +93,13 @@ async function modifyListTitle(id, title){
         method: "PUT", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept':'application/json',
             'Content-Type':'application/json',
         },
         body: JSON.stringify({
             title: title,
+            workspace_ID: window.workspace_ID,
         })
     });
     const result = await response.json();
@@ -99,16 +110,47 @@ async function addListFetch(title){
         method: "POST", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept':'application/json',
             'Content-Type':'application/json',
         },
         body: JSON.stringify({
             title: title,
             project_ID: document.querySelector('meta[name="project_ID"]').getAttribute("content"),
+            workspace_ID: window.workspace_ID,
+        })
+    });
+    const result = await response.json();
+    console.log(result);
+}
+async function deleteListFetch(id){
+    const response = await fetch("http://127.0.0.1:8000/api/lists/"+id,{
+        method: "DELETE", // or 'PUT'
+        headers: {
+            'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            workspace_ID: window.workspace_ID,
         })
     });
     const result = await response.json();
     console.log(result);
 }
 
+function removeListItem(e){
+    const listItem = e.target.parentElement;
+    deleteListFetch(listItem.id);
+    listItem.parentElement.removeChild(listItem);
+    reOrderIndex(".list-item", ".project-container");
+}
+function applyDeleteListButtons(btnSelector){
+    const deleteBtns = Array.from(document.querySelectorAll(btnSelector));
+    deleteBtns.forEach(function(btnDelete) {
+        btnDelete.onclick = removeListItem;
+    });
+}
+applyDeleteListButtons(".deletelist-btn");
 

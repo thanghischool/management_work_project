@@ -12,7 +12,7 @@ use App\Models\Workspace;
 use Illuminate\Queue\Console\WorkCommand;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Broadcasting\PrivateChannel;
-
+use Log;
 
 class User extends Authenticatable
 {
@@ -69,10 +69,5 @@ class User extends Authenticatable
         $isBelong = DB::select('select id from user_workspace
         where user_ID = :uid and workspace_ID = :wid', ['uid' => $user_ID, 'wid' => $workspace_ID]);
         return count($isBelong) !== 0;
-    }
-
-    public function receivesBroadcastNotificationsOn(): string
-    {
-        return 'users.' . $this->id;
     }
 }

@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('token', 64)->unique();
             $table->text('abilities')->nullable();
+            $table->timestamp('updated_at')->nullable();
             $table->timestamp('last_used_at')->nullable();
+            $table->timestamp('created_at')->nullable();
             $table->timestamp('expires_at')->nullable();
         });
         Schema::create("workspaces", function (Blueprint $table) {
@@ -34,7 +36,6 @@ return new class extends Migration
             $table->string("name", 255)->nullable(false);
             $table->tinyInteger("isPublic")->nullable(false)->default(0);
             $table->string("background_color", 10)->nullable();
-            $table->smallInteger('index')->nullable(false);
             $table->decimal("rate", 5, 2)->nullable()->default(0);
             $table->foreign("workspace_ID")->references("id")->on("workspaces")->onDelete("cascade");
         });
@@ -61,7 +62,7 @@ return new class extends Migration
         Schema::create("files", function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("card_ID")->nullable(false);
-            $table->string("link")->nullable(false);
+            $table->string("link")->nullable(true);
             $table->string("name")->nullable(false);
             $table->foreign("card_ID")->references("id")->on("cards")->onDelete("cascade");
             $table->unsignedBigInteger("workspace_ID")->nullable(false);

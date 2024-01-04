@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use App\Models\User;
+use Session;
 
 class MemberPermission
 {
@@ -17,11 +20,19 @@ class MemberPermission
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // $request->validate([
-        //     "workspace_ID" => "required|numeric|min:0",
-        // ]);
-        $result = DB::select("Select * from user_workspace where user_ID = :uid and workspace_ID = :wid", ["uid" => Auth::id(), "wid" => $request->route()->id_workspace]);
-        if(count($result) !=0) return $next($request);
-        return redirect()->back();
+        if(!$request->is("api/*")){
+            $user_ID = Auth::id();
+            $result = User::isBelongsToWorkspace($user_ID, $request->route()->originalParameters()["workspace"]);
+            if($result) return $next($request);
+            return redirect()->back()->withErrors(['message' => "You do not have permission to this workspace !"]);
+        } else {
+            $user_ID = $request->user()->id;
+            $request->validate([
+                "workspace_ID" => "required|numeric|min:0",
+            ]);
+            $result = User::isBelongsToWorkspace($user_ID, $request->workspace_ID);
+            if($result) return $next($request);
+            return redirect()->back()-withErrors(['message' => 'You do not belong to this workspace']);
+        }
     }
 }

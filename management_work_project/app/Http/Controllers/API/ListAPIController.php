@@ -9,6 +9,8 @@ use App\Models\Project;
 use App\Events\ModifyListPosition;
 use App\Events\ModifyListTitle;
 use App\Events\ListCreated;
+use App\Events\ListDeleted;
+use Log;
 
 class ListAPIController extends Controller
 {
@@ -72,13 +74,13 @@ class ListAPIController extends Controller
     // Delete
     public function destroy(Column $column){
         $project_ID = $column->project_ID;
-        $lists = Column::where("project_ID", "=", $project_ID)->where("index", ">", $column->index)->get();
-        foreach($list as $item){
+        $lists = Column::where("project_ID", $project_ID)->where("index", ">", $column->index)->get();
+        foreach($lists as $item){
             $item->index -= 1;
             $item->save();
         }
+        broadcast(new ListDeleted($column))->toOthers();
         $column->delete();
-        return $column;
-
+        return response()->json($column);
     }
 }

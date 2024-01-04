@@ -6,20 +6,20 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Messages\BroadcastMessage;
 
-class DeadlineNotification extends Notification
+class AddPeopleNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public $hello;
 
-    public function __construct($hello)
+    public  $data;
+
+    public function __construct($data)
     {
-        $this->hello = $hello;
+        $this->data = $data;
     }
 
     /**
@@ -48,17 +48,8 @@ class DeadlineNotification extends Notification
      *
      * @return array<string, mixed>
      */
-
-    public function toBroadcast(object $notifiable): BroadcastMessage
-    {
-        return new BroadcastMessage([
-            'data' => $this->hello,
-        ]);
-    }
     public function toArray(object $notifiable): array
     {
-        return [
-            'data' => $this->hello,
-        ];
+        return ['data' => $this->data];
     }
 }
