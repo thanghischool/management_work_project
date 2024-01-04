@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string("gender")->nullable();
             $table->string("bio")->nullable();
             $table->date("birthday")->nullable();
+            $table->string("token")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

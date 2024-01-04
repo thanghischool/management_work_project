@@ -71,6 +71,15 @@ Route::middleware(['signedin'])->group(
     }
 );
 Route::middleware(['notsigned'])->group(function () {
+    Route::get('/forget-password', [LoginController::class, 'forgetPass'])->name('forgetPass');
+
+    Route::post('/forget-password', [LoginController::class, 'postForgetPass'])->name('postForgetPass');
+
+    Route::get('/get-password/{user}/{token}', [LoginController::class, 'getPass'])->name('getPass');
+
+    Route::post('/get-password/{user}/{token}', [LoginController::class, 'postGetPass'])->name('postGetPass');
+
+
     Route::get('/login', [LoginController::class, 'getlogin'])->name('login');
 
     Route::post('/login', [LoginController::class, 'postLogin'])->name('plogin');
@@ -91,4 +100,5 @@ Route::middleware(['notsigned'])->group(function () {
     Route::controller(LoginGoogleController::class)->group(function () {
         Route::get('Sshow', 'Sshow')->name('Sshow');
     });
+        Route::get('/404',function(){return view('404');});
 });

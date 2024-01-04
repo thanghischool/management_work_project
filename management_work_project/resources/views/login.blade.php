@@ -46,7 +46,7 @@
 				<strong>{{ $message }}</strong>
 				</div>
 			@endif
-			<a href="#">Forgot your password?</a>
+			<a href="{{ route('forgetPass')}}">Forgot your password?</a>
 			<button style="margin-top: 50px;" type="submit">Sign In</button>
 		</form>
 	</div>

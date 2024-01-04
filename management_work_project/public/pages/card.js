@@ -124,7 +124,7 @@ function addItemToChecklist(content) {
   const check = document.createElement("div");
   check.className = "check";
   check.innerHTML = `<input type="checkbox">
-  <p class="check-content">${content}</p>`;
+  <p class="check-content">${content}</p> <button class="btnn cancel">Delete</button>`;
   container.insertBefore(check, container.querySelector(".addcheck-btn"));
 }
 
@@ -178,14 +178,14 @@ function addItemToAddfile(link) {
   file.innerHTML = `<img src="${getImageUrl(link)}" alt="" class="fileimg">
   <div class="contentfile">
       <div class="namefile">
-          <h4 class="namefile">${url.hostname}</h4>
+      <a target="_blank" href="${url}"> <h4 class="namefile">${url.hostname}</h4> </a>
       </div>
       <div class="descfile">
           <p>30/12/2023</p>
       </div>
       <div class="btnfile">
           <button class="btnn">Edit</button>
-      </div>`;
+      </div> </div><button class="btnn cancel">Delete</button>`;
   container.insertBefore(file, container.querySelector(".addfilenew-btn"));
 }
 

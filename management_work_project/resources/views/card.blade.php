@@ -70,18 +70,6 @@
                                         
                                     </div>
                                     <div class="slide-body">
-                                        <div class="check">
-                                            <input type="checkbox">
-                                            <p class="check-content">Thắng code phần chức năng của Workspace như sau show dữ liệu ra workspace view, thêm sửa xóa 1 workspace. ngoài ra còn các tính năng liên quan đến workspace như mời bạn tham gia vào 1 group th</p>
-                                        </div>
-                                        <div class="check">
-                                            <input type="checkbox">
-                                            <p class="check-content">Thắng code phần chức năng của Workspace như sau show dữ liệu ra workspace view, thêm sửa xóa 1 workspace. ngoài ra còn các tính năng liên quan đến workspace như mời bạn tham gia vào 1 group th</p>
-                                        </div>
-                                        <div class="check">
-                                            <input type="checkbox">
-                                            <p class="check-content">Thắng code phần chức năng của Workspace như sau show dữ liệu ra workspace view, thêm sửa xóa 1 workspace. ngoài ra còn các tính năng liên quan đến workspace như mời bạn tham gia vào 1 group th</p>
-                                        </div>
                                         <button class="btnn addcheck-btn">Add</button>    
                                         <ul class="addcheck hide">
                                                 <li><input type="text" placeholder="Add an item" name="addcheck" class="addcheck-content"></li>
@@ -113,6 +101,7 @@
                                                     <button class="btnn">Edit</button>
                                                 </div>
                                             </div>
+                                            <button class="btnn cancel">Delete</button>
                                         </div>
                                         
                                         
@@ -141,8 +130,8 @@
                                 <button class="btnn open-todolist-btn">To Do List</button> <br>
                                 <ul class="subnav todolist-popup hide">
                                     <li><p class="activity-name">Todolist</p></li>
-                                    <li><p>Name:</p> <input type="text" name="nameTodolist"></li>
-                                    <li><button class="btnn closetodolist-popup cancel">Cancel</button><button class="btnn addtodolist-btn">Add</button></li>
+                                    <li><p>Name:</p> <input type="text" class="nameTodolist" name="nameTodolist"></li>
+                                    <li><button class="btnn closetodolist-popup cancel">Cancel</button><button type="submit" class="btnn addtodolist-btn">Add</button></li>
                                 </ul>
                                 <button class="btnn open-addfile-btn">Add File</button> <br>
                                 <ul class="subnav addfile-popup hide">

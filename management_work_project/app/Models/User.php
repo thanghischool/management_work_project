@@ -34,6 +34,8 @@ class User extends Authenticatable
         'gender',
         'birthday',
         'bio',
+        'token',
+        'expiration',
     ];
 
     /**
