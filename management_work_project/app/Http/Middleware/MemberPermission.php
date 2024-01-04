@@ -26,7 +26,6 @@ class MemberPermission
             if($result) return $next($request);
             return redirect()->back()->withErrors(['message' => "You do not have permission to this workspace !"]);
         } else {
-            Log::info(Auth::id());
             $user_ID = $request->user()->id;
             $request->validate([
                 "workspace_ID" => "required|numeric|min:0",

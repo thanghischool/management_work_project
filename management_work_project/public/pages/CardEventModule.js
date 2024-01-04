@@ -80,6 +80,11 @@ export function newListElement(id, title){
     <div class="cards">
         <button class="addcardbtn">Add +</button>
     </div>`;
+    const btnDelete = document.createElement("button");
+    btnDelete.className = "deletelist-btn";
+    btnDelete.innerHTML = "Delete this list";
+    btnDelete.onclick = removeListItem;
+    list.appendChild(btnDelete);
     const container = document.querySelector('.project-container');
     container.insertBefore(list, container.lastElementChild);
     reOrderIndex(".list-item", ".project-container");
@@ -99,6 +104,28 @@ export function newListElement(id, title){
         reOrderIndex(".list-item", ".project-container");
         modifyListPosition(list.id, list.getAttribute('index'));
     };
+}
+async function deleteListFetch(id){
+    const response = await fetch("http://127.0.0.1:8000/api/lists/"+id,{
+        method: "DELETE", // or 'PUT'
+        headers: {
+            'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            workspace_ID: window.workspace_ID,
+        })
+    });
+    const result = await response.json();
+    console.log(result);
+}
+function removeListItem(e){
+    const listItem = e.target.parentElement;
+    deleteListFetch(listItem.id);
+    listItem.parentElement.removeChild(listItem);
+    reOrderIndex(".list-item", ".project-container");
 }
 export function modifyListTitle(id, newTitle){
     const list = document.querySelector('.list-item[id="'+id+'"]');
@@ -248,6 +275,11 @@ export function addCardButton(){
     });
 }
 addCardButton();
+export function removeListItemElement(id){
+    const listItem = document.querySelector(`.list-item[id="${id}"]`);
+    listItem.parentElement.removeChild(listItem);
+    reOrderIndex(".list-item", ".project-container");
+}
 async function addCardFetch(title, list_ID){
     const response = await fetch("http://127.0.0.1:8000/api/cards",{
         method: "POST", // or 'PUT'

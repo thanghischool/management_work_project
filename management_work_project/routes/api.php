@@ -36,9 +36,14 @@ Route::middleware(["auth.member"])->group(function(){
     
     Route::put('/lists/index/{list}', [App\Http\Controllers\API\ListAPIController::class, "updateIndex"]);
     Route::put('/lists/title/{list}', [App\Http\Controllers\API\ListAPIController::class, "updateTitle"]);
+    Route::delete("/lists/{column}", [App\Http\Controllers\API\ListAPIController::class, "destroy"]);
     Route::post('/lists', [App\Http\Controllers\API\ListAPIController::class, "store"]);
     Route::post('/workspaces/{workspace}/checklists/{checklist}', [App\Http\Controllers\API\ChecklistAPIController::class,"storeItem"]);
 
-    Route::post('/messages', [App\Http\Controllers\API\MessageAPIController::class, "create"]);
+    Route::post('/messages', [MessageAPIController::class, "create"]);
     Route::get('/workspace/{workspace}/chatbox', [MessageAPIController::class, "load"]);
+
+    Route::post('/project', [App\Http\Controllers\API\ProjectAPIController::class, "create"]);
+    Route::put('/project/{project}', [App\Http\Controllers\API\ProjectAPIController::class, "updateName"]);
+    Route::delete('/project/{project}', [App\Http\Controllers\API\ProjectAPIController::class, "destroy"]);
 });

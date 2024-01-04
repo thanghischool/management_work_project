@@ -13,6 +13,7 @@
     transform: translate(-50%, -50%);
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: none;
 }
 
 .body .add-people-board * {
@@ -129,6 +130,31 @@
     padding: 10px;
     border-radius: 10px;
 }
+.list-item .deletelist-btn{
+    height: 41px;
+    width: 207px;
+    display: none;
+    margin: auto;
+    background-color: rgb(191, 49, 49, 0.9);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+.list-item:hover .deletelist-btn{
+    display: block;
+}
+.addcardbtn{
+    background-color: rgb(101, 183, 65, 0.9) !important;
+}
+.list-item:hover .deletelist-btn:hover{
+    background-color: rgb(191, 49, 49, 1);
+}
+#project-name{
+    word-break: break-all;
+    max-width: 65%;
+    max-height: 60px;
+    overflow: hidden;
+}
 .list-item,
 #addlistbtn,
 #addlistform {
@@ -157,7 +183,7 @@
 .card-item,
 .addcardbtn {
     display: block;
-
+    border: none;
     text-wrap: wrap;
     word-break: break-all;
     background: #b6bbc4;
@@ -248,6 +274,7 @@ textarea:disabled {
 #addlistbtn:hover,
 .addcardbtn:hover {
     transform: scale(1.04);
+    background-color: rgb(101, 183, 65, 1);
 }
 #addlistbtn:active,
 .addcardbtn:active {
@@ -306,4 +333,12 @@ svg.check:hover {
     height: 17px;
     word-break: break-all;
     font-family: "Inter", sans-serif;
+}
+
+#deleteproject-btn{
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 100px;
+    transform: translateX(-50%);
 }

@@ -36,6 +36,9 @@
             </div>
             <div class="_container">
                 <div class="title">
+                    <img src="pages/image/arrow_down.png"
+                        style="transform: rotate(90deg); height: fit-content; width: fit-content; cursor: pointer;"
+                        onclick="window.location.href='{{ route('update_Workspace', ['workspace' => $workspace->id]) }}'">
                     <img src="pages/image/chatbox.png" />
                     Chat Box
                 </div>

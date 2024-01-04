@@ -59,7 +59,7 @@ workspaces.forEach((e) => {
 var subitems = document.querySelector(".sub-items");
 
 // subitems.innerHTML = "";
-
+document.querySelector(".project-list .item");
 // Access project
 function project_specific(id) {
     let currentLink = window.location.href;
@@ -73,5 +73,3 @@ function project_specific(id) {
 //     container.style = "height: " + (window.innerHeight * 70) / 100 + "px";
 //     console.log(window.innerHeight);
 // });
-
-

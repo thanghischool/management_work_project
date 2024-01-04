@@ -1,3 +1,12 @@
+function reOrderIndex(itemSelector, containerSelector){
+    const containers = document.querySelectorAll(containerSelector);
+    containers.forEach((container) => {
+        const items = container.querySelectorAll(itemSelector);
+        items.forEach((item, index) => {
+            item.setAttribute("index", index);
+        });
+    });
+}
 function applyEditableTitleToList(listQuery, titleQuery, blockwallQuery){
     lists = Array.from(document.querySelectorAll(listQuery));
     let span = document.getElementById("heightExpanded");
@@ -114,5 +123,34 @@ async function addListFetch(title){
     const result = await response.json();
     console.log(result);
 }
+async function deleteListFetch(id){
+    const response = await fetch("http://127.0.0.1:8000/api/lists/"+id,{
+        method: "DELETE", // or 'PUT'
+        headers: {
+            'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            workspace_ID: window.workspace_ID,
+        })
+    });
+    const result = await response.json();
+    console.log(result);
+}
 
+function removeListItem(e){
+    const listItem = e.target.parentElement;
+    deleteListFetch(listItem.id);
+    listItem.parentElement.removeChild(listItem);
+    reOrderIndex(".list-item", ".project-container");
+}
+function applyDeleteListButtons(btnSelector){
+    const deleteBtns = Array.from(document.querySelectorAll(btnSelector));
+    deleteBtns.forEach(function(btnDelete) {
+        btnDelete.onclick = removeListItem;
+    });
+}
+applyDeleteListButtons(".deletelist-btn");
 

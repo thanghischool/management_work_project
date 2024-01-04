@@ -88,9 +88,11 @@
             <div class="_container">
                 <div class="title">
                     <img src="pages/image/arrow_down.png"
-                        style="transform: rotate(90deg); height: fit-content; width: fit-content;">
+                        style="transform: rotate(90deg); height: fit-content; width: fit-content; cursor: pointer;"
+                        onclick="window.location.href='{{ route('update_Workspace', ['workspace' => $workspace->id]) }}'">
                     <img src="pages/image/project-icon.png">
                     <span id="project-name" title="{{ $project->name }}">{{ $project->name }}</span>
+                    <button id="deleteproject-btn">Delete project</button>
                 </div>
                 <div class="project-container">
                     @if (isset($columns))
@@ -112,9 +114,12 @@
                                     @endif
                                     <button class="addcardbtn">Add +</button>
                                 </div>
+                                <button class="deletelist-btn">Delete this list
+                                </button>
                             </div>
                         @endforeach
                     @endif
+                    <button id="addlistbtn">Add +</button>
                 </div>
             </div>
         </div>
@@ -124,6 +129,7 @@
 
     <script src="pages/script.js"></script>
     <script src="pages/dragable.js"></script>
+    <script src="pages/project.js"></script>
     <script>
         applyDragableIntoList(".project-container", ".list-item");
         applyDragableIntoCard(".cards", ".card-item");
@@ -163,6 +169,11 @@
                 EventHandle.newListElement(list.id, list.title, list.index);
                 EventHandle.addCardButton();
                 applyDragableIntoCard(".cards", ".card-item");
+            })
+            .listen("ListDeleted", function(e) {
+                const list = e.list;
+                console.log(e);
+                EventHandle.removeListItemElement(list.id);
             });
     </script>
 </body>

@@ -13,6 +13,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\Column;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChatBoxController;
+use App\Http\Controllers\API\FileAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,4 +94,10 @@ Route::middleware(['notsigned'])->group(function () {
     Route::controller(LoginGoogleController::class)->group(function () {
         Route::get('Sshow', 'Sshow')->name('Sshow');
     });
+
 });
+Route::get('/testfile/{workspace}/card/{card}', function ($workspace, $card){
+    return view('file', compact('workspace', 'card'));
+});
+Route::post('/file/{workspace}/card/{card}', [FileAPIController::class, 'uploadFile'])->name('postFile');
+Route::get('/file/{file}', [FileAPIController::class, 'deleteFile']);
