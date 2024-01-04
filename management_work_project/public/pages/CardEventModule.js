@@ -80,6 +80,11 @@ export function newListElement(id, title){
     <div class="cards">
         <button class="addcardbtn">Add +</button>
     </div>`;
+    const btnDelete = document.createElement("button");
+    btnDelete.className = "deletelist-btn";
+    btnDelete.innerHTML = "Delete this list";
+    btnDelete.onclick = removeListItem;
+    list.appendChild(btnDelete);
     const container = document.querySelector('.project-container');
     container.insertBefore(list, container.lastElementChild);
     reOrderIndex(".list-item", ".project-container");
@@ -100,6 +105,28 @@ export function newListElement(id, title){
         modifyListPosition(list.id, list.getAttribute('index'));
     };
 }
+async function deleteListFetch(id){
+    const response = await fetch("http://127.0.0.1:8000/api/lists/"+id,{
+        method: "DELETE", // or 'PUT'
+        headers: {
+            'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            workspace_ID: window.workspace_ID,
+        })
+    });
+    const result = await response.json();
+    console.log(result);
+}
+function removeListItem(e){
+    const listItem = e.target.parentElement;
+    deleteListFetch(listItem.id);
+    listItem.parentElement.removeChild(listItem);
+    reOrderIndex(".list-item", ".project-container");
+}
 export function modifyListTitle(id, newTitle){
     const list = document.querySelector('.list-item[id="'+id+'"]');
     const title = list.querySelector(".list-title");
@@ -116,11 +143,13 @@ async function modifyListPosition(id, index){
         method: "PUT", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept':'application/json',
             'Content-Type':'application/json',
         },
         body: JSON.stringify({
             index: index,
+            workspace_ID: window.workspace_ID,
         })
     });
     const result = await response.json();
@@ -129,6 +158,7 @@ async function modifyListPosition(id, index){
 async function modifyCardPosition(id, index, list_ID){
     const response = await fetch("http://127.0.0.1:8000/api/cards/index/"+id,{
         method: "PUT", // or 'PUT'
+        credentials: "same-origin",
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
             'Accept':'application/json',
@@ -137,6 +167,7 @@ async function modifyCardPosition(id, index, list_ID){
         body: JSON.stringify({
             list_ID: list_ID,
             index: index,
+            workspace_ID: window.workspace_ID,
         })
     });
     const result = await response.json();
@@ -209,7 +240,7 @@ export function addCardButton(){
         font-weight: bold;
         font-family: "Inter", sans-serif;
         cursor: pointer;
-        width: ${document.querySelector('.card-item').offsetWidth - 32}px;
+        width: 175px;
         visibility: hidden;
         position: fixed;
         white-space: pre-wrap;`;
@@ -244,17 +275,24 @@ export function addCardButton(){
     });
 }
 addCardButton();
+export function removeListItemElement(id){
+    const listItem = document.querySelector(`.list-item[id="${id}"]`);
+    listItem.parentElement.removeChild(listItem);
+    reOrderIndex(".list-item", ".project-container");
+}
 async function addCardFetch(title, list_ID){
     const response = await fetch("http://127.0.0.1:8000/api/cards",{
         method: "POST", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             'Accept':'application/json',
             'Content-Type':'application/json',
         },
         body: JSON.stringify({
             title: title,
             list_ID: list_ID,
+            workspace_ID: window.workspace_ID,
         })
     });
     const result = await response.json();

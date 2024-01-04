@@ -39,7 +39,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'signedin' => \App\Http\Middleware\CheckUserLogin::class,
         'notsigned' => \App\Http\Middleware\CheckNotLogin::class,
         "auth.member" => \App\Http\Middleware\MemberPermission::class,
+        'auth.workspace.project' => \App\Http\Middleware\CheckProjectBelongToWorkspace::class,
     ];
 }

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class QueryDataController extends Controller
 {
 
-    public function getProject($id_workspace)
+    public function getProject($workspace)
     {
         $id_user = session('id_user');
 
@@ -27,21 +27,21 @@ class QueryDataController extends Controller
         $workspaces = User::find($id_user)->workspaces();
 
         //Get workspace data from workspace_id
-        $getWorkspace = Workspace::where('id', $id_workspace)->first();
+        $getWorkspace = Workspace::where('id', $workspace)->first();
 
         //Get project data from workspace_id
-        $projects_getworkspace =  Workspace::find($id_workspace)->projects;
+        $projects_getworkspace =  Workspace::find($workspace)->projects;
 
 
         return view('showManyProject', ['projects_getworkspace' => $projects_getworkspace, 'workspaces' => $workspaces, 'getWorkspace' => $getWorkspace, 'notification_user' => $notification_user]);
     }
 
-    public function updateWorkspace($id_workspace, Request $request)
+    public function updateWorkspace($workspace, Request $request)
     {
         $name_workspace = $request->title;
 
         if (isset($name_workspace)) {
-            $update_workspace = Workspace::find($id_workspace);
+            $update_workspace = Workspace::find($workspace);
             $update_workspace->name = $name_workspace;
             $update_workspace->save();
         }

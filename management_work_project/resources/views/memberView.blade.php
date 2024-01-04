@@ -39,7 +39,8 @@
                     <div class="invitedByLink">
                         <h4 class="invitation-title">Invite members to join your group</h4>
                         <div class="invitation-body">
-                            <p>Anyone with the invite link can join this free Workspace. You can also disable and create a
+                            <p>Anyone with the invite link can join this free Workspace. You can also disable and create
+                                a
                                 new invite link for this Workspace at any time.</p>
                             <div class="invitation-link">
                                 <img src="pages/image/link.svg" alt="">

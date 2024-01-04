@@ -67,6 +67,7 @@ ol, ul{
 
 #navbar .navbar-right .search-input input {
     height: 20px;
+    padding: 2px 20px 2px 20px;
 }
 
 #navbar .navbar-right .search-input ::placeholder {

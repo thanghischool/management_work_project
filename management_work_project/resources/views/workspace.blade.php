@@ -37,17 +37,19 @@
             <div class="_container">
                 <div class="title">
                     <img src="pages/image/project-icon.png">
-                    Your Projects
+                    Projects
                 </div>
                 <div class="project-list">
-                    @if(isset($randomProjects))
-                    @foreach($randomProjects as $randomProject)
-                    <div class="item" id="{{ $randomProject->id }}" draggable="true">
-                        <span class="disable-select">{{ $randomProject->name }}</span>
-                        <div class="progress-bar"></div>
-                        <div class="progress-percent">10%</div>
-                    </div>
-                    @endforeach
+                    @if (isset($randomProjects))
+                        @foreach ($randomProjects as $randomProject)
+                            <div class="item" id="{{ $randomProject->id }}" draggable="true">
+                                <span class="disable-select">{{ $randomProject->name }}</span>
+                                <div class="progress-bar"
+                                    style="background: linear-gradient(90deg, #fdbd19 {{ $randomProject->rate }}%, #d9d9d9 0%);">
+                                </div>
+                                <div class="progress-percent">{{ $randomProject->rate }}%</div>
+                            </div>
+                        @endforeach
                     @endif
                 </div>
             </div>
@@ -112,26 +114,19 @@
 
     <!-- Create new board -->
     <script>
-    let navbar_button = document.querySelector(".navbar-button");
-    navbar_button.addEventListener("click", function add_workspace(e) {
-        let new_workspace = document.querySelector(".new-workspace");
-        let pseudo_opacity = document.querySelector(".pseudo-opacity");
-        let body = document.body;
+        let navbar_button = document.querySelector(".navbar-button");
+        navbar_button.addEventListener("click", function add_workspace(e) {
+            let new_workspace = document.querySelector(".new-workspace");
+            let pseudo_opacity = document.querySelector(".pseudo-opacity");
+            let body = document.body;
 
-        new_workspace.style.display = "flex";
-        pseudo_opacity.style.display = "block";
+            new_workspace.style.display = "flex";
+            pseudo_opacity.style.display = "block";
 
 
-    });
+        });
     </script>
-
     <script src="pages/script.js"></script>
-    <script src="pages/dragable.js"></script>
-    <script>
-    applyDragableIntoList(".project-list", ".item:not(.button)");
-    </script>
-
-    <script src="pages/editable.js"></script>
 </body>
 
 </html>
