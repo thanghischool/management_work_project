@@ -269,7 +269,7 @@ async function getOldMessageFetch(url){
     const response = await fetch(url,{
         method: "GET", // or 'PUT'
         headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'X-CSRF-TOKEN': window.workspace_ID,
             'Accept':'application/json',
             'Content-Type':'application/json',
         },
