@@ -64,7 +64,7 @@ Route::middleware(['signedin'])->group(
         });
 
         Route::post('/card/{card}/{workspace}', [FileAPIController::class, 'uploadFile']);
-        Route::get('/card/{file}', [FileAPIController::class, 'deleteFile']);
+        Route::delete('/card/{file}', [FileAPIController::class, 'deleteFile']);
 
         Route::middleware(['auth.member','auth.workspace.project'])->get('workspace/{workspace}/project/{project}', [WorkspaceData::class, 'showDataProject']);
         Route::get('/project', function () {
@@ -114,6 +114,7 @@ Route::middleware(['notsigned'])->group(function () {
         Route::get('Sshow', 'Sshow')->name('Sshow');
     });
         Route::get('/404',function(){return view('404');});
+        
 });
 Route::get('/testfile/{workspace}/card/{card}', function ($workspace, $card){
     return view('file', compact('workspace', 'card'));

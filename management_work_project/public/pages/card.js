@@ -23,44 +23,43 @@ element.addEventListener("click", (event) => {
 
 
 
+// var opentodolist_popup = document.querySelector('.open-todolist-btn')
+// var todolist_popup = document.querySelector('.todolist-popup')
+// var closetodolist_popup = document.querySelector('.closetodolist-popup');
 
+// function toggletodolist_popup(e){
+//     todolist_popup.classList.toggle('hide')
+// }
 
-var opentodolist_popup = document.querySelector('.open-todolist-btn')
-var todolist_popup = document.querySelector('.todolist-popup')
-var closetodolist_popup = document.querySelector('.closetodolist-popup')
-function toggletodolist_popup(e){
-    todolist_popup.classList.toggle('hide')
-}
-
-opentodolist_popup.addEventListener('click', toggletodolist_popup);
-todolist_popup.addEventListener('click', function(e){
-  if(e.target == e.currentTarget){
-    toggletodolist_popup();
-  }
-})
-closetodolist_popup.addEventListener('click', toggletodolist_popup)
-
-
+// opentodolist_popup.addEventListener('click', toggletodolist_popup);
+// todolist_popup.addEventListener('click', function(e){
+//   if(e.target == e.currentTarget){
+//     toggletodolist_popup();
+//   }
+// })
+// closetodolist_popup.addEventListener('click', toggletodolist_popup)
 
 
 
 
-var opentodolist = document.querySelector('.addtodolist-btn')
-var todolist = document.querySelector('.todolist')
-var closetodolist = document.querySelector('.slide-header .closetodolist')
 
-function toggletodolist(e){
-    todolist.classList.toggle('hide')
-    toggletodolist_popup(); 
-}
 
-opentodolist.addEventListener('click', toggletodolist)
-todolist.addEventListener('click', function(e){
-  if(e.target == e.currentTarget){
-    toggletodolist();
-  }
-})
-closetodolist.addEventListener('click', toggletodolist)
+// var opentodolist = document.querySelector('.addtodolist-btn')
+// var todolist = document.querySelector('.todolist')
+// var closetodolist = document.querySelector('.slide-header .closetodolist')
+
+// function toggletodolist(e){
+//     todolist.classList.toggle('hide')
+//     toggletodolist_popup(); 
+// }
+
+// opentodolist.addEventListener('click', toggletodolist)
+// todolist.addEventListener('click', function(e){
+//   if(e.target == e.currentTarget){
+//     toggletodolist();
+//   }
+// })
+// closetodolist.addEventListener('click', toggletodolist)
 
 
 

@@ -20,7 +20,7 @@
         // if($datetime1->lt($datetime2)) {
         //     echo "Hehe";
         // }
-        echo Carbon::now()->format("Y-m-d\Th:i");
+        Carbon::now()->format('Y-m-d\Th:i');
         // echo $interval->format('%d days, %h hours, %i minutes, %s seconds');
         ?>
         <label for="party">Enter a date and time for your party booking:</label>
@@ -38,30 +38,38 @@
         <button class="open-modal-btn">Card</button>
         <div class="modal hide">
             <div class="modal__inner">
-                    <div>
-                        <div class="modal__header"> 
-                            <i class="fa-solid fa-window-maximize fa-lg" style="color: #000000;"></i>
-                            <div class="name">
-                                <h4 contenteditable="true" class="asd" >NameCard</h4>
-                                <p>Trong danh sánh ...</p>
-                            </div>
-                            
-                            <i class="fa-solid fa-xmark fa-lg" style="color: #000000; cursor: pointer;"></i>
+                <div style="
+                position: relative;
+            ">
+                    <div class="modal__header">
+                        <i class="fa-solid fa-window-maximize fa-lg" style="color: #000000;"></i>
+                        <div class="name">
+                            <h4 contenteditable="true" class="asd">NameCard</h4>
+                            <p>Trong danh sánh ...</p>
                         </div>
-                        <div class="modal__body">
-                            <div class="content">
-                                <div class="slide">
-                                    <div class="slide-header">
-                                        <div class="name">
-                                            <i class="fa-solid fa-bars fa-lg" style="color: #000000;"></i>   
-                                            <h4>Describe</h4>
-                                        </div>  
+
+                        <i class="fa-solid fa-xmark fa-lg"
+                            style="    color: #000000;
+                        cursor: pointer;
+                        position: absolute;
+                        top: 0;
+                        right: 0;"></i>
+                    </div>
+                    <div class="modal__body">
+                        <div class="content">
+                            <div class="slide">
+                                <div class="slide-header">
+                                    <div class="name">
+                                        <i class="fa-solid fa-bars fa-lg" style="color: #000000;"></i>
+                                        <h4>Describe</h4>
                                     </div>
-                                    <div class="slide-body">
-                                        <textarea name="" id="" cols="50" rows="4" placeholder="Thêm mô tả chi tiết ..."></textarea>
-                                    </div>       
                                 </div>
-                                <div class="slide todolist hide">
+                                <div class="slide-body">
+                                    <textarea name="" id="" cols="50" rows="4" placeholder="Thêm mô tả chi tiết ..."></textarea>
+                                </div>
+                            </div>
+                            <div id="checklist-container">
+                                <div class="slide todolist">
                                     <div class="slide-header">
                                         <div class="name">
                                             <i class="fa-solid fa-clipboard-check fa-lg"></i>          
@@ -103,7 +111,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="activity">
+                           
+                        </div>
+                        <div class="activity">
                                 <button class="btnn open-todolist-btn">To Do List</button> <br>
                                 <ul class="subnav todolist-popup hide">
                                     <li>
@@ -129,7 +139,6 @@
                                 <button class="btnn">chuc nang</button> <br>
                                 <button class="delcard btnn">Delete Card</button> <br>
                             </div>
-                        </div>
                     </div>
                     
                     <div class="modal__footer"></div>
@@ -235,7 +244,7 @@
                                             <span class="fileimg" style="background-color: rgb(228,230,234); text-align: center; line-height: 80px">${extension_UperCase}</span>
                                             <div class="contentfile">
                                                 <div class="namefile">
-                                                    <h4 class="namefile">${data_return.nameFile}</h4>
+                                                    <a href="${data_return.link}" class="namefile" style="color: #172b4d; text-decoration: none">${data_return.nameFile}</a href="">
                                                 </div>
                                                 <div class="descfile">
                                                     <p>30/12/2023</p>
@@ -269,12 +278,11 @@ document.getElementById("myfile").addEventListener('change', uploadfile, false);
 
 </script>
 
-<script type="module" >
+<script>
 function deletefile(fileID) {
-    console.log("hello world");
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     fetch(`http://127.0.0.1:8000/card/${fileID}`, {
-        method: "GET",
+        method: "DELETE",
         headers: {
             'X-CSRF-TOKEN': csrfToken
         },
@@ -291,4 +299,9 @@ function deletefile(fileID) {
     });
 }
 </script>
+
+<script src="{{ asset('pages/card.js') }}"></script>
+<script src="pages/checklist.js"></script>
+
 </html>
+

@@ -17,18 +17,20 @@ body{
     height: 100vh;
     width: 100vw;
     background: rgba(0, 0, 0, 0.6);
-    
+    display: block;
+    overflow-y: scroll;
+    text-align: center;
 }
 
 .modal__inner{
+    display: inline-block;
     width: 55%;
     position: relative;
     background: white;
     top: 40px;
     margin: auto;
     border-radius: 15px;
-    padding-left: 20px;
-    
+    padding: 10px 30px;
 }
 .modal__body .content{
     width: 70%;   
@@ -36,12 +38,13 @@ body{
 
 .modal__body{
     display: flex;
+    padding: 20px;
 }
 
 .modal__header{
     margin-bottom: 100px;
     display: flex;
-    padding-top: 20px;
+    padding-top: 35px;
 }
 .modal__header h4{
     font-family: Arial, Helvetica, sans-serif;
@@ -50,6 +53,7 @@ body{
 }
 .modal__header .name{
     padding-left: 20px;
+    word-break: break-word;
 }
 .modal__header i{
     padding-top: 15px;
@@ -70,6 +74,8 @@ body{
     margin-bottom: 30px;
 }
 .slide-header h4{
+    width: fit-content;
+    word-break: break-word;
     font-family: Arial, Helvetica, sans-serif;
 }
 .slide-header button{
@@ -86,6 +92,7 @@ body{
 }
 .slide-body{
     margin-left: 40px;
+    text-align: start;
 }
 .slide-body textarea{
     border: none;
@@ -102,6 +109,7 @@ body{
 }
 .btnn{
     border: none;
+    height: 25px;
     background-color: #e2e4ea;
     padding: 5px;
     border-radius: 3px;
@@ -110,7 +118,7 @@ body{
 
 }
 .btnn:hover{
-    background-color: #cfd3db;;
+    background-color: rgb(255, 69, 69) !important;
 }
 .check{
     display: flex;
@@ -123,13 +131,15 @@ body{
 }
 .check-content{
     width: 90%;
+    word-break: break-word;
+    padding: 0 10px 0 10px;
 }
 .hide{
     display: none !important;
 }
 .activity{
     margin-left: 40px;
-    width: 30%;
+    width: fit-content;
 }
 .activity button{
     width: 180px;
@@ -180,10 +190,6 @@ body{
     border-radius: 10px;
     overflow: hidden;
   }
-.todolist-popup{
-    top: 218px;
-    left: 624px;
-}
 .activity-name{
     font-weight: 700;
 }
@@ -266,6 +272,7 @@ body{
 .addcheck input{
     width: 100%;
     height: 50px;
+    padding: 10px;
     border: 2px solid rgb(68, 68, 160);
 }
 .addcheck input::placeholder{
