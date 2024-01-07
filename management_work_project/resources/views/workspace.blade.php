@@ -13,6 +13,7 @@
 <body>
     @include('layouts.header')    
     <div class="body">
+        <div class="pseudo-opacity"></div>
         <div class="folders">
             @include('sidebar.folder')
         </div>
@@ -55,37 +56,12 @@
             </div>
         </div>
 
-        <div class="new-workspace">
-
-            <div class="create-workspace">
-                <form action="{{ route('create_Workspace') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <h1>Let's build a Workspace</h1>
-                    <h3 style="margin: 30px 0; color: rgb(97,110,133)">Increase your productivity by helping
-                        everyone
-                        <br>people easily access
-                        the board in one location.
-                    </h3>
-                    <label for="name_workspace">Workspace Name</label> <br>
-                    <input type="text" name="name_workspace" style="width: 100%; height: 30px; margin: 30px 0;"><br>
-
-                    <label for="">Workspace Avatar </label> <br>
-                    <input type="file" name="avatar_workspace" style=" margin: 30px 0;"> <br>
-
-                    <input type="submit" value="Continue" style="width: 100%; height: 30px">
-                </form>
-            </div>
-            <div class="background-right-workspace">
-                <img src="pages/image/background.png" alt="" style="width: 100%; height: 332px">
-            </div>
-
-
-        </div>
+        
     </div>
 
 
     <div class="new-workspace">
-
+    <i class="bi bi-x-lg" style="position: absolute; top: 10px; right: 10px; font-size: 20px"></i>
         <div class="create-workspace">
             <form action="{{ route('create_Workspace') }}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -104,7 +80,7 @@
             </form>
         </div>
         <div class="background-right-workspace">
-            <img src="pages/image/background.png" alt="" style="width: 100%; height: 332px">
+            <img src="pages/image/background.png" alt="" style="width: 100%; height: 352px">
         </div>
 
 
@@ -124,6 +100,16 @@
             pseudo_opacity.style.display = "block";
 
 
+        });
+    </script>
+
+    <script>
+        let pseudo_opacity = document.querySelector(".pseudo-opacity");
+        let new_workspace = document.querySelector(".new-workspace");
+        let turn_off_workspace = document.querySelector(".new-workspace > i");
+        turn_off_workspace.addEventListener("click", function() {
+            new_workspace.style.display = "none";
+            pseudo_opacity.style.display = "none";
         });
     </script>
     <script src="pages/script.js"></script>

@@ -18,6 +18,7 @@
 <body>
     @include('layouts.header')
     <div class="body">
+    <div class="pseudo-opacity"></div>
         <div class="folders">
             @include('sidebar.folder')
         </div>
@@ -26,10 +27,10 @@
          <div class="add-people-board">
             <div class="name-function-share">
                 <h2>Share board</h2>
-                <i class="bi bi-x"></i>
+                <i class="bi bi-x" style="cursor: pointer;"></i>
             </div>
 
-            <form action="" method="post">
+            <form action="{{ route('addPeopleOnTeam') }}" method="post">
                 @csrf
                 <input type="hidden" name="workspace_id" value="{{ $workspace->id }}">
                 <input type="text" name="email" id="" value="Email">
@@ -76,7 +77,8 @@
                     <div class="workspace-name">
                         <span id="workspace-name" title="{{ $workspace->name }}">
                             {{ $workspace->name }}
-                        </span>
+                        </span>                        
+                        <i class="fa-solid fa-user-plus addpeople-icon" style="font-size: 20px; margin-left: 10px; margin-top: 6px; cursor: pointer"></i>
                         <button class="edit"><img src="pages/image/pencil.png"></button>
                     </div>
                 </div>
@@ -170,6 +172,30 @@
                 EventHandle.removeListItemElement(list.id);
             });
     </script>
+
+    <script type="module">
+        let addpeople_icon = document.querySelector(".workspace .workspace-header .workspace-name .addpeople-icon");
+        addpeople_icon.addEventListener("click", function add_people(e) {
+            let add_people_board = document.querySelector(".add-people-board");
+            let pseudo_opacity = document.querySelector(".pseudo-opacity");
+
+            add_people_board.style.display = "block";
+            pseudo_opacity.style.display = "block";
+        });
+    </script>
+
+    <script type="module">
+        
+        let pseudo_opacity = document.querySelector(".pseudo-opacity");
+        let add_people_board = document.querySelector(".add-people-board");
+        let turn_off_add_people_board = document.querySelector(".add-people-board .name-function-share > i");
+        turn_off_add_people_board.addEventListener("click", function() {
+            add_people_board.style.display = "none";
+            pseudo_opacity.style.display = "none";
+        });
+   
+    </script>
+
 </body>
 
 </html>

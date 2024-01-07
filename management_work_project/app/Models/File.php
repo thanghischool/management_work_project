@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class File extends Model
 {
@@ -16,8 +16,9 @@ class File extends Model
     public function card(){
         return $this->belongsTo(Card::class, "card_ID", "id");
     }
+
     public function upload($file){
-        if(!$this->card_ID || !$this->workspace_ID) return false;
+        // if(!$this->card_ID || !$this->workspace_ID) return false;
         $this->name = $file->getClientOriginalName();
         $this->save();
         $filename = Str::random(30).'f'.$this->id.'.'.$file->extension();
@@ -26,6 +27,7 @@ class File extends Model
         $this->save();
         return true;
     }
+
     public function delete(){
         $filenames = explode('/',$this->link);
         $filename = $filenames[count($filenames)-1];
@@ -33,5 +35,6 @@ class File extends Model
             Storage::delete('public/'.$this->workspace_ID.'/files/'.$filename);
         }
         DB::table('files')->where('id', $this->id)->delete();
+        return true;
     }
 }

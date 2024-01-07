@@ -13,7 +13,7 @@ async function addProjectFetch(projectName, project){
         },
         body: JSON.stringify({
             name: projectName,
-            workspace_ID: window.workspace_ID,
+            workspace_ID: document.querySelector('meta[name="workspace_ID"]').getAttribute('content'),
         })
     });
     const result = await response.json();

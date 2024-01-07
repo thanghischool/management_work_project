@@ -63,6 +63,9 @@ Route::middleware(['signedin'])->group(
             return view('card');
         });
 
+        Route::post('/card/{card}/{workspace}', [FileAPIController::class, 'uploadFile']);
+        Route::get('/card/{file}', [FileAPIController::class, 'deleteFile']);
+
         Route::middleware(['auth.member','auth.workspace.project'])->get('workspace/{workspace}/project/{project}', [WorkspaceData::class, 'showDataProject']);
         Route::get('/project', function () {
             return view('projectView');

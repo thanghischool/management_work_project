@@ -33,7 +33,7 @@ async function modifyProjectNameFetch(id, newName){
         },
         body: JSON.stringify({
             name: newName,
-            workspace_ID: window.workspace_ID,
+            workspace_ID: document.querySelector('meta[name="workspace_ID"]').getAttribute('content'),
         })
     });
     const result = await response.json();
@@ -48,7 +48,7 @@ async function deleteProjectFetch(id){
             'Content-Type':'application/json',
         },
         body: JSON.stringify({
-            workspace_ID: window.workspace_ID,
+            workspace_ID: document.querySelector('meta[name="workspace_ID"]').getAttribute('content'),
         })
     });
     const result = await response.json();

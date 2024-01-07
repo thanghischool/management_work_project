@@ -68,8 +68,8 @@
     </div>
     <script>
         window.user_ID = {{ Auth::id() }};
-        let date = new Date(Date.now());
-        document.querySelector('.date').innerHTML = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        // let date = new Date(Date.now());
+        // document.querySelector('.date').innerHTML = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     </script>
     <script src="pages/script.js"></script>
     <script src="pages/editable.js"></script>

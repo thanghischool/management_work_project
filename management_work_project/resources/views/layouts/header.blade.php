@@ -55,8 +55,8 @@
             @endphp
                 <div class="element-notificate">
                     <p class="name-sender">{{ $decodedNotifications['data'][0] }} đã thêm</p>
-                    <img src="https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/anh-den-ngau.jpeg" alt="" srcset="">
-                    <p class="message-sender">{{ $decodedNotifications['data'][1] }} vào nhóm {{ $decodedNotifications['data'][2] }}</p>
+                    <img src="{{ $decodedNotifications['data'][1] }}" alt="" srcset="">
+                    <p class="message-sender">Bạn vào nhóm {{ $decodedNotifications['data'][2] }}</p>
                 </div> 
             @endforeach
         @endif
@@ -100,7 +100,7 @@
         name_sender.innerText = e.data[0];
 
         let img_sender = document.createElement('img');
-        img_sender.src = "https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/anh-den-ngau.jpeg";
+        img_sender.src = e.data[1];;
 
         let message_sender = document.createElement('p');
         message_sender.classList.add('message-sender');
@@ -114,7 +114,7 @@
         });
 
         notificate_icon.addEventListener('click', function() {
-            element_notificate.style.display = (element_notificate.style.display === 'block') ? 'none' : 'block';
+            element_notificate.style.display = (element_notificate.style.display == 'block') ? 'none' : 'block';
  });  
 </script>
 
