@@ -1,0 +1,442 @@
+
+body{
+    background: #efefef !important;
+}
+
+.slide1{
+    display: flex;
+    align-items: center;
+    gap: 93px;
+}
+
+.slide_boder1{
+    display: flex;
+    height: 540px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 19px;
+}
+
+.slide1 .slide_img{
+    width: 424px;
+    height: 480px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 20px;
+
+}
+
+.slide1 .slide_span{
+    color: #20166D;
+    text-align: center;
+    /* leading-trim: both;
+    text-edge: cap; */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+}
+
+.slide1 .slide_title{
+    width: 613px;
+    color: #000;
+    /* font-family: Work Sans; */
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 90px; /* 128.571% */
+}
+
+.slide_btn{
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    background: #20166D;
+}
+
+.slide_btn a,.slide_btn p{
+    color: #FFF;
+    text-align: center;
+    /* leading-trim: both;
+    text-edge: cap;
+    font-family: Work Sans; */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.slide1 .slide_content{
+    display: flex;
+    width: 544px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 46px;
+}
+
+
+.slide_boder2{
+    display: flex;
+    padding: 70px 87px 100px 160px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide_top2{
+    display: flex;
+    width: 1073px;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+}
+
+.slide_top2 .slide_left{
+    display: flex;
+    width: 385px;
+    height: 340px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.slide_top2 .slide_left .slide_img{
+    width: 264px;
+    height: 339px;
+    flex-shrink: 0; 
+    object-fit: cover;
+    position: absolute;
+}
+
+.slide_top2 .slide_left .block{
+    width: 385px;
+    height: 128px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFC567;
+    margin-top: 200px;
+    position: absolute;
+}
+
+.slide_top2 .slide_rigth{
+    display: flex;
+    width: 700px;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.slide_top2 .slide_rigth h3{
+    color: #000;
+    text-align: center;
+    /* leading-trim: both;
+    text-edge: cap;
+    font-family: Work Sans; */
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;  
+}
+
+.slide_top2 .slide_rigth ul{
+    display: flex;
+    height: 297px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 37px;
+}
+
+.slide_top2 .slide_rigth li{
+    flex: 1 0 0;
+    align-self: stretch;
+    color: #000;
+    /* leading-trim: both;
+    text-edge: cap;
+    font-family: Work Sans; */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.slide_bottom2_boder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    height: 289px;
+    border-radius: 10px;
+}
+
+.slide_bottom2{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 43px;
+    /* position: absolute; */
+    left: 73px;
+    bottom: 34px;
+}
+
+.slide_bottom2 h3{
+    color: #000;
+    /* leading-trim: both;
+    text-edge: cap;
+    font-family: Work Sans; */
+    font-size: 40px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: normal !important;
+    width: 843px !important;
+}
+
+.slide_bottom2 p{
+    width: 843px !important;
+    color: #000 !important;
+    /* leading-trim: both !important;
+    text-edge: cap !important;
+    font-family: Work Sans !important; */
+    font-size: 20px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+}
+
+.slide3 .slide3_img{
+    width: 100%;
+    height: 500px;
+    box-shadow: 5px 32px 29.1px 0px rgba(0, 0, 0, 0.25);
+    object-fit: cover;
+}
+
+.slide4{
+    display: flex;
+    height: 616px;
+    padding: 100px 175px 100px 176px;
+    align-items: center;
+    gap: 50px;
+}
+
+.slide4 .slide_left{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 56px;
+}
+
+.slide4 .slide_title{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 44px;
+}
+
+.slide4 .slide_title h3{
+    color: #000;
+    /* leading-trim: both;
+    text-edge: cap;
+    font-family: Work Sans; */
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    width: 464px;
+}
+
+.slide4 .slide_title p{
+    width: 414px;
+    color: #000;
+    /* font-family: Work Sans; */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.slide4 .slide_content{
+    height: 86.5px;
+    gap: 17px;
+    flex-shrink: 0;
+    margin-left: 80px;
+}
+
+.slide4 .slide_content p{
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 520px;
+}
+
+.slide4 .slide_content i{
+    margin-right: 10px;
+}
+
+.slide4 .slide_right{
+    display: flex;
+    height: 494px;
+    align-items: flex-start;
+    gap: 10px;
+  
+}
+
+.slide4 .slide_right input{
+    display: flex;
+    width: 100%;
+    padding: 14px 19px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid #D9D9D9;
+    background: #FFF;
+    margin: 5px;
+
+}
+
+.slide4 .slide_right form{
+    width: 475px;
+    height: 506px;
+    border-radius: 20px;
+    background: #FFF;
+    padding: 40px;
+    box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.slide4 .slide_right textarea{
+    display: flex;
+    width: 100%;
+    height: 159px;
+    padding: 17px 19px;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid #D9D9D9;
+    background: #FFF;
+    margin: 5px;
+    
+}
+
+.slide4 .slide_right button{
+    width: 100%;
+}
+
+
+.footer{
+    width: 100%;
+    height: 274px;
+    background: #20166D;
+    display: flex;
+}
+
+.footer .logo{
+    display: flex;
+    width: 371px;
+    height: 217px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+    margin: 30px;
+}
+
+.footer .logo .content{
+    display: flex;
+    width: 184px;
+    height: 66px;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 11.871px;
+    flex-shrink: 0;
+}
+
+.footer .logo .content img{
+    width: 60.129px;
+    height: 66px;
+    flex-shrink: 0;
+}
+
+.footer .logo .content h3{
+    display: flex;
+    width: 112px;
+    height: 60.343px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #FFF;
+    /* font-family: Inria Sans; */
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.footer .logo p{
+    color: #FFF;
+    text-align: center;
+    /* font-family: Inria Sans; */
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 281px;
+}
+
+.footer .block{
+    width: 2px;
+    height: 138px;
+    flex-shrink: 0;
+    stroke-width: 5px;
+    stroke: #E7B10A;
+    margin-left: 350px;
+    position: absolute;
+    color: #E7B10A;
+    z-index: 2;
+}
+
+.footer .title{
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.footer .title .card{
+    display: flex;
+    width: 260px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    background-color: #20166D;
+    margin: 50px 50px 0 0;
+}
+
+.footer .title .card h4{
+    color: #FFF;
+    /* font-family: Work Sans; */
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    height: 26px;
+    align-self: stretch;
+}
+
+.footer .title .card p{
+    color: #FFF;
+    /* font-family: Work Sans; */
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 260px;
+}

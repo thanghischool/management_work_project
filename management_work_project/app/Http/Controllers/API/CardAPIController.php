@@ -24,13 +24,14 @@ class CardAPIController extends Controller
         public function index(Request $request, $workspace, $card){
             $card1 = Card::find($card);
             $checklists = $card1->checklists;
+            $file = $card1->files;
             foreach($checklists as $checklist) {
                 foreach($checklist->tasks as $task) {
                     $task->users = $task->users();
                 };
             }
-            $card1->files;
-            $card1->comments;
+            // $card1->files;
+            // $card1->comments;
             return response()->json($card1);
         }
     /**

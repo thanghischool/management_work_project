@@ -57,15 +57,12 @@
                         @endphp
                         <div class="element-notificate">
                             <p class="name-sender">{{ $decodedNotifications['data'][0] }} đã thêm</p>
-                            <img src="https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/anh-den-ngau.jpeg"
-                                alt="" srcset="">
-                            <p class="message-sender">{{ $decodedNotifications['data'][1] }} vào nhóm
-                                {{ $decodedNotifications['data'][2] }}</p>
+                            <img src="{{ $decodedNotifications['data'][1] }}" alt="" srcset="">
+                            <p class="message-sender">Bạn vào nhóm {{ $decodedNotifications['data'][2] }}</p>
                         </div>
                     @endforeach
                 @endif
             </div>
-
 
         </div>
 
@@ -84,12 +81,12 @@
     </div>
 </div>
 <script src="pages/subnav.js"></script>
-<script type="module">
+<script type="module" defer>
     let signal_icon = document.querySelector(".navbar-right .information-icon .signal-icon");
     let information_notificate = document.querySelector(".navbar-right .information-icon .information-notificate");
-    let notificate_icon = document.querySelector(".navbar-right .information-icon .notificate-icon");
+    let notificate_icon = document.querySelector(".notificate-icon");
     let element_notificate = document.querySelector(
-        ".navbar-right .information-icon .information-notificate .element-notificate");
+        ".navbar-right .information-icon .information-notificate");
     window.Echo.private(`AddPeopleOnTeam.{{ session('id_user') }}`)
         .listen('AddPeople', (e) => {
             console.log(e);
@@ -103,7 +100,7 @@
             name_sender.innerText = e.data[0];
 
             let img_sender = document.createElement('img');
-            img_sender.src = "https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/anh-den-ngau.jpeg";
+            img_sender.src = e.data[1];;
 
             let message_sender = document.createElement('p');
             message_sender.classList.add('message-sender');
@@ -117,6 +114,6 @@
         });
 
     notificate_icon.addEventListener('click', function() {
-        element_notificate.style.display = (element_notificate.style.display === 'block') ? 'none' : 'block';
+        element_notificate.style.display = (element_notificate.style.display == 'block') ? 'none' : 'block';
     });
 </script>

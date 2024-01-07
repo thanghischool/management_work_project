@@ -14,11 +14,13 @@
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: none;
+    z-index: 3;
 }
 
 .body .add-people-board * {
     margin-top: 10px;
 }
+
 
 .body .add-people-board .name-function-share {
     display: flex;

@@ -18,6 +18,7 @@ class AddPeopleController extends Controller
         
         $usersenderID = Auth::user()->id;
         $usersenderName = Auth::user()->name;
+        $usersenderAvatar = Auth::user()->avatar;
 
         $workspace_id = $request->workspace_id;
         $workspace_name = Workspace::find($workspace_id)->name;
@@ -29,8 +30,8 @@ class AddPeopleController extends Controller
 
         if ($user_added) {
 
-            $data = array($usersenderName, $user_added_name, $workspace_name);
-            $data_js = [$usersenderName, $user_added_name, $workspace_name];
+            $data = array($usersenderName, $usersenderAvatar, $workspace_name);
+            $data_js = [$usersenderName, $usersenderAvatar, $workspace_name];
             //Check wheather the user is added to the workspace
             $check_User_Exist_workspace = DB::table('user_workspace')
                 ->where('workspace_id', $workspace_id)

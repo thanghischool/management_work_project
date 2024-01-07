@@ -9,6 +9,8 @@ use App\Models\Workspace;
 use Illuminate\Support\Str;
 use App\Models\File;
 use App\Models\Card;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class FileAPIController extends Controller
 {
@@ -53,17 +55,67 @@ class FileAPIController extends Controller
     //     $workspace->save();
     //     return redirect()->back();
     // }
-    public function uploadFile(Request $request, $workspace, Card $card){
-        $file = new File;
-        if((int) $card->workspace_ID == (int) $workspace){
-            $file->card_ID = $card->id;
-            $file->workspace_ID = $workspace;
-            if($file->upload($request->file('file'))) return redirect()->back()->with('message', "Thanh cong");
-             else return redirect()->back()->with('message',"That bai");
-        } else return redirect()->back();
+
+    public function uploadFile(Request $request, Card $card, Workspace $workspace){
+        $file_url = $request->file;
+        Log::info($card);
+
+        if ($file_url) {
+            // Validate file using its URL or path, assuming it's a string
+            // $validatedFile = Validator::make(['file_url' => $file_url], [
+            //     'file_url' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            // ]);
+        
+            // if ($validatedFile->fails()) {
+            //     // Handle validation failure
+            //     return response()->json([
+            //         'error' => 'Invalid file URL',
+            //     ]);
+            // } else {
+                $file = new File;
+                // if($card->workspace_ID == $workspace){
+                    $file->card_ID = $card->id;
+                    $file->workspace_ID = $workspace->id;
+                    if($file->upload($file_url)) { 
+                        return response()->json([
+                            'message' => 'success',
+                            'id' => $file->id,
+                            'nameFile' => $file->name,
+                            'link' => $file->link,
+                            'extension' => $file_url->extension(),
+                        ]);
+                    }
+                     else {
+                        return response()->json([
+                            'error' => 'failed to upload',
+                        ]);
+                     }
+                // } else {
+                //     return response()->json([
+                //         'error' => 'Not in the same workspace',
+                //     ]);;
+                // }
+            // }
+        
+            
+        } else {
+            // Handle the case where $file_url is not available
+            return response()->json([
+                'error' => 'File URL is missing',
+            ]);
+        }       
         
     }
-    public function deleteFile(File $file){
-        $file->delete();
+
+    public function deleteFile(File $file) {
+        if($file->delete()) {
+            return response()->json([
+                'message' => 'success',
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'Failed',
+            ]);
+        };
     }
 }

@@ -29,7 +29,7 @@ class MessageAPIController extends Controller
     }
     public function load(Request $request, Workspace $workspace){
         // $messages = Message::where('workspace_ID', $workspace->id)->cursorPaginate(4);
-        $messages = $workspace->messages()->cursorPaginate(30);
+        $messages = $workspace->messages()->cursorPaginate(10);
         return response()->json($messages);
     }
 }

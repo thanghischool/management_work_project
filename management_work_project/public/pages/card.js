@@ -1,27 +1,3 @@
-var openModal = document.querySelector(".open-modal-btn");
-var Modal = document.querySelector(".modal");
-var closeModal = document.querySelector(".modal__header .fa-xmark");
-
-function toggleModal(e) {
-    Modal.classList.toggle("hide");
-}
-
-openModal.addEventListener("click", toggleModal);
-Modal.addEventListener("click", function (e) {
-    if (e.target == e.currentTarget) {
-        toggleModal();
-    }
-});
-closeModal.addEventListener("click", toggleModal);
-
-const element = document.querySelector(".asd");
-
-element.addEventListener("click", (event) => {
-    alert(element.textContent);
-});
-
-
-
 
 // var opentodolist_popup = document.querySelector('.open-todolist-btn')
 // var todolist_popup = document.querySelector('.todolist-popup')
@@ -87,22 +63,22 @@ closeaddfile_popup.addEventListener('click', toggleaddfile_popup)
 
 
 
-var openaddfile = document.querySelector('.addfile-btn')
-var addfile = document.querySelector('.addfile')
-var closeaddfile = document.querySelector('.slide-header .closeaddfile')
+// var openaddfile = document.querySelector('.addfile-btn')
+// var addfile = document.querySelector('.addfile')
+// var closeaddfile = document.querySelector('.slide-header .closeaddfile')
 
-function toggleaddfile(e){
-    addfile.classList.toggle('hide')
-    toggleaddfile_popup(); 
-}
+// function toggleaddfile(e){
+//     addfile.classList.toggle('hide')
+//     toggleaddfile_popup(); 
+// }
 
-openaddfile.addEventListener('click', toggleaddfile)
-addfile.addEventListener('click', function(e){
-  if(e.target == e.currentTarget){
-    toggleaddfile();
-  }
-})
-closeaddfile.addEventListener('click', toggleaddfile)
+// openaddfile.addEventListener('click', toggleaddfile)
+// addfile.addEventListener('click', function(e){
+//   if(e.target == e.currentTarget){
+//     toggleaddfile();
+//   }
+// })
+// closeaddfile.addEventListener('click', toggleaddfile)
 
 
 
