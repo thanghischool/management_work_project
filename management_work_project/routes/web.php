@@ -111,6 +111,7 @@ Route::middleware(['notsigned'])->group(function () {
         Route::get('Sshow', 'Sshow')->name('Sshow');
     });
         Route::get('/404',function(){return view('404');});
+        
 });
 Route::get('/testfile/{workspace}/card/{card}', function ($workspace, $card){
     return view('file', compact('workspace', 'card'));

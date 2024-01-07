@@ -45,8 +45,8 @@
                 <div class="chatbox">
                     <div class="chatbox-header">
                         <div class="right">
-                            <img src="pages/image/phone.svg" alt="" />
-                            <img src="pages/image/video.svg" alt="" />
+                            <img src="pages/image/phone.svg" />
+                            <img src="pages/image/video.svg" />
                         </div>
                     </div>
                     <div class="chatbox-body">
