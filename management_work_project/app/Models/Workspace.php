@@ -22,8 +22,8 @@ class Workspace extends Model
         $user_IDs = DB::select('select user_ID from user_workspace
         where workspace_ID = :wid', ['wid' => $this->id]);
         if(isset($user_IDs)){
-            foreach($user_IDs as $user_ID){
-                array_push($users, User::find($user_ID));
+            foreach($user_IDs as $user){
+                array_push($users, User::find($user->user_ID, ['id', 'avatar', 'name', 'email', 'phone', 'gender', 'bio']));
             }
         }
         return $users;

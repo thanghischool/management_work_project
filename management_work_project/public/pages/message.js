@@ -75,9 +75,12 @@ function renderNewMessage(type, user, message){
     Object.assign(messageTime, {
         className: 'message-time',
     });
+    if(content.nodeName !== 'P'){
+        content = content.querySelector('p');
+    }
     content.onmouseenter = (event) => {
-        messageTime.innerHTML = event.target.getAttribute('message-time');
-        event.target.appendChild(messageTime);
+        messageTime.innerHTML = content.getAttribute('message-time');
+        content.appendChild(messageTime);
     };
     content.onmouseleave = (event) => {
         messageTime.parentElement.removeChild(messageTime);
@@ -178,7 +181,7 @@ function loadNewOldMessages(message){
 let url;
 let flag;
 function initChatbox(){
-    url = "http://127.0.0.1:8000/api/workspace/1/chatbox";
+    url = window.webURL+"api/workspace/"+window.workspace_ID+"/chatbox";
     flag = true;
     let target = document.querySelector(".chatbox-body");
     const result = getOldMessageFetch(url);
@@ -248,7 +251,7 @@ window.Echo.private(`workspace.${window.workspace_ID}`)
     scrollEnd(".chatbox-body");
 });
 async function sendMessage(content){
-    const response = await fetch("http://127.0.0.1:8000/api/messages",{
+    const response = await fetch(window.webURL+"api/messages",{
         method: "POST", // or 'PUT'
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),

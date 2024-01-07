@@ -66,6 +66,7 @@ body {
     width: 27px;
     height: 27px;
     margin-left: 13px;
+    object-fit: cover;
 }
 .workspace-container .item h3 {
     margin-left: 13px;
@@ -139,6 +140,7 @@ body {
     width: 69px;
     height: 69px;
     border-radius: 10px;
+    object-fit: cover;
 }
 .workspace-header .ability {
     display: flex;
@@ -284,7 +286,7 @@ body {
 .new-workspace {
     position: fixed;
     width: 50%;
-    height: 500px;
+    height: fit-content;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -295,6 +297,7 @@ body {
     border-radius: 5px;
     z-index: 3;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    column-gap: 20px;
 }
 
 .pseudo-opacity {

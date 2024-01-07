@@ -27,12 +27,16 @@ class MemberPermission
             return redirect()->back()->withErrors(['message' => "You do not have permission to this workspace !"]);
         } else {
             $user_ID = $request->user()->id;
-            $request->validate([
-                "workspace_ID" => "required|numeric|min:0",
-            ]);
-            $result = User::isBelongsToWorkspace($user_ID, $request->workspace_ID);
-            if($result) return $next($request);
-            return redirect()->back()-withErrors(['message' => 'You do not belong to this workspace']);
+            if(User::isBelongsToWorkspace($user_ID, $request->route()->workspace)) return $next($request);
+            if($request->workspace_ID){
+                $request->validate([
+                    "workspace_ID" => "required|numeric|min:0",
+                ]);
+                $request;
+                if($request->workspace_ID) $result = User::isBelongsToWorkspace($user_ID, $request->workspace_ID);
+                if($result) return $next($request);
+            }
+            return redirect()->back();
         }
     }
 }

@@ -41,7 +41,7 @@ class WorkspaceData extends Controller
         $user_ID_array =  DB::table('user_workspace')->where('workspace_ID', $workspace->id)->pluck('user_ID');
         $users_workspace = User::whereIn('id', $user_ID_array)->get();
         $id_user = session('id_user');
-
+        $users = $workspace->users();
         $check_notification_user = DB::table('notifications')
                                     ->where('notifiable_id', $id_user)->get();
         if($check_notification_user) {
@@ -55,6 +55,6 @@ class WorkspaceData extends Controller
         foreach ($columns as $column) {
             $cards = $column->cards;
         }
-        return view('projectView', compact('project', 'columns', 'workspace', 'workspaces', 'users_workspace', 'notification_user'));
+        return view('projectView', compact('project', 'columns', 'workspace', 'workspaces', 'users_workspace', 'notification_user', 'users'));
     }
 }

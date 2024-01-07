@@ -117,3 +117,7 @@ Route::get('/testfile/{workspace}/card/{card}', function ($workspace, $card){
 });
 Route::post('/file/{workspace}/card/{card}', [FileAPIController::class, 'uploadFile'])->name('postFile');
 Route::get('/file/{file}', [FileAPIController::class, 'deleteFile']);
+Route::get('/testtt/{card}', [App\Http\Controllers\API\CardAPIController::class, "index"]);
+Route::get('/', function(){
+    return view('homepage');
+});

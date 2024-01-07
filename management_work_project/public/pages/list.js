@@ -89,7 +89,7 @@ function addListButton(){
 addListButton();
 
 async function modifyListTitle(id, title){
-    const response = await fetch("http://127.0.0.1:8000/api/lists/title/"+id,{
+    const response = await fetch(window.webURL+"api/lists/title/"+id,{
         method: "PUT", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
@@ -106,7 +106,7 @@ async function modifyListTitle(id, title){
     console.log(result);
 }
 async function addListFetch(title){
-    const response = await fetch("http://127.0.0.1:8000/api/lists",{
+    const response = await fetch(window.webURL+"api/lists",{
         method: "POST", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
@@ -124,7 +124,7 @@ async function addListFetch(title){
     console.log(result);
 }
 async function deleteListFetch(id){
-    const response = await fetch("http://127.0.0.1:8000/api/lists/"+id,{
+    const response = await fetch(window.webURL+"api/lists/"+id,{
         method: "DELETE", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),

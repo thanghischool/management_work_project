@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Card;
+use App\Models\Checklist;
+use App\Models\Workspace;
 use App\Models\Column;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +21,18 @@ class CardAPIController extends Controller
     // public function getAll($id){
     //     return response()->json(Card::where("list_ID", '=', $id)->get());
     // }
-
+        public function index(Request $request, $workspace, $card){
+            $card1 = Card::find($card);
+            $checklists = $card1->checklists;
+            foreach($checklists as $checklist) {
+                foreach($checklist->tasks as $task) {
+                    $task->users = $task->users();
+                };
+            }
+            $card1->files;
+            $card1->comments;
+            return response()->json($card1);
+        }
     /**
      * Store a newly created resource in storage.
      */
@@ -36,6 +49,7 @@ class CardAPIController extends Controller
         $card->list_ID = $request->list_ID;
         $card->index = $cards_length;
         $card->title = $request->title;
+        $card->workspace_ID = $request->workspace_ID;
         $card->description = "";
         $card->save();
         $project_ID = $column->project_ID;

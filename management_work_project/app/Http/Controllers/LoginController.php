@@ -25,6 +25,7 @@ class LoginController extends Controller
 
         $request->merge(['password' => Hash::make($request->password)]);
         try {
+            $request->avatar = 'storage/userdefault.jpg';
             User::create($request->all());
         } catch (\Throwable $th) {
             dd($th);
@@ -85,7 +86,6 @@ class LoginController extends Controller
             return view('getPass', compact('id','token'));
         } else return view('404');
     }
-
     public function postGetPass(Request $request,User $user, $token){
         $request->validate([
             'password' => 'required',

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home page</title>
+    <link rel="stylesheet" href="home_page/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <script src="pages/https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body style="overflow-x: hidden">
+    <div
+        style="
+                background-color: rgb(32, 22, 109);
+                height: 680px;
+                width: 100vw;
+            ">
+        <img src="pages/./image/dashboard/Vector 30.png" alt="" srcset=""
+            style="
+                    width: 100vw;
+                    height: 1000px;
+                    position: absolute;
+                    z-index: -3;
+                    left: -10px;
+                " />
+        <i class="bi bi-lightning-charge-fill"
+            style="
+                    position: absolute;
+                    font-size: 45px;
+                    color: #c08a7e;
+                    right: 50px;
+                    top: 210px;
+                "></i>
+
+        <i class="bi bi-circle-fill"
+            style="
+                    position: absolute;
+                    font-size: 12px;
+                    color: rgb(255, 108, 161);
+                    top: 70px;
+                    left: 50px;
+                "></i>
+
+        <i class="bi bi-lightning-charge-fill"
+            style="
+                    position: absolute;
+                    font-size: 20px;
+                    color: rgb(214, 106, 177);
+                    top: 600px;
+                    left: 200px;
+                "></i>
+
+        <i class="bi bi-circle-fill"
+            style="
+                    position: absolute;
+                    font-size: 12px;
+                    color: rgb(247, 146, 97);
+                    top: 700px;
+                    right: 300px;
+                "></i>
+
+        <i class="bi bi-x-lg"
+            style="
+                    position: absolute;
+                    font-size: 70px;
+                    color: rgb(255, 111, 171);
+                    bottom: -15px;
+                    right: 0px;
+                    rotate: 20deg;
+                "></i>
+
+        <i class="bi bi-x-lg"
+            style="
+                    position: absolute;
+                    font-size: 50px;
+                    color: rgb(65, 226, 84);
+                    bottom: 10px;
+                    left: 0px;
+                    rotate: 10deg;
+                "></i>
+
+        <i class="bi bi-circle-fill"
+            style="
+                    position: absolute;
+                    font-size: 100px;
+                    color: rgb(74, 231, 202);
+                    bottom: -125px;
+                    left: 40px;
+                "></i>
+
+        <div class="half-circle"></div>
+        <header>
+            <div class="logo-header">
+                <img src="pages/./image/dashboard/Logo.svg" alt="" />
+                <h1>DIRA</h1>
+            </div>
+
+            <div class="nav">
+                <div class="navBar">
+                    <ul style="width: 100%">
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Feature</a></li>
+                        <li>
+                            <a href="">About Us</a>
+                        </li>
+                        <li><a href="">Our Works</a></li>
+                        <li><a href="">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="register">
+                    <h2><a href="{{ route('login') }}"
+                            style="text-decoration: none;
+                        color: rgb(255, 254, 253);">Sign In /
+                            Sign Up</a></h2>
+                </div>
+            </div>
+        </header>
+
+        <div class="dash-board" style="height: 1000px">
+            <div class="introduction-product">
+                <h1>
+                    Manage Your Project Easily and Make <br />Amazing
+                    Experience.
+                </h1>
+                <h6>
+                    Welcome to our innovative task management website,
+                    designed to streamline your work processes and boost
+                    productivity. With user-friendly interfaces, <br />
+                    we empower you to efficiently manage your tasks,
+                    deadlines, and projects with ease.
+                </h6>
+                <img src="pages/./image/dashboard/Group 396.png" alt="" srcset=""
+                    style="
+                            width: 320px;
+                            position: absolute;
+                            bottom: 110px;
+                            left: 49%;
+                        " />
+
+                <img src="pages/./image/dashboard/Group 394.png" alt="" srcset=""
+                    style="position: absolute; top: -20px; left: 18%" />
+            </div>
+
+            <div class="start-use">
+                <div class="start-btn">
+                    <h2>Start a Free Trial</h2>
+                </div>
+
+                <div class="watch-video">
+                    <div class="play-icon">
+                        <i class="bi bi-play-fill" style="line-height: 35px"></i>
+                    </div>
+                    <div class="play-icon-parent"></div>
+
+                    <h2>Watch Video</h2>
+                </div>
+            </div>
+            <div class="img-dashboard" style="height: 500px">
+                <img src="pages/./image/dashboard/385514951_798841295759918_7922266841724501686_n.png" alt="" />
+                <img src="pages/./image/dashboard/Screenshot 2023-11-14 213212.png" class="img-revenue"
+                    alt="" />
+                <img src="pages/./image/dashboard/Screenshot 2023-11-14 213344.png" class="img-total" alt="" />
+
+                <img src="pages/./image/dashboard/Group 389.png"
+                    style="
+                            width: 45px;
+                            height: 45px;
+                            position: absolute;
+                            top: -65px;
+                            left: 28%;
+                        " />
+
+                <img src="pages/./image/dashboard/Group 390.png"
+                    style="
+                            width: 30px;
+                            height: 30px;
+                            position: absolute;
+                            top: -35px;
+                            left: 29.5%;
+                        " />
+
+                <img src="pages/./image/dashboard/Group 395.png"
+                    style="
+                            width: 200px;
+                            height: 100px;
+                            position: absolute;
+                            top: -210px;
+                            right: 29%;
+                        " />
+
+                <div class="bi-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="function-tool">
+        <p style="color: rgb(109, 206, 176); text-align: center">
+            Our Service
+        </p>
+        <div class="explanation">
+            <h1>
+                <span style="color: rgb(255, 126, 94)">Save Time</span> and
+                Manage Your All <br /><span style="color: rgb(51, 131, 236)">Project Easily.</span>
+            </h1>
+            <span class="box-1"></span>
+            <span class="box-2"></span>
+        </div>
+
+        <div class="detail-function">
+            <div class="project" style="height: 340px">
+                <div class="detail-project">
+                    <h3>Project Management Can Easily</h3>
+                    <p style="margin-top: 20px">
+                        Lorem ipsum dolor sit amet, coectetur adipiscing
+                        <br />
+                        elit. Tortor nisl vestibulum, consezzuat, sed
+                        turpis. <br />
+                        Enim proin quis. Lorem ipsaaaaum dolor sit amet,
+                        <br />
+                        consectetur adipiscing elit.
+                    </p>
+
+                    <div class="book-icon">
+                        <i class="bi bi-journal-richtext"></i>
+                    </div>
+                    <img src="pages/./image/function_tool/arrow1.png" alt="" srcset=""
+                        style="position: absolute; left: -105px" />
+                </div>
+            </div>
+
+            <div class="task" style="height: 340px">
+                <div class="detail-task">
+                    <h3>Task Management Can Anywhere</h3>
+                    <p style="margin-top: 20px">
+                        Lorem ipsum dolor sit amet, coectetur adipiscing
+                        <br />
+                        elit. Tortor nisl vestibulum, consezzuat, sed
+                        turpis. <br />
+                        Enim proin quis. Lorem ipsaaaaum dolor sit amet,
+                        <br />
+                        consectetur adipiscing elit.
+                    </p>
+
+                    <div class="note-book-icon">
+                        <i class="bi bi-journal-check"></i>
+                    </div>
+
+                    <img src="pages/./image/function_tool/arrow2.png" alt="" srcset=""
+                        style="position: absolute; right: -135px" />
+                </div>
+            </div>
+
+            <div class="team" style="height: 340px">
+                <div class="detail-team">
+                    <h3>Team Management Can Easily</h3>
+                    <p style="margin-top: 20px">
+                        Lorem ipsum dolor sit amet, coectetur adipiscing
+                        <br />
+                        elit. Tortor nisl vestibulum, consezzuat, sed
+                        turpis. <br />
+                        Enim proin quis. Lorem ipsaaaaum dolor sit amet,
+                        <br />
+                        consectetur adipiscing elit.
+                    </p>
+
+                    <div class="collaborate-book-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+
+                    <img src="pages/./image/function_tool/arrow3.png" alt="" srcset=""
+                        style="position: absolute; left: -128px" />
+                </div>
+            </div>
+
+            <div class="time" style="height: 340px">
+                <div class="detail-time">
+                    <h3>Time Management And Save</h3>
+                    <p style="margin-top: 20px">
+                        Lorem ipsum dolor sit amet, coectetur adipiscing
+                        <br />
+                        elit. Tortor nisl vestibulum, consezzuat, sed
+                        turpis. <br />
+                        Enim proin quis. Lorem ipsaaaaum dolor sit amet,
+                        <br />
+                        consectetur adipiscing elit.
+                    </p>
+
+                    <div class="clock-book-icon">
+                        <i class="bi bi-alarm"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="collaboration-unit">
+        <div class="number-user">
+            <h1>
+                Used by 1000+ organizations <br />
+                across the world.
+            </h1>
+            <span
+                style="
+                        width: 110px;
+                        height: 60px;
+                        display: inline-block;
+                        border: 3px solid rgb(236, 151, 88);
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 120px;
+                        right: 50%;
+                    ">
+            </span>
+        </div>
+
+        <div class="number-unit">
+            <div class="invision">
+                <img src="pages/./image/collobrations-unit/invison.png" alt="" srcset=""
+                    style="width: 45px; height: 40px" />
+
+                <h4>VISION</h4>
+            </div>
+            <div class="slack">
+                <img src="pages/./image/collobrations-unit/slack.png" alt="" srcset=""
+                    style="width: 45px; height: 40px" />
+
+                <h4>slack</h4>
+            </div>
+            <div class="microsoft">
+                <img src="pages/./image/collobrations-unit/microsoft.webp" alt="" srcset=""
+                    style="width: 45px; height: 40px" />
+
+                <h4>Microsoft</h4>
+            </div>
+            <div class="treehouse">
+                <img src="pages/./image/collobrations-unit/treehouse.png" alt="" srcset=""
+                    style="width: 45px; height: 40px" />
+
+                <h4>treehouse</h4>
+            </div>
+            <div class="Lattice">
+                <img src="pages/./image/collobrations-unit/lattice.png" alt="" srcset=""
+                    style="width: 45px; height: 40px" />
+
+                <h4>Lattice</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="advantage"></div>
+
+    <footer></footer>
+    <script src="pages/main.js"></script>
+</body>
+
+</html>

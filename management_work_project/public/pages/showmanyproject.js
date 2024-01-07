@@ -3,7 +3,7 @@ function project_specific(id) {
     window.location.href = `${currentLink}/project/${id}`;
 }
 async function addProjectFetch(projectName, project){
-    const response = await fetch("http://127.0.0.1:8000/api/project",{
+    const response = await fetch(window.webURL+"api/project",{
         method: "POST", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),

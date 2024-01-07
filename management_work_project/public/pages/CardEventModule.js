@@ -25,6 +25,13 @@ export function newCardElement(id, title, list_ID){
         let card_ID = card.getAttribute("id");
         modifyCardPosition(card_ID, index, list_ID);
     };
+    function openFormCard(e) {
+        let container = document.querySelector('.modal.hide');
+        container.id = e.target.id;
+        getCardFetch(e.target.id);
+    }
+    // lắng nghe khi click vào card
+    card.onclick = openFormCard;
 }
 export function reOrderIndex(itemSelector, containerSelector){
     const containers = document.querySelectorAll(containerSelector);
@@ -106,7 +113,7 @@ export function newListElement(id, title){
     };
 }
 async function deleteListFetch(id){
-    const response = await fetch("http://127.0.0.1:8000/api/lists/"+id,{
+    const response = await fetch(window.webURL+"api/lists/"+id,{
         method: "DELETE", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
@@ -139,7 +146,7 @@ export function modifyListTitle(id, newTitle){
 }
 
 async function modifyListPosition(id, index){
-    const response = await fetch("http://127.0.0.1:8000/api/lists/index/"+id,{
+    const response = await fetch(window.webURL+"api/lists/index/"+id,{
         method: "PUT", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
@@ -156,7 +163,7 @@ async function modifyListPosition(id, index){
     console.log(result);
 }
 async function modifyCardPosition(id, index, list_ID){
-    const response = await fetch("http://127.0.0.1:8000/api/cards/index/"+id,{
+    const response = await fetch(window.webURL+"api/cards/index/"+id,{
         method: "PUT", // or 'PUT'
         credentials: "same-origin",
         headers: {
@@ -281,7 +288,7 @@ export function removeListItemElement(id){
     reOrderIndex(".list-item", ".project-container");
 }
 async function addCardFetch(title, list_ID){
-    const response = await fetch("http://127.0.0.1:8000/api/cards",{
+    const response = await fetch(window.webURL+"api/cards",{
         method: "POST", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),

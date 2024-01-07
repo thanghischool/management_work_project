@@ -1,6 +1,6 @@
 
 async function modifyCardPosition(id, index, list_ID){
-    const response = await fetch("http://127.0.0.1:8000/api/cards/index/"+id,{
+    const response = await fetch(window.webURL+"api/cards/index/"+id,{
         method: "PUT", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
@@ -17,7 +17,7 @@ async function modifyCardPosition(id, index, list_ID){
     const result = await response.json();
 }
 async function modifyListPosition(id, index){
-    const response = await fetch("http://127.0.0.1:8000/api/lists/index/"+id,{
+    const response = await fetch(window.webURL+"api/lists/index/"+id,{
         method: "PUT", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
@@ -90,7 +90,6 @@ function applyDragableIntoList(container, item){
         sortableList.ondragenter = e => {e.preventDefault()};   
     }
 }
-
 function applyDragableIntoCard(container, item){
     const sortableLists = document.querySelectorAll(container);
     for(const key_list in sortableLists){

@@ -29,6 +29,7 @@ class ChecklistAPIController extends Controller
         $checklist = new Checklist;
         $checklist->title = $request->title;
         $checklist->card_ID = $request->card_ID;
+        $checklist->workspace_ID = $request->workspace_ID;
         $checklist->save();
         return $checklist;
     }
@@ -45,6 +46,7 @@ class ChecklistAPIController extends Controller
         $request->validate($rule);
         $checklist->title = $request->title;
         $checklist->save();
+        return $checklist;
     }
 
     /**
@@ -57,24 +59,25 @@ class ChecklistAPIController extends Controller
         return $checklist;
     }
     // body: user_IDs
-    public function storeItem(Request $request, Workspace $workspace, Checklist $checklist){
+    public function storeItem(Request $request, Checklist $checklist){
         $request->validate([
             "content" => "required|max:255|string",
         ]);
         $overdue = Carbon::parse($request->overdue);
-        if ($overdue->gt(Carbon::now()->format("Y-m-d\Th:i"))){
+        if ($overdue->gt(Carbon::now()->format("Y-m-d\TH:i"))){
             $task = new Task;
             $task->content = $request->content;
             $task->checklist_ID = $checklist->id;
             $task->overdue = $request->overdue;
+            $task->workspace_ID = $request->workspace_ID;
             $task->save();
             $users = array();
             if(isset($request->user_IDs)){
                 foreach($request->user_IDs as $user_ID){
-                    if(User::isBelongsToWorkspace($user_ID, $workspace->id)){
+                    if(User::isBelongsToWorkspace($user_ID, $request->workspace_ID)){
                         $values = array("task_ID" => $task->id, "user_ID" => $user_ID);
                         DB::table('task_user')->insert($values);
-                        array_push($users, User::find($user_ID));
+                        array_push($users, $user_ID);
                     }
                 }
             }
@@ -93,7 +96,7 @@ class ChecklistAPIController extends Controller
             "content" => "required|max:255|string",
         ]);
         $overdue = Carbon::parse($request->overdue);
-        if ($overdue->gt(Carbon::now()->format("Y-m-d\Th:i"))){
+        if ($overdue->gt(Carbon::now()->format("Y-m-d\TH:i"))){
             $task->content = $request->content;
             $task->overdue = $request->overdue;
             $task->save();
@@ -101,7 +104,7 @@ class ChecklistAPIController extends Controller
             if(isset($request->user_IDs)){
                 DB::table('task_user')->where("task_ID",$task->id)->delete();
                 foreach($request->user_IDs as $user_ID){
-                    if(User::isBelongsToWorkspace($user_ID, $workspace->id)){
+                    if(User::isBelongsToWorkspace($user_ID, $request->workspace_ID)){
                         $values = array("task_ID" => $task->id, "user_ID" => $user_ID);
                         DB::table('task_user')->insert($values);
                         array_push($users, User::find($user_ID));

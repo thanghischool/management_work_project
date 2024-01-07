@@ -23,7 +23,7 @@ function deleteProject(){
 }
 deleteProject();
 async function modifyProjectNameFetch(id, newName){
-    const response = await fetch("http://127.0.0.1:8000/api/project/"+id,{
+    const response = await fetch(window.webURL+"api/project/"+id,{
         method: "PUT", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),
@@ -39,7 +39,7 @@ async function modifyProjectNameFetch(id, newName){
     const result = await response.json();
 }
 async function deleteProjectFetch(id){
-    const response = await fetch("http://127.0.0.1:8000/api/project/"+id,{
+    const response = await fetch(window.webURL+"api/project/"+id,{
         method: "delete", // or 'PUT'
         headers: {
             'X-Socket-ID': window.Echo.socketId(),

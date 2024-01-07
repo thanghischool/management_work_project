@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CardAPIController;
 use App\Http\Controllers\API\CommentAPIController;
 use App\Http\Controllers\API\MessageAPIController;
+use App\Http\Controllers\API\ChecklistAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(["auth.member"])->group(function(){
+    Route::get('{workspace}/card/{card}', [App\Http\Controllers\API\CardAPIController::class, 'index']);
     Route::post('/cards', [App\Http\Controllers\API\CardAPIController::class, 'store']);
     Route::get('/cards/show/{card}', [App\Http\Controllers\API\CardAPIController::class, "show"]);
     Route::delete('/cards/{card}', [App\Http\Controllers\API\CardAPIController::class, "destroy"]);
@@ -46,4 +48,13 @@ Route::middleware(["auth.member"])->group(function(){
     Route::post('/project', [App\Http\Controllers\API\ProjectAPIController::class, "create"]);
     Route::put('/project/{project}', [App\Http\Controllers\API\ProjectAPIController::class, "updateName"]);
     Route::delete('/project/{project}', [App\Http\Controllers\API\ProjectAPIController::class, "destroy"]);
+
+    Route::post('/checklist', [ChecklistAPIController::class, "store"]);
+    Route::put('/checklist/{checklist}', [ChecklistAPIController::class, "updateTitle"]);
+    Route::delete('/checklist/{checklist}', [ChecklistAPIController::class, "destroy"]);
+
+    Route::post('/checklist/{checklist}/task', [ChecklistAPIController::class, "storeItem"]);
+    Route::put('/task/{task}', [ChecklistAPIController::class, "updateItem"]);
+    Route::delete('/task/{task}', [ChecklistAPIController::class, "removeItem"]);
 });
+

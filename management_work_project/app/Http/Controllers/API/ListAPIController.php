@@ -67,6 +67,7 @@ class ListAPIController extends Controller
         $list->title = $request->title;
         $list->index = $length;
         $list->project_ID = $request->project_ID;
+        $list->workspace_ID = $request->workspace_ID;
         $list->save();
         broadcast(new ListCreated($list));
         return $list;

@@ -25,7 +25,7 @@ class QueryDataController extends Controller
         }
 
         $workspaces = User::find($id_user)->workspaces();
-
+        
         //Get workspace data from workspace_id
         $getWorkspace = Workspace::where('id', $workspace)->first();
 
@@ -52,22 +52,23 @@ class QueryDataController extends Controller
     public function createWorkspace(Request $request)
     {
 
-        if ($request->name_workspace && $request->hasFile('avatar_workspace')) {
+        // if ($request->name_workspace && $request->hasFile('avatar_workspace')) {
+        if ($request->name_workspace) {
             $workspace = new Workspace;
 
             $workspace->name = $request->name_workspace;
             $workspace->admin_ID = session('id_user');
-            $image = $request->file('avatar_workspace');
+            // $image = $request->file('avatar_workspace');
 
-            // Lấy tên file gốc
-            $imageFileName = $image->getClientOriginalName();
+            // // Lấy tên file gốc
+            // $imageFileName = $image->getClientOriginalName();
 
-            // Gán đường dẫn file vào trường avatar
-            $workspace->avatar = 'pages/image/' . $imageFileName;
+            // // Gán đường dẫn file vào trường avatar
+            // $workspace->avatar = 'pages/image/' . $imageFileName;
 
-            // Di chuyển file đến đường dẫn mong muốn
-            $path_avatar = $image->move('pages/image', $imageFileName);
-
+            // // Di chuyển file đến đường dẫn mong muốn
+            // $path_avatar = $image->move('pages/image', $imageFileName);
+            $workspace->avatar = 'storage/workspacedefault.jpg';
             $workspace->save();
 
             DB::table('user_workspace')->insert([

@@ -65,23 +65,64 @@
                                 </div>
                             </div>
                             <div id="checklist-container">
-                                <div class="slide todolist">
+                                {{-- <div class="slide todolist">
                                     <div class="slide-header">
                                         <div class="name">
                                             <i class="fa-solid fa-clipboard-check fa-lg"></i>
-                                            <h4>To do list</h4>
+                                            <h4 contenteditable="true">To do list</h4>
                                         </div>
                                         <button class="btnn closetodolist">Delete</button>
-
                                     </div>
                                     <div class="slide-body">
-                                        <div class="check"><input type="checkbox">
-                                            <p class="check-content">dsd</p> <button class="btnn cancel">Delete</button>
+                                        <div>
+                                            <div class="check">
+                                                <input type="checkbox">
+                                                <p class="check-content">dsd</p>
+                                                <button class="btnn cancel">Delete</button>
+                                            </div>
+                                            <div style="margin-left: 40px;">
+                                                <input type="datetime-local" name="overdue">
+                                                <ul class="users"
+                                                    style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                                                    <li class="user-group">
+                                                        <input type="checkbox" name="users[]" value="user1"
+                                                            class="hide">
+                                                        <img style="height: 20px; width: 20px" title="user"
+                                                            src="https://scontent.fdad3-3.fna.fbcdn.net/v/t39.30808-6/413866646_1863469224107807_7628840190467076796_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeGjVGNGruhlrts83orP0fiXfbRlxLWm-419tGXEtab7jSJvaYYw4WkJ7pNM_pIFqx48TjXnOG-c7i2p6Z196bV9&_nc_ohc=98brBe4YHVUAX_AraAy&_nc_zt=23&_nc_ht=scontent.fdad3-3.fna&oh=00_AfB3rb0eNYvAN9u1oBEqv_G9euP-afkdlKB1JtzmQrisZg&oe=659BCBE7">
+                                                    </li>
+                                                    <li class="user-group">
+                                                        <input type="checkbox" name="users[]" value="user1"
+                                                            class="hide">
+                                                        <img style="height: 20px; width: 20px" title="user"
+                                                            src="https://scontent.fdad3-3.fna.fbcdn.net/v/t39.30808-6/413866646_1863469224107807_7628840190467076796_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeGjVGNGruhlrts83orP0fiXfbRlxLWm-419tGXEtab7jSJvaYYw4WkJ7pNM_pIFqx48TjXnOG-c7i2p6Z196bV9&_nc_ohc=98brBe4YHVUAX_AraAy&_nc_zt=23&_nc_ht=scontent.fdad3-3.fna&oh=00_AfB3rb0eNYvAN9u1oBEqv_G9euP-afkdlKB1JtzmQrisZg&oe=659BCBE7">
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                         <button class="btnn addcheck-btn">Add</button>
                                         <ul class="addcheck">
-                                            <li><input type="text" placeholder="Add an item" name="addcheck"
-                                                    class="addcheck-content"></li>
+                                            <li>
+                                                <input type="text" placeholder="Add an item" name="addcheck"
+                                                    class="addcheck-content">
+                                                <div style="display: flex; flex-direction: column;">
+                                                    <span class="input-task-header">overdue</span>
+                                                    <input type="datetime-local" name="overdue">
+                                                    <span class="input-task-header">Who will do this task ?</span>
+                                                    <ul class="users"
+                                                        style="display: flex; flex-wrap: wrap; gap: 10px">
+                                                        <li class="user-group">
+                                                            <input type="checkbox" name="users[]" value="user1">
+                                                            <img title="user"
+                                                                src="https://scontent.fdad3-3.fna.fbcdn.net/v/t39.30808-6/413866646_1863469224107807_7628840190467076796_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeGjVGNGruhlrts83orP0fiXfbRlxLWm-419tGXEtab7jSJvaYYw4WkJ7pNM_pIFqx48TjXnOG-c7i2p6Z196bV9&_nc_ohc=98brBe4YHVUAX_AraAy&_nc_zt=23&_nc_ht=scontent.fdad3-3.fna&oh=00_AfB3rb0eNYvAN9u1oBEqv_G9euP-afkdlKB1JtzmQrisZg&oe=659BCBE7">
+                                                        </li>
+                                                        <li class="user-group">
+                                                            <input type="checkbox" name="users[]" value="user1">
+                                                            <img title="user"
+                                                                src="https://scontent.fdad3-3.fna.fbcdn.net/v/t39.30808-6/413866646_1863469224107807_7628840190467076796_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeGjVGNGruhlrts83orP0fiXfbRlxLWm-419tGXEtab7jSJvaYYw4WkJ7pNM_pIFqx48TjXnOG-c7i2p6Z196bV9&_nc_ohc=98brBe4YHVUAX_AraAy&_nc_zt=23&_nc_ht=scontent.fdad3-3.fna&oh=00_AfB3rb0eNYvAN9u1oBEqv_G9euP-afkdlKB1JtzmQrisZg&oe=659BCBE7">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
                                             <li>
                                                 <div style="display: flex"><button
                                                         class="btnn closeaddcheck cancel">Cancel</button><button
@@ -90,7 +131,7 @@
 
                                         </ul>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="slide addfile hide">
                                 <div class="slide-header">
@@ -154,7 +195,8 @@
                                     <p class="activity-name">Todolist</p>
                                 </li>
                                 <li>
-                                    <p>Name:</p> <input type="text" class="nameTodolist" name="nameTodolist">
+                                    <p style="text-align: start;">Name:</p> <input type="text" class="nameTodolist"
+                                        name="nameTodolist">
                                 </li>
                                 <li><button class="btnn closetodolist-popup cancel">Cancel</button><button
                                         type="submit" class="btnn addtodolist-btn">Add</button></li>

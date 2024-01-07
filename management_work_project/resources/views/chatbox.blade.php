@@ -11,7 +11,6 @@
     <meta name="updateworkspaceurl" content="{{ route('update_Workspace', ['workspace' => $workspace->id]) }}">
     <link rel="stylesheet" href="pages/style.css" />
     <link rel="stylesheet" href="pages/chatBox.css" />
-    @vite(['resources/js/bootstrap.js'])
 </head>
 
 <body>
@@ -68,13 +67,12 @@
     </div>
     <script>
         window.user_ID = {{ Auth::id() }};
-        let date = new Date(Date.now());
-        document.querySelector('.date').innerHTML = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        // let date = new Date(Date.now());
+        // document.querySelector('.date').innerHTML = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     </script>
     <script src="pages/script.js"></script>
     <script src="pages/editable.js"></script>
     <script src="pages/message.js" type="module"></script>
-    <script type="module" src="{{ mix('resources/js/app.js') }}" defer></script>
 </body>
 
 </html>

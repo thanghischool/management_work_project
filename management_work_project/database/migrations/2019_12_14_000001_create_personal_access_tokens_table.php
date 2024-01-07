@@ -101,6 +101,7 @@ return new class extends Migration
             $table->unsignedBigInteger("checkList_ID")->nullable(false);
             $table->foreign("checkList_ID")->references("id")->on("checklists")->onDelete("cascade");
             $table->timestamp('overdue')->nullable();
+            $table->string("content")->nullable(false);
             $table->unsignedBigInteger("workspace_ID")->nullable(false);
             $table->foreign("workspace_ID")->references("id")->on("workspaces")->onDelete("cascade");
         });
@@ -108,7 +109,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("task_ID")->nullable(false);
             $table->unsignedBigInteger("user_ID")->nullable(false);
-            $table->string("content")->nullable(false);
             $table->foreign("task_ID")->references("id")->on("tasks")->onDelete("cascade");
             $table->foreign("user_ID")->references("id")->on("users")->onDelete("cascade");
         });
